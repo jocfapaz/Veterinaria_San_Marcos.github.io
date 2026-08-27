@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria San Marcos - Inicio</title>
+    <!-- Hoja de estilos externa -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- CABECERA Y NAVEGACIÓN -->
+    <header class="main-header">
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="https://via.placeholder.com/150x50?text=San+Marcos" alt="Logo Veterinaria San Marcos" class="logo-img">
+            </a>
+        </div>
+        
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="productos.html">Productos y Servicios</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blogs.html">Blog / Casos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="login.html">Iniciar Sesión</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <!-- Acceso directo al Carrito con contador JS -->
+            <a href="productos.html#carrito" class="btn-cart">
+                🛒 <span id="cartCount">Cart (0)</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+
+        <!-- SECCIÓN HERO / BIENVENIDA -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Cuidamos a tus mascotas como parte de nuestra familia</h1>
+                <p>Salud, nutrición y bienestar integral para perros, gatos y mascotas exóticas en la Veterinaria San Marcos.</p>
+                <div class="hero-buttons">
+                    <a href="contacto.html" class="btn btn-primary">Reservar Hora / Contacto</a>
+                    <a href="productos.html" class="btn btn-secondary">Ver Tienda Web</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE SERVICIOS DESTACADOS -->
+        <section class="services-section">
+            <h2>Nuestros Servicios Destacados</h2>
+            <div class="services-grid">
+                
+                <article class="service-card">
+                    <img src="https://via.placeholder.com/300x200?text=Consultas+Medicas" alt="Consultas Médicas Veterinarias">
+                    <h3>Consultas Médicas</h3>
+                    <p>Atención profesional preventiva y tratamientos especializados para el cuidado de tu mascota.</p>
+                    <a href="contacto.html" class="btn-link">Agendar Atención &rarr;</a>
+                </article>
+
+                <article class="service-card">
+                    <img src="https://via.placeholder.com/300x200?text=Vacunacion" alt="Vacunación y Desparasitación">
+                    <h3>Vacunación y Desparasitación</h3>
+                    <p>Calendario completo de vacunas para cachorros y adultos para garantizar una vida sana.</p>
+                    <a href="contacto.html" class="btn-link">Ver Calendario &rarr;</a>
+                </article>
+
+                <article class="service-card">
+                    <img src="https://via.placeholder.com/300x200?text=Peluqueria" alt="Peluquería y Estética Canina">
+                    <h3>Peluquería y Estética</h3>
+                    <p>Baños medicados, corte de pelo e higiene completa para el confort de tus peluditos.</p>
+                    <a href="contacto.html" class="btn-link">Agendar Cita &rarr;</a>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE PRODUCTOS DESTACADOS (TIENDA WEB) -->
+        <section class="featured-products">
+            <h2>Productos Destacados en Tienda</h2>
+            <div class="products-grid">
+
+                <article class="product-card">
+                    <img src="https://via.placeholder.com/250x200?text=Alimento+Perro" alt="Alimento Canino Premium">
+                    <h3>Alimento Perro Adulto 15Kg</h3>
+                    <p class="price">$ 45.990</p>
+                    <a href="detalle-producto.html" class="btn btn-outline">Ver Detalle</a>
+                    <button class="btn btn-primary" onclick="agregarAlCarrito(1, 'Alimento Perro Adulto 15Kg', 45990, 'https://via.placeholder.com/250x200?text=Alimento+Perro')">
+                        Añadir al Carrito
+                    </button>
+                </article>
+
+                <article class="product-card">
+                    <img src="https://via.placeholder.com/250x200?text=Antiparacitario" alt="Antiparasitario Felino">
+                    <h3>Pipeta Antiparasitaria Gato</h3>
+                    <p class="price">$ 12.500</p>
+                    <a href="detalle-producto.html" class="btn btn-outline">Ver Detalle</a>
+                    <button class="btn btn-primary" onclick="agregarAlCarrito(2, 'Pipeta Antiparasitaria Gato', 12500, 'https://via.placeholder.com/250x200?text=Antiparacitario')">
+                        Añadir al Carrito
+                    </button>
+                </article>
+
+            </div>
+            <div class="center-button">
+                <a href="productos.html" class="btn btn-secondary">Ver Todo el Catálogo</a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE MULTIMEDIA Y VIDEO (Exigido en la rúbrica) -->
+        <section class="multimedia-section">
+            <h2>Conoce nuestras instalaciones</h2>
+            <p>Descubre el espacio preparado especialmente para la comodidad y seguridad de tus mascotas.</p>
+            <div class="video-container">
+                <video controls width="100%" poster="https://via.placeholder.com/800x450?text=Reproducir+Video+Veterinaria">
+                    <source src="assets/videos/presentacion-veterinaria.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video HTML5.
+                </video>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE NOTICIAS / ULTIMOS BLOGS -->
+        <section class="latest-blogs">
+            <h2>Últimas Noticias y Consejos</h2>
+            <div class="blogs-grid">
+
+                <article class="blog-card">
+                    <img src="https://via.placeholder.com/350x200?text=Cuidados+Verano" alt="Cuidados de mascotas en verano">
+                    <h3>¿Cómo proteger a tu perro del golpe de calor?</h3>
+                    <p>Consejos esenciales para mantener hidratados y frescos a tus peluditos durante las altas temperaturas.</p>
+                    <a href="detalle-blog-1.html" class="btn-link">Leer artículo completo &rarr;</a>
+                </article>
+
+                <article class="blog-card">
+                    <img src="https://via.placeholder.com/350x200?text=Alimentacion+Gatos" alt="Alimentación Felina">
+                    <h3>Importancia de la nutrición en gatos sénior</h3>
+                    <p>Aprende sobre los requerimientos vitamínicos y de proteínas para felinos de más de 7 años.</p>
+                    <a href="detalle-blog-2.html" class="btn-link">Leer artículo completo &rarr;</a>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Veterinaria San Marcos</h3>
+                <p>Comprometidos con el bienestar de tus animales de compañía desde hace más de 10 años.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Catálogo de Productos</a></li>
+                    <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html">Formulario de Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>📍 Av. Principal #1234, Santiago, Chile</p>
+                <p>📞 +56 9 1234 5678</p>
+                <p>✉️ contacto@veterinariasanmarcos.cl</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Veterinaria San Marcos. Todos los derechos reservados. Desarrollado para DSY1104.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS JS -->
+    <!-- Script que maneja el carrito en localStorage y actualiza el contador -->
+    <script src="js/cart.js"></script>
+
+</body>
+</html>
