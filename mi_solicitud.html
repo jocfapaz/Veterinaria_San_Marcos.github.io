@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria San Marcos | Mi solicitud de cita</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">Veterinaria San Marcos</a>
+        </div>
+
+        <nav class="nav-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <div class="acciones-usuario">
+            <a href="mi-solicitud.html" class="solicitud">Mi solicitud (<span id="solicitud-count">2</span>)</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="seccion-carrito">
+            <h1>Mi solicitud de cita</h1>
+            <p>Revisa los servicios que quieres solicitar y confirma los datos de la cita.</p>
+
+            <!-- Este listado se generará dinámicamente con JavaScript en una fase posterior -->
+            <ul class="lista-carrito" id="lista-solicitud">
+                <li class="item-carrito">
+                    <img src="img/servicio-placeholder.jpg" alt="Consulta general">
+                    <div class="info-item">
+                        <h2>Consulta general</h2>
+                        <p>Mascota: Firulais</p>
+                    </div>
+                    <p class="precio-unitario">$ 15.000</p>
+                    <button type="button" class="boton-eliminar">Quitar</button>
+                </li>
+                <li class="item-carrito">
+                    <img src="img/servicio-placeholder.jpg" alt="Vacuna antirrábica">
+                    <div class="info-item">
+                        <h2>Vacuna antirrábica</h2>
+                        <p>Mascota: Firulais</p>
+                    </div>
+                    <p class="precio-unitario">$ 12.000</p>
+                    <button type="button" class="boton-eliminar">Quitar</button>
+                </li>
+            </ul>
+
+            <aside class="resumen-carrito">
+                <p class="total">Total estimado: <span id="total-solicitud">$ 27.000</span></p>
+
+                <form action="#" method="post" class="form-solicitud-cita" novalidate>
+                    <div class="campo">
+                        <label for="fecha-cita">Fecha preferida</label>
+                        <input type="date" id="fecha-cita" name="fecha-cita" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="hora-cita">Hora preferida</label>
+                        <input type="time" id="hora-cita" name="hora-cita" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="comentario-cita">Comentario (opcional)</label>
+                        <textarea id="comentario-cita" name="comentario-cita" maxlength="300"></textarea>
+                    </div>
+
+                    <button type="submit" class="boton boton-pagar">Enviar solicitud de cita</button>
+                </form>
+            </aside>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <p>Veterinaria San Marcos</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
