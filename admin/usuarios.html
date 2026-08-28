@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador | Usuarios</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <div class="layout-admin">
+
+        <aside class="sidebar-admin">
+            <div class="logo-admin">
+                <a href="index.html">San Marcos</a>
+            </div>
+
+            <nav class="nav-admin">
+                <ul>
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="usuarios.html">Usuarios</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="contenido-admin">
+            <header class="header-admin">
+                <h1>Usuarios</h1>
+                <a href="usuario-nuevo.html" class="boton">Nuevo usuario</a>
+            </header>
+
+            <main>
+                <section class="tabla-listado">
+                    <!-- Este listado se generará dinámicamente con JavaScript en una fase posterior -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Run</th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Correo</th>
+                                <th>Rol</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla-usuarios">
+                            <tr>
+                                <td>19011022K</td>
+                                <td>Nombre</td>
+                                <td>Apellidos</td>
+                                <td>correo@duoc.cl</td>
+                                <td>Recepcionista</td>
+                                <td>
+                                    <a href="usuario-editar.html">Editar</a>
+                                    <button type="button" class="boton-eliminar">Desactivar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
