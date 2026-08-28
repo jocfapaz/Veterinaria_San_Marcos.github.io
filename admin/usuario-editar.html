@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador | Editar usuario</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <div class="layout-admin">
+
+        <aside class="sidebar-admin">
+            <div class="logo-admin">
+                <a href="index.html">San Marcos</a>
+            </div>
+
+            <nav class="nav-admin">
+                <ul>
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="usuarios.html">Usuarios</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="contenido-admin">
+            <main>
+                <section class="seccion-formulario">
+                    <h1>Editar usuario</h1>
+
+                    <form action="#" method="post" id="form-usuario-editar" novalidate>
+                        <div class="campo">
+                            <label for="run-usuario">Run</label>
+                            <input type="text" id="run-usuario" name="run" placeholder="Ej: 19011022K" required minlength="7" maxlength="9">
+                            <span class="mensaje-error" id="error-run-usuario"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="nombre-usuario">Nombre</label>
+                            <input type="text" id="nombre-usuario" name="nombre" required maxlength="50">
+                            <span class="mensaje-error" id="error-nombre-usuario"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="apellidos-usuario">Apellidos</label>
+                            <input type="text" id="apellidos-usuario" name="apellidos" required maxlength="100">
+                            <span class="mensaje-error" id="error-apellidos-usuario"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="correo-usuario">Correo</label>
+                            <input type="email" id="correo-usuario" name="correo" required maxlength="100">
+                            <span class="mensaje-error" id="error-correo-usuario"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="fecha-nacimiento-usuario">Fecha de nacimiento (opcional)</label>
+                            <input type="date" id="fecha-nacimiento-usuario" name="fecha-nacimiento">
+                        </div>
+
+                        <div class="campo">
+                            <label for="rol-usuario">Rol</label>
+                            <select id="rol-usuario" name="rol" required>
+                                <option value="">-- Seleccione el rol --</option>
+                                <option value="administrador">Administrador</option>
+                                <option value="recepcionista">Recepcionista / Operador</option>
+                                <option value="dueno-mascota">Dueño de mascota</option>
+                            </select>
+                            <span class="mensaje-error" id="error-rol-usuario"></span>
+                        </div>
+
+                        <div class="campo-doble">
+                            <div class="campo">
+                                <label for="region-usuario">Región</label>
+                                <select id="region-usuario" name="region">
+                                    <option value="">-- Seleccione la región --</option>
+                                    <option value="ohiggins">Región del Libertador Bernardo O'Higgins</option>
+                                    <option value="rm">Región Metropolitana de Santiago</option>
+                                </select>
+                            </div>
+
+                            <div class="campo">
+                                <label for="comuna-usuario">Comuna</label>
+                                <select id="comuna-usuario" name="comuna">
+                                    <option value="">-- Seleccione la comuna --</option>
+                                    <option value="rancagua">Rancagua</option>
+                                    <option value="machali">Machalí</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="campo">
+                            <label for="direccion-usuario">Dirección (opcional)</label>
+                            <input type="text" id="direccion-usuario" name="direccion" maxlength="300">
+                        </div>
+
+                        <button type="submit" class="boton">Guardar cambios</button>
+                    </form>
+                </section>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
