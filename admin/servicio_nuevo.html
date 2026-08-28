@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador | Nuevo servicio</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <div class="layout-admin">
+
+        <aside class="sidebar-admin">
+            <div class="logo-admin">
+                <a href="index.html">San Marcos</a>
+            </div>
+
+            <nav class="nav-admin">
+                <ul>
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="usuarios.html">Usuarios</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="contenido-admin">
+            <main>
+                <section class="seccion-formulario">
+                    <h1>Nuevo servicio</h1>
+
+                    <form action="#" method="post" id="form-servicio" novalidate>
+                        <div class="campo">
+                            <label for="codigo-servicio">Código</label>
+                            <input type="text" id="codigo-servicio" name="codigo" placeholder="Ej: SV006" required minlength="3">
+                            <span class="mensaje-error" id="error-codigo-servicio"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="categoria-servicio">Categoría</label>
+                            <select id="categoria-servicio" name="categoria" required>
+                                <option value="">-- Seleccione la categoría --</option>
+                                <option value="consultas">Consultas</option>
+                                <option value="vacunacion">Vacunación</option>
+                                <option value="cirugia">Cirugía</option>
+                                <option value="desparasitacion">Desparasitación</option>
+                                <option value="examenes">Exámenes</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                            <span class="mensaje-error" id="error-categoria-servicio"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="nombre-servicio">Nombre del servicio</label>
+                            <input type="text" id="nombre-servicio" name="nombre" required maxlength="100">
+                            <span class="mensaje-error" id="error-nombre-servicio"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="especie-servicio">Especie</label>
+                            <select id="especie-servicio" name="especie" required>
+                                <option value="">-- Seleccione --</option>
+                                <option value="perro">Perro</option>
+                                <option value="gato">Gato</option>
+                                <option value="perro-gato">Perro / Gato</option>
+                                <option value="ave">Ave</option>
+                                <option value="conejo">Conejo</option>
+                                <option value="todas">Todas las especies</option>
+                            </select>
+                            <span class="mensaje-error" id="error-especie-servicio"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="duracion-servicio">Duración aproximada (minutos)</label>
+                            <input type="number" id="duracion-servicio" name="duracion" required min="5" step="5">
+                            <span class="mensaje-error" id="error-duracion-servicio"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="precio-servicio">Precio (CLP)</label>
+                            <input type="number" id="precio-servicio" name="precio" required min="0" step="500">
+                            <span class="mensaje-error" id="error-precio-servicio"></span>
+                        </div>
+
+                        <div class="campo">
+                            <label for="observaciones-servicio">Observaciones (opcional)</label>
+                            <textarea id="observaciones-servicio" name="observaciones" maxlength="300"></textarea>
+                        </div>
+
+                        <div class="campo">
+                            <label for="imagen-servicio">Imagen (opcional)</label>
+                            <input type="file" id="imagen-servicio" name="imagen" accept="image/*">
+                        </div>
+
+                        <button type="submit" class="boton">Registrar</button>
+                    </form>
+                </section>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
