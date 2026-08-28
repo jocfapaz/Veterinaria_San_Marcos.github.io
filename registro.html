@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria San Marcos | Registro de usuario</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">Veterinaria San Marcos</a>
+        </div>
+
+        <nav class="nav-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <div class="acciones-usuario">
+            <a href="mi-solicitud.html" class="solicitud">Mi solicitud (<span id="solicitud-count">0</span>)</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="seccion-formulario">
+            <form action="#" method="post" id="form-registro" novalidate>
+                <h1>Registro de usuario</h1>
+                <p>Crea tu cuenta como dueño de mascota para solicitar citas y ver el historial clínico.</p>
+
+                <h2>Datos del dueño</h2>
+
+                <div class="campo">
+                    <label for="run">Run</label>
+                    <input type="text" id="run" name="run" placeholder="Ej: 19011022K" required minlength="7" maxlength="9">
+                    <span class="mensaje-error" id="error-run"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="nombre-completo">Nombre</label>
+                    <input type="text" id="nombre-completo" name="nombre" required maxlength="50">
+                    <span class="mensaje-error" id="error-nombre-completo"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" id="apellidos" name="apellidos" required maxlength="100">
+                    <span class="mensaje-error" id="error-apellidos"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="correo">Correo</label>
+                    <input type="email" id="correo" name="correo" required maxlength="100">
+                    <span class="mensaje-error" id="error-correo"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" id="contrasena" name="contrasena" required minlength="4" maxlength="10">
+                    <span class="mensaje-error" id="error-contrasena"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="confirmar-contrasena">Confirmar contraseña</label>
+                    <input type="password" id="confirmar-contrasena" name="confirmar-contrasena" required minlength="4" maxlength="10">
+                    <span class="mensaje-error" id="error-confirmar-contrasena"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono">
+                </div>
+
+                <div class="campo">
+                    <label for="direccion">Dirección</label>
+                    <input type="text" id="direccion" name="direccion" required maxlength="300">
+                    <span class="mensaje-error" id="error-direccion"></span>
+                </div>
+
+                <div class="campo-doble">
+                    <div class="campo">
+                        <label for="region">Región</label>
+                        <select id="region" name="region" required>
+                            <option value="">-- Seleccione la región --</option>
+                            <option value="ohiggins" selected>Región del Libertador Bernardo O'Higgins</option>
+                            <option value="rm">Región Metropolitana de Santiago</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="comuna">Comuna</label>
+                        <select id="comuna" name="comuna" required>
+                            <option value="">-- Seleccione la comuna --</option>
+                            <option value="rancagua">Rancagua</option>
+                            <option value="machali">Machalí</option>
+                            <option value="graneros">Graneros</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h2>Datos de la mascota (opcional en el registro)</h2>
+
+                <div class="campo">
+                    <label for="nombre-mascota">Nombre de la mascota</label>
+                    <input type="text" id="nombre-mascota" name="nombre-mascota" maxlength="50">
+                </div>
+
+                <div class="campo-doble">
+                    <div class="campo">
+                        <label for="especie-mascota">Especie</label>
+                        <select id="especie-mascota" name="especie-mascota">
+                            <option value="">-- Seleccione --</option>
+                            <option value="perro">Perro</option>
+                            <option value="gato">Gato</option>
+                            <option value="conejo">Conejo</option>
+                            <option value="ave">Ave</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="raza-mascota">Raza (opcional)</label>
+                        <input type="text" id="raza-mascota" name="raza-mascota" maxlength="50">
+                    </div>
+                </div>
+
+                <button type="submit" class="boton">Registrar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <p>Veterinaria San Marcos</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
