@@ -35,7 +35,7 @@
             <h1>Servicios</h1>
             <p>Catálogo de servicios disponibles en la clínica. Filtra por categoría o especie.</p>
 
-            <!-- Filtro por categoría, sin lógica aún (se implementará con JavaScript) -->
+            <!-- Filtro por categoría sin lógica (se va a implementar con JavaScript?) -->
             <form class="filtro-servicios" action="#">
                 <label for="filtro-categoria">Categoría</label>
                 <select id="filtro-categoria" name="categoria">
@@ -49,8 +49,8 @@
                 </select>
             </form>
 
-            <!-- Este listado se generará dinámicamente con JavaScript en una fase posterior,
-                 a partir de un arreglo con el catálogo completo de servicios -->
+            <!-- Catálogo completo de servicios -> listado se generará 
+             dinámicamente con JavaScript en el futuro! -->
             <ul class="grid-productos" id="lista-servicios">
                 <li class="tarjeta-producto">
                     <a href="servicio-detalle.html">
@@ -63,29 +63,204 @@
                 </li>
                 <li class="tarjeta-producto">
                     <a href="servicio-detalle.html">
-                        <img src="img/servicio-placeholder.jpg" alt="Vacuna sextuple canina">
-                        <h2>Vacuna sextuple canina</h2>
+                        <img src="" alt="Consulta urgencia">
+                        <h2>Consulta urgencia</h2>
                     </a>
-                    <p class="categoria">Vacunación · Perro · 10 min</p>
+                    <p class="categoria">Consultas · Perro / Gato · 30 min</p>
+                    <p class="precio">$25.000 </p>
+                    <p class="nota">Nota: Fuera de horario + $10.000.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Control postoperatorio">
+                        <h2>Control postoperatorio</h2>
+                    </a>
+                    <p class="categoria">Consultas · Perro / Gato · 20 min</p>
+                    <p class="precio">$10.000</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Consulta ave / conejo">
+                        <h2>Consulta ave / conejo</h2>
+                    </a>
+                    <p class="categoria">Consultas · Ave / Conejo · 30 min</p>
                     <p class="precio">$18.000</p>
                     <button type="button" class="boton-anadir">Solicitar</button>
                 </li>
                 <li class="tarjeta-producto">
                     <a href="servicio-detalle.html">
-                        <img src="img/servicio-placeholder.jpg" alt="Esterilización hembra felina">
-                        <h2>Esterilización hembra felina</h2>
+                        <img src="" alt="Segunda opinión médica">
+                        <h2>Segunda opinión médica</h2>
                     </a>
-                    <p class="categoria">Cirugía · Gata · 60 min</p>
-                    <p class="precio">$65.000</p>
+                    <p class="categoria">Consultas · Todas · 40 min</p>
+                    <p class="precio">$20.000</p>
+                    <p class="nota">Nota: Se requiere ficha previa.</p>
                     <button type="button" class="boton-anadir">Solicitar</button>
                 </li>
                 <li class="tarjeta-producto">
                     <a href="servicio-detalle.html">
-                        <img src="img/servicio-placeholder.jpg" alt="Desparasitación interna">
-                        <h2>Desparasitación interna medianos</h2>
+                        <img src="" alt="Vacuna antirrábica canina">
+                        <h2>Vacuna antirrábica canina</h2>
+                    </a>
+                    <p class="categoria">Vacunación · Perro · 10 min</p>
+                    <p class="precio">$12.000 </p>
+                    <p class="nota">Nota: Obligatoria por ley.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="img/servicio-placeholder.jpg" alt="Vacuna sextuple canina">
+                        <h2>Vacuna sextuple canina</h2>
+                    </a>
+                    <p class="categoria">Vacunación · Perro · 10 min</p>
+                    <p class="precio">$18.000</p>
+                    <p class="nota">Nota: Refuerzo anual.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Vacuna bivalente felina">
+                        <h2>Vacuna bivalente felina</h2>
+                    </a>
+                    <p class="categoria">Vacunación · Gato · 10 min</p>
+                    <p class="precio">$15.000 </p>
+                    <p class="nota">Nota: Refuerzo anual.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Vacuna triple felina">
+                        <h2>Vacuna triple felina</h2>
+                    </a>
+                    <p class="categoria">Vacunación · Gato · 10 min</p>
+                    <p class="precio">$17.000 </p>
+                    <p class="nota">Nota: Refuerzo anual.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Vacuna Bordetella canina">
+                        <h2>Vacuna Bordetella canina</h2>
+                    </a>
+                    <p class="categoria">Vacunación · Perro · 10 min</p>
+                    <p class="precio">$14.000 </p>
+                    <p class="nota">Nota: Tos de las perreras.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Vacuna antirrábica felina">
+                        <h2>Vacuna antirrábica felina</h2>
+                    </a>
+                    <p class="categoria">Vacunación · Gato · 10 min</p>
+                    <p class="precio">$12.000 </p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Esterilización hembra canina">
+                        <h2>Esterilización hembra canina</h2>
+                    </a>
+                    <p class="categoria">Cirugía · Perra · 90 min</p>
+                    <p class="precio">$80.000 </p>
+                    <p class="nota">Nota: Incluye anestesia y hospitalización 24h.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Esterilización macho canino">
+                        <h2>Esterilización macho canino</h2>
+                    </a>
+                    <p class="categoria">Cirugía · Perro · 60 min</p>
+                    <p class="precio">$60.000 </p>
+                    <p class="nota">Nota: Incluye anestesia.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Esterilización hembra felina">
+                        <h2>Esterilización hembra felina</h2>
+                    </a>
+                    <p class="categoria">Cirugía · Gata · 60 min</p>
+                    <p class="precio">$65.000</p>
+                    <p class="nota">Nota: Incluye anestesia y hospitalización 24h.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Esterilización macho felino">
+                        <h2>Esterilización macho felino</h2>
+                    </a>
+                    <p class="categoria">Cirugía · Gato · 65 min</p>
+                    <p class="precio">$50.000 </p>
+                    <p class="nota">Nota: Incluye anestesia.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Extirpación de tumor cutáneo">
+                        <h2>Extirpación de tumor cutáneo</h2>
+                    </a>
+                    <p class="categoria">Cirugía · Perro / Gato · 60 min</p>
+                    <p class="precio">$120.000 </p>
+                    <p class="nota">Nota: Precio referencial; varía según tamaño.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Cesárea de urgencia">
+                        <h2>Cesárea de urgencia</h2>
+                    </a>
+                    <p class="categoria">Cirugía · Perra / Gata · 120 min</p>
+                    <p class="precio">$180.000 </p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Desparasitación interna pequeños (< 10 kg)">
+                        <h2>Desparasitación interna pequeños (< 10 kg)</h2>
+                    </a>
+                    <p class="categoria">Desparasitación · Perro · 5 min</p>
+                    <p class="precio">$8.000 </p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Desparasitación interna medianos (10-25 kg)">
+                        <h2>Desparasitación interna medianos (10-25 kg)</h2>
                     </a>
                     <p class="categoria">Desparasitación · Perro · 5 min</p>
                     <p class="precio">$9.500</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Desparasitación interna grandes (> 25 kg)">
+                        <h2>Desparasitación interna grandes (> 25 kg)</h2>
+                    </a>
+                    <p class="categoria">Desparasitación · Perro · 5 min</p>
+                    <p class="precio">$11.000 </p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Desparasitación interna felina">
+                        <h2>Desparasitación interna felina</h2>
+                    </a>
+                    <p class="categoria">Desparasitación · Gato · 5 min</p>
+                    <p class="precio">$8.000 </p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Antiparasitario externo (pipeta)">
+                        <h2>Antiparasitario externo (pipeta)</h2>
+                    </a>
+                    <p class="categoria">Desparasitación · Perro / Gato · 5 min</p>
+                    <p class="precio">$7.500 </p>
+                    <p class="nota">Nota: Incluye aplicación.</p>
                     <button type="button" class="boton-anadir">Solicitar</button>
                 </li>
                 <li class="tarjeta-producto">
@@ -95,15 +270,83 @@
                     </a>
                     <p class="categoria">Exámenes · Perro / Gato · 30 min</p>
                     <p class="precio">$22.000</p>
+                    <p class="nota">Nota: Resultado en 24 - 48 horas.</p>
                     <button type="button" class="boton-anadir">Solicitar</button>
                 </li>
                 <li class="tarjeta-producto">
                     <a href="servicio-detalle.html">
-                        <img src="img/servicio-placeholder.jpg" alt="Limpieza dental">
+                        <img src="" alt="Perfil bioquímico completo">
+                        <h2>Perfil bioquímico completo</h2>
+                    </a>
+                    <p class="categoria">Exámenes · Perro / Gato · 30 min</p>
+                    <p class="precio">$35.000 </p>
+                    <p class="nota">Nota: Resultado en 24 - 48 horas.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Radiografía (1 proyección)">
+                        <h2>Radiografía (1 proyección)</h2>
+                    </a>
+                    <p class="categoria">Exámenes · Perro / Gato · 20 min</p>
+                    <p class="precio">$28.000 </p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Ecografía abdominal">
+                        <h2>Ecoografía abdominal</h2>
+                    </a>
+                    <p class="categoria">Exámenes · Perro / Gato · 30 min</p>
+                    <p class="precio">$45.000 </p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Test de leishmaniasis">
+                        <h2>Test de leishmaniasis</h2>
+                    </a>
+                    <p class="categoria">Exámenes · Perro · 20 min</p>
+                    <p class="precio">$18.000 </p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Corte de uñas">
+                        <h2>Corte de uñas.</h2>
+                    </a>
+                    <p class="categoria">Otros · Perro / Gato · 15 min</p>
+                    <p class="precio">$5.000 </p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Limpieza dental">
                         <h2>Limpieza dental</h2>
                     </a>
                     <p class="categoria">Otros · Perro / Gato · 45 min</p>
-                    <p class="precio">$55.000</p>
+                    <p class="precio">$55.000 </p>
+                    <p class="nota">Nota: Requere anestesia.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Microchip identificación">
+                        <h2>Microchip identificación</h2>
+                    </a>
+                    <p class="categoria">Otros · Perro / Gato · 10 min</p>
+                    <p class="precio">$15.000 </p>
+                    <p class="nota">Nota: Incluye registro.</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="" alt="Hospitalización (por día)">
+                        <h2>Hospitalización (por día)</h2>
+                    </a>
+                    <p class="categoria">Otros · Perro / Gato · 24 hrs</p>
+                    <p class="precio">$30.000 </p>
+                    <p class="nota">Nota: Incluye monitoreo y alimentación básica.</p>
                     <button type="button" class="boton-anadir">Solicitar</button>
                 </li>
             </ul>
