@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria San Marcos | Servicios</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">Veterinaria San Marcos</a>
+        </div>
+
+        <nav class="nav-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <div class="acciones-usuario">
+            <a href="login.html">Iniciar sesión</a>
+            <a href="registro.html">Registrarse</a>
+            <a href="mi-solicitud.html" class="solicitud">Mi solicitud (<span id="solicitud-count">0</span>)</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="listado-productos">
+            <h1>Servicios</h1>
+            <p>Catálogo de servicios disponibles en la clínica. Filtra por categoría o especie.</p>
+
+            <!-- Filtro por categoría, sin lógica aún (se implementará con JavaScript) -->
+            <form class="filtro-servicios" action="#">
+                <label for="filtro-categoria">Categoría</label>
+                <select id="filtro-categoria" name="categoria">
+                    <option value="todas">Todas</option>
+                    <option value="consultas">Consultas</option>
+                    <option value="vacunacion">Vacunación</option>
+                    <option value="cirugia">Cirugía</option>
+                    <option value="desparasitacion">Desparasitación</option>
+                    <option value="examenes">Exámenes</option>
+                    <option value="otros">Otros</option>
+                </select>
+            </form>
+
+            <!-- Este listado se generará dinámicamente con JavaScript en una fase posterior,
+                 a partir de un arreglo con el catálogo completo de servicios -->
+            <ul class="grid-productos" id="lista-servicios">
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="img/servicio-placeholder.jpg" alt="Consulta general">
+                        <h2>Consulta general</h2>
+                    </a>
+                    <p class="categoria">Consultas · Perro / Gato · 30 min</p>
+                    <p class="precio">$15.000</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="img/servicio-placeholder.jpg" alt="Vacuna sextuple canina">
+                        <h2>Vacuna sextuple canina</h2>
+                    </a>
+                    <p class="categoria">Vacunación · Perro · 10 min</p>
+                    <p class="precio">$18.000</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="img/servicio-placeholder.jpg" alt="Esterilización hembra felina">
+                        <h2>Esterilización hembra felina</h2>
+                    </a>
+                    <p class="categoria">Cirugía · Gata · 60 min</p>
+                    <p class="precio">$65.000</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="img/servicio-placeholder.jpg" alt="Desparasitación interna">
+                        <h2>Desparasitación interna medianos</h2>
+                    </a>
+                    <p class="categoria">Desparasitación · Perro · 5 min</p>
+                    <p class="precio">$9.500</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="img/servicio-placeholder.jpg" alt="Hemograma completo">
+                        <h2>Hemograma completo</h2>
+                    </a>
+                    <p class="categoria">Exámenes · Perro / Gato · 30 min</p>
+                    <p class="precio">$22.000</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+                <li class="tarjeta-producto">
+                    <a href="servicio-detalle.html">
+                        <img src="img/servicio-placeholder.jpg" alt="Limpieza dental">
+                        <h2>Limpieza dental</h2>
+                    </a>
+                    <p class="categoria">Otros · Perro / Gato · 45 min</p>
+                    <p class="precio">$55.000</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <p>Veterinaria San Marcos</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

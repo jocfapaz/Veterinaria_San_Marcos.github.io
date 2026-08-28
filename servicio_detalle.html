@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria San Marcos | Detalle del servicio</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">Veterinaria San Marcos</a>
+        </div>
+
+        <nav class="nav-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <div class="acciones-usuario">
+            <a href="login.html">Iniciar sesión</a>
+            <a href="registro.html">Registrarse</a>
+            <a href="mi-solicitud.html" class="solicitud">Mi solicitud (<span id="solicitud-count">0</span>)</a>
+        </div>
+    </header>
+
+    <main>
+        <nav class="migas-pan" aria-label="Ruta de navegación">
+            <a href="index.html">Inicio</a> &gt;
+            <a href="servicios.html">Consultas</a> &gt;
+            <span>Consulta general</span>
+        </nav>
+
+        <section class="detalle-producto">
+            <div class="galeria-producto">
+                <img src="img/servicio-placeholder.jpg" alt="Consulta general" id="imagen-principal">
+            </div>
+
+            <div class="info-producto">
+                <h1>Consulta general</h1>
+                <p class="categoria">Categoría: Consultas &nbsp;|&nbsp; Especie: Perro / Gato &nbsp;|&nbsp; Duración: 30 min</p>
+                <p class="precio">$15.000</p>
+                <p class="descripcion">
+                    Evaluación clínica general de tu mascota: revisión de signos vitales,
+                    peso, estado general de salud y orientación sobre cuidados según su
+                    edad y condición. Ideal como primer control o chequeo periódico.
+                </p>
+
+                <form action="#" method="post" class="form-agregar-carrito">
+                    <div class="campo">
+                        <label for="mascota">Mascota</label>
+                        <select id="mascota" name="mascota" required>
+                            <option value="">-- Seleccione su mascota --</option>
+                            <option value="nueva">Agregar nueva mascota</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="fecha-preferida">Fecha preferida</label>
+                        <input type="date" id="fecha-preferida" name="fecha-preferida" required>
+                    </div>
+
+                    <button type="submit" class="boton boton-carrito">Solicitar este servicio</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="productos-relacionados">
+            <h2>Otros servicios de consulta</h2>
+            <ul class="grid-productos">
+                <li class="tarjeta-producto"><img src="img/servicio-placeholder.jpg" alt="Consulta de urgencia"></li>
+                <li class="tarjeta-producto"><img src="img/servicio-placeholder.jpg" alt="Control postoperatorio"></li>
+                <li class="tarjeta-producto"><img src="img/servicio-placeholder.jpg" alt="Consulta ave o conejo"></li>
+                <li class="tarjeta-producto"><img src="img/servicio-placeholder.jpg" alt="Segunda opinión médica"></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <p>Veterinaria San Marcos</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
