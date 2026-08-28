@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria San Marcos | Contacto</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">Veterinaria San Marcos</a>
+        </div>
+
+        <nav class="nav-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <div class="acciones-usuario">
+            <a href="login.html">Iniciar sesión</a>
+            <a href="registro.html">Registrarse</a>
+            <a href="mi-solicitud.html" class="solicitud">Mi solicitud (<span id="solicitud-count">0</span>)</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="seccion-contacto">
+            <h1>Contacto</h1>
+
+            <div class="datos-clinica">
+                <p><strong>Dirección:</strong> Rancagua, Región del Libertador Bernardo O'Higgins</p>
+                <p><strong>Teléfono:</strong> +56 9 0000 0000</p>
+                <p><strong>Horario:</strong> Lunes a sábado, 09:00 a 19:00</p>
+            </div>
+
+            <!-- El mapa interactivo (Leaflet / Google Maps) se integrará en la versión
+                 con React del proyecto. Por ahora se deja un contenedor de referencia. -->
+            <div class="mapa-ubicacion" id="mapa-clinica" aria-label="Mapa de ubicación de la clínica">
+                <p>[ Mapa de ubicación — se integrará en una fase posterior ]</p>
+            </div>
+
+            <form action="#" method="post" id="form-contacto" novalidate>
+                <h2>Formulario de contacto</h2>
+
+                <div class="campo">
+                    <label for="nombre-contacto">Nombre completo</label>
+                    <input type="text" id="nombre-contacto" name="nombre" required maxlength="100">
+                    <span class="mensaje-error" id="error-nombre-contacto"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="correo-contacto">Correo</label>
+                    <input type="email" id="correo-contacto" name="correo" maxlength="100">
+                    <span class="mensaje-error" id="error-correo-contacto"></span>
+                </div>
+
+                <div class="campo">
+                    <label for="comentario-contacto">Comentario</label>
+                    <textarea id="comentario-contacto" name="comentario" required maxlength="500"></textarea>
+                    <span class="mensaje-error" id="error-comentario-contacto"></span>
+                </div>
+
+                <button type="submit" class="boton">Enviar mensaje</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <p>Veterinaria San Marcos</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
