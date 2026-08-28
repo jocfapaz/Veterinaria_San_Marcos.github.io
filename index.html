@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria San Marcos | Inicio</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">Veterinaria San Marcos</a>
+        </div>
+
+        <nav class="nav-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <div class="acciones-usuario">
+            <a href="login.html">Iniciar sesión</a>
+            <a href="registro.html">Registrarse</a>
+            <a href="mi-solicitud.html" class="solicitud">Mi solicitud (<span id="solicitud-count">0</span>)</a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Sección principal / banner -->
+        <section class="hero">
+            <div class="hero-texto">
+                <h1>Veterinaria San Marcos</h1>
+                <p>
+                    Clínica veterinaria en Rancagua, Región de O'Higgins, con más de 15 años
+                    de experiencia atendiendo perros, gatos, aves y conejos.
+                </p>
+                <a href="servicios.html" class="boton">Ver servicios</a>
+                <a href="registro.html" class="boton boton-secundario">Solicitar hora</a>
+            </div>
+            <div class="hero-imagen">
+                <img src="img/banner-placeholder.jpg" alt="Fachada de la clínica veterinaria">
+            </div>
+        </section>
+
+        <!-- Servicios destacados -->
+        <section class="productos-destacados">
+            <h2>Servicios más solicitados</h2>
+
+            <ul class="grid-productos">
+                <li class="tarjeta-producto">
+                    <img src="img/servicio-placeholder.jpg" alt="Consulta general">
+                    <h3>Consulta general</h3>
+                    <p class="atributos">Perro / Gato · 30 min</p>
+                    <p class="precio">$15.000</p>
+                </li>
+                <li class="tarjeta-producto">
+                    <img src="img/servicio-placeholder.jpg" alt="Vacuna antirrábica">
+                    <h3>Vacuna antirrábica</h3>
+                    <p class="atributos">Perro / Gato · 10 min</p>
+                    <p class="precio">$12.000</p>
+                </li>
+                <li class="tarjeta-producto">
+                    <img src="img/servicio-placeholder.jpg" alt="Desparasitación interna">
+                    <h3>Desparasitación interna</h3>
+                    <p class="atributos">Perro / Gato · 5 min</p>
+                    <p class="precio">Desde $8.000</p>
+                </li>
+                <li class="tarjeta-producto">
+                    <img src="img/servicio-placeholder.jpg" alt="Limpieza dental">
+                    <h3>Limpieza dental</h3>
+                    <p class="atributos">Perro / Gato · 45 min</p>
+                    <p class="precio">$55.000</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Bloque de confianza / número de atenciones -->
+        <section class="seccion-destacados">
+            <h2>¿Por qué elegirnos?</h2>
+            <ul class="lista-destacados">
+                <li>Atendemos en promedio 25 pacientes al día</li>
+                <li>3 médicos veterinarios y 1 técnico veterinario</li>
+                <li>Historial clínico y de vacunación siempre disponible</li>
+                <li>Confirmación de cita antes de tu visita</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <p>Veterinaria San Marcos</p>
+            <ul class="footer-categorias">
+                <li><a href="servicios.html">Consultas</a></li>
+                <li><a href="servicios.html">Vacunación</a></li>
+                <li><a href="servicios.html">Cirugía</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-newsletter">
+            <p>Recibe recordatorios de vacunación de tu mascota.</p>
+            <form action="#" method="post">
+                <label for="email-newsletter">Correo electrónico</label>
+                <input type="email" id="email-newsletter" name="email-newsletter" placeholder="Ingresa tu correo">
+                <button type="submit">Suscribirme</button>
+            </form>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
