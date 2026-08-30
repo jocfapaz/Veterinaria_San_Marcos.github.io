@@ -1,17 +1,17 @@
 # 🐾 Veterinaria San Marcos - Sitio Web & Panel Administrativo
 
-Este repositorio contiene la primera versión del sistema web de la **Veterinaria San Marcos**, desarrollado como parte de la Evaluación Parcial 1 de la asignatura **Desarrollo Fullstack II (DSY1104)**[cite: 1, 2].
+Este repositorio contiene la primera versión del sistema web de la **Veterinaria San Marcos**, desarrollado como parte de la Evaluación Parcial 1 de la asignatura **Desarrollo Fullstack II (DSY1104)**.
 
-El sitio incluye un portal público responsivo para clientes y usuarios generales, así como una plataforma interna para la administración de productos y usuarios de la veterinaria[cite: 2, 3].
+El sitio incluye un portal público responsivo para clientes y usuarios generales, así como una plataforma interna para la administración de productos y usuarios de la veterinaria.
 
 ---
 
 ## Tecnologías Utilizadas
 
-* **HTML5**: Estructuración semántica (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<video>`, `<footer>`)[cite: 1, 3].
-* **CSS3**: Hojas de estilos externas personalizadas (`assets/css/style.css` y `assets/css/admin.css`) con diseño responsivo adaptable mediante Media Queries (Mobile $\ge 360\text{px}$, Tablet $\ge 768\text{px}$, Desktop $\ge 1280\text{px}$)[cite: 1, 2, 3].
-* **JavaScript (Vanilla ES6+)**: Validaciones de formularios en tiempo real, manipulación dinámica de comunas/regiones y manejo del carrito de compras con persistencia en `localStorage`[cite: 1, 3].
-* **Git & GitHub**: Control de versiones colaborativo e historial de commits por integrantes[cite: 1, 3].
+* **HTML5**: Estructuración semántica (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<video>`, `<footer>`).
+* **CSS3**: Hojas de estilos externas personalizadas (`assets/css/style.css` y `assets/css/admin.css`) con diseño responsivo adaptable mediante Media Queries (Mobile $\ge 360\text{px}$, Tablet $\ge 768\text{px}$, Desktop $\ge 1280\text{px}$).
+* **JavaScript (Vanilla ES6+)**: Validaciones de formularios en tiempo real, manipulación dinámica de comunas/regiones y manejo del carrito de compras con persistencia en `localStorage`.
+* **Git & GitHub**: Control de versiones colaborativo e historial de commits por integrantes.
 
 ---
 
