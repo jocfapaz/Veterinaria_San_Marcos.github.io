@@ -32,6 +32,8 @@ Veterinaria_San_Marcos.github.io/
 ├── login.html              # Inicio de sesión de usuarios
 ├── registro.html           # Registro de nuevos clientes
 ├── mi_solicitud.html       # Seguimiento de solicitudes del usuario
+├── carrito.html            # Carrito donde van los productos
+├── tienda.html             # Productos de la tienda(medicamentos y vacunas)
 ├── readme.md               # Documentación del proyecto
 │
 ├── admin/                  # Panel de Control Interno
