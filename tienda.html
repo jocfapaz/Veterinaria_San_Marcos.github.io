@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="servicios.html">Servicios</a></li>
-                <li><a href="productos.html">Productos</a></li>
+                <li><a href="productos.html" class="activo">Productos</a></li>
                 <li><a href="nosotros.html">Nosotros</a></li>
                 <li><a href="blogs.html">Blog</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
@@ -37,59 +37,268 @@
             <h1>Productos</h1>
             <p>Medicamentos y vacunas disponibles para venta directa.</p>
 
-            <!-- Filtro por categoría, sin lógica aún (se implementará con JavaScript) -->
+            <!-- Filtro por categoría alineado con el catálogo de la veterinaria -->
             <form class="filtro-servicios" action="#">
                 <label for="filtro-categoria-producto">Categoría</label>
                 <select id="filtro-categoria-producto" name="categoria">
                     <option value="todas">Todas</option>
+                    <option value="antibioticos">Antibióticos</option>
                     <option value="antiparasitarios">Antiparasitarios</option>
+                    <option value="antiinflamatorios">Antiinflamatorios</option>
+                    <option value="dermatologia">Dermatología</option>
+                    <option value="digestivo">Digestivo</option>
+                    <option value="cardiaco">Cardíaco</option>
+                    <option value="analgesicos">Analgésicos</option>
                     <option value="vacunas">Vacunas</option>
-                    <option value="analgesicos">Analgésicos / Antiinflamatorios</option>
                     <option value="suplementos">Suplementos</option>
-                    <option value="otros">Otros</option>
                 </select>
             </form>
 
-            <!-- Este listado se generará dinámicamente con JavaScript en una fase posterior,
-                 a partir de un arreglo de productos (uno por cada fila del catálogo Excel).
-                 Cada tarjeta enlaza a producto-detalle.html?id=<codigo> -->
+            <!-- Listado completo derivado de la planilla de la Veterinaria San Marcos -->
             <ul class="grid-productos" id="lista-productos">
-                <li class="tarjeta-producto" data-id="MED001">
-                    <a href="producto-detalle.html?id=MED001">
-                        <img src="img/producto-placeholder.jpg" alt="Nombre comercial del producto">
-                        <h2>Nombre comercial</h2>
+                
+                <!-- ME001 -->
+                <li class="tarjeta-producto" data-id="ME001">
+                    <a href="producto-detalle.html?id=ME001">
+                        <img src="assets/images/productos/ME001.jpg" alt="Amoxibay 250mg">
+                        <h2>Amoxibay 250mg</h2>
                     </a>
-                    <p class="categoria">Categoría · Presentación</p>
-                    <p class="precio">$0.000</p>
-                    <button type="button" class="boton-anadir" data-id="MED001">Añadir al carrito</button>
+                    <p class="categoria">Antibióticos · Blíster 10 comp.</p>
+                    <p class="precio">$4.200</p>
+                    <button type="button" class="boton-anadir" data-id="ME001">Añadir al carrito</button>
                 </li>
-                <li class="tarjeta-producto" data-id="MED002">
-                    <a href="producto-detalle.html?id=MED002">
-                        <img src="img/producto-placeholder.jpg" alt="Nombre comercial del producto">
-                        <h2>Nombre comercial</h2>
+
+                <!-- ME002 -->
+                <li class="tarjeta-producto" data-id="ME002">
+                    <a href="producto-detalle.html?id=ME002">
+                        <img src="assets/images/productos/ME002.jpg" alt="Enrox 50mg">
+                        <h2>Enrox 50mg</h2>
                     </a>
-                    <p class="categoria">Categoría · Presentación</p>
-                    <p class="precio">$0.000</p>
-                    <button type="button" class="boton-anadir" data-id="MED002">Añadir al carrito</button>
+                    <p class="categoria">Antibióticos · Blíster 10 comp.</p>
+                    <p class="precio">$6.800</p>
+                    <button type="button" class="boton-anadir" data-id="ME002">Añadir al carrito</button>
                 </li>
-                <li class="tarjeta-producto" data-id="MED003">
-                    <a href="producto-detalle.html?id=MED003">
-                        <img src="img/producto-placeholder.jpg" alt="Nombre comercial del producto">
-                        <h2>Nombre comercial</h2>
+
+                <!-- ME003 -->
+                <li class="tarjeta-producto" data-id="ME003">
+                    <a href="producto-detalle.html?id=ME003">
+                        <img src="assets/images/productos/ME003.jpg" alt="Metrobay 250mg">
+                        <h2>Metrobay 250mg</h2>
                     </a>
-                    <p class="categoria">Categoría · Presentación</p>
-                    <p class="precio">$0.000</p>
-                    <button type="button" class="boton-anadir" data-id="MED003">Añadir al carrito</button>
+                    <p class="categoria">Antibióticos · Blíster 10 comp.</p>
+                    <p class="precio">$3.900</p>
+                    <button type="button" class="boton-anadir" data-id="ME003">Añadir al carrito</button>
                 </li>
-                <li class="tarjeta-producto" data-id="MED004">
-                    <a href="producto-detalle.html?id=MED004">
-                        <img src="img/producto-placeholder.jpg" alt="Nombre comercial del producto">
-                        <h2>Nombre comercial</h2>
+
+                <!-- ME004 -->
+                <li class="tarjeta-producto" data-id="ME004">
+                    <a href="producto-detalle.html?id=ME004">
+                        <img src="assets/images/productos/ME004.jpg" alt="Nexgard">
+                        <h2>Nexgard</h2>
                     </a>
-                    <p class="categoria">Categoría · Presentación</p>
-                    <p class="precio">$0.000</p>
-                    <button type="button" class="boton-anadir" data-id="MED004">Añadir al carrito</button>
+                    <p class="categoria">Antiparasitarios · Masticable 1 unid.</p>
+                    <p class="precio">$9.500</p>
+                    <button type="button" class="boton-anadir" data-id="ME004">Añadir al carrito</button>
                 </li>
+
+                <!-- ME005 -->
+                <li class="tarjeta-producto" data-id="ME005">
+                    <a href="producto-detalle.html?id=ME005">
+                        <img src="assets/images/productos/ME005.jpg" alt="Bravecto">
+                        <h2>Bravecto</h2>
+                    </a>
+                    <p class="categoria">Antiparasitarios · Masticable 1 unid.</p>
+                    <p class="precio">$18.900</p>
+                    <button type="button" class="boton-anadir" data-id="ME005">Añadir al carrito</button>
+                </li>
+
+                <!-- ME006 -->
+                <li class="tarjeta-producto" data-id="ME006">
+                    <a href="producto-detalle.html?id=ME006">
+                        <img src="assets/images/productos/ME006.jpg" alt="Revolution Plus">
+                        <h2>Revolution Plus</h2>
+                    </a>
+                    <p class="categoria">Antiparasitarios · Pipeta 1 unid.</p>
+                    <p class="precio">$14.500</p>
+                    <button type="button" class="boton-anadir" data-id="ME006">Añadir al carrito</button>
+                </li>
+
+                <!-- ME007 -->
+                <li class="tarjeta-producto" data-id="ME007">
+                    <a href="producto-detalle.html?id=ME007">
+                        <img src="assets/images/productos/ME007.jpg" alt="Drontal Plus">
+                        <h2>Drontal Plus</h2>
+                    </a>
+                    <p class="categoria">Antiparasitarios · Comprimido 1 unid.</p>
+                    <p class="precio">$3.200</p>
+                    <button type="button" class="boton-anadir" data-id="ME007">Añadir al carrito</button>
+                </li>
+
+                <!-- ME008 -->
+                <li class="tarjeta-producto" data-id="ME008">
+                    <a href="producto-detalle.html?id=ME008">
+                        <img src="assets/images/productos/ME008.jpg" alt="Milbemax Gato">
+                        <h2>Milbemax Gato</h2>
+                    </a>
+                    <p class="categoria">Antiparasitarios · Comprimido 2 unid.</p>
+                    <p class="precio">$6.800</p>
+                    <button type="button" class="boton-anadir" data-id="ME008">Añadir al carrito</button>
+                </li>
+
+                <!-- ME009 -->
+                <li class="tarjeta-producto" data-id="ME009">
+                    <a href="producto-detalle.html?id=ME009">
+                        <img src="assets/images/productos/ME009.jpg" alt="Meloxicam 1mg">
+                        <h2>Meloxicam 1mg</h2>
+                    </a>
+                    <p class="categoria">Antiinflamatorios · Blíster 10 comp.</p>
+                    <p class="precio">$4.500</p>
+                    <button type="button" class="boton-anadir" data-id="ME009">Añadir al carrito</button>
+                </li>
+
+                <!-- ME010 -->
+                <li class="tarjeta-producto" data-id="ME010">
+                    <a href="producto-detalle.html?id=ME010">
+                        <img src="assets/images/productos/ME010.jpg" alt="Carprofen 50mg">
+                        <h2>Carprofen 50mg</h2>
+                    </a>
+                    <p class="categoria">Antiinflamatorios · Blíster 10 comp.</p>
+                    <p class="precio">$9.800</p>
+                    <button type="button" class="boton-anadir" data-id="ME010">Añadir al carrito</button>
+                </li>
+
+                <!-- ME011 -->
+                <li class="tarjeta-producto" data-id="ME011">
+                    <a href="producto-detalle.html?id=ME011">
+                        <img src="assets/images/productos/ME011.jpg" alt="Clorhexidina shampoo">
+                        <h2>Clorhexidina shampoo</h2>
+                    </a>
+                    <p class="categoria">Dermatología · Frasco 250ml</p>
+                    <p class="precio">$8.900</p>
+                    <button type="button" class="boton-anadir" data-id="ME011">Añadir al carrito</button>
+                </li>
+
+                <!-- ME012 -->
+                <li class="tarjeta-producto" data-id="ME012">
+                    <a href="producto-detalle.html?id=ME012">
+                        <img src="assets/images/productos/ME012.jpg" alt="Malaseb shampoo">
+                        <h2>Malaseb shampoo</h2>
+                    </a>
+                    <p class="categoria">Dermatología · Frasco 250ml</p>
+                    <p class="precio">$12.500</p>
+                    <button type="button" class="boton-anadir" data-id="ME012">Añadir al carrito</button>
+                </li>
+
+                <!-- ME013 -->
+                <li class="tarjeta-producto" data-id="ME013">
+                    <a href="producto-detalle.html?id=ME013">
+                        <img src="assets/images/productos/ME013.jpg" alt="Apoquel 16mg">
+                        <h2>Apoquel 16mg</h2>
+                    </a>
+                    <p class="categoria">Dermatología · Blíster 10 comp.</p>
+                    <p class="precio">$22.000</p>
+                    <button type="button" class="boton-anadir" data-id="ME013">Añadir al carrito</button>
+                </li>
+
+                <!-- ME014 -->
+                <li class="tarjeta-producto" data-id="ME014">
+                    <a href="producto-detalle.html?id=ME014">
+                        <img src="assets/images/productos/ME014.jpg" alt="Probifor">
+                        <h2>Probifor</h2>
+                    </a>
+                    <p class="categoria">Digestivo · Sobre 5ml x10</p>
+                    <p class="precio">$5.600</p>
+                    <button type="button" class="boton-anadir" data-id="ME014">Añadir al carrito</button>
+                </li>
+
+                <!-- ME015 -->
+                <li class="tarjeta-producto" data-id="ME015">
+                    <a href="producto-detalle.html?id=ME015">
+                        <img src="assets/images/productos/ME015.jpg" alt="Omeprazol 10mg vet">
+                        <h2>Omeprazol 10mg vet</h2>
+                    </a>
+                    <p class="categoria">Digestivo · Blíster 10 comp.</p>
+                    <p class="precio">$3.800</p>
+                    <button type="button" class="boton-anadir" data-id="ME015">Añadir al carrito</button>
+                </li>
+
+                <!-- ME016 -->
+                <li class="tarjeta-producto" data-id="ME016">
+                    <a href="producto-detalle.html?id=ME016">
+                        <img src="assets/images/productos/ME016.jpg" alt="Vetmedin 2.5mg">
+                        <h2>Vetmedin 2.5mg</h2>
+                    </a>
+                    <p class="categoria">Cardíaco · Blíster 10 comp.</p>
+                    <p class="precio">$28.000</p>
+                    <button type="button" class="boton-anadir" data-id="ME016">Añadir al carrito</button>
+                </li>
+
+                <!-- ME017 -->
+                <li class="tarjeta-producto" data-id="ME017">
+                    <a href="producto-detalle.html?id=ME017">
+                        <img src="assets/images/productos/ME017.jpg" alt="Tramadol 50mg vet">
+                        <h2>Tramadol 50mg vet</h2>
+                    </a>
+                    <p class="categoria">Analgésicos · Blíster 10 comp.</p>
+                    <p class="precio">$5.200</p>
+                    <button type="button" class="boton-anadir" data-id="ME017">Añadir al carrito</button>
+                </li>
+
+                <!-- ME018 -->
+                <li class="tarjeta-producto" data-id="ME018">
+                    <a href="producto-detalle.html?id=ME018">
+                        <img src="assets/images/productos/ME018.jpg" alt="Nobivac DHPPi">
+                        <h2>Nobivac DHPPi</h2>
+                    </a>
+                    <p class="categoria">Vacunas · Vial 1 dosis</p>
+                    <p class="precio">$8.500</p>
+                    <button type="button" class="boton-anadir" data-id="ME018">Añadir al carrito</button>
+                </li>
+
+                <!-- ME019 -->
+                <li class="tarjeta-producto" data-id="ME019">
+                    <a href="producto-detalle.html?id=ME019">
+                        <img src="assets/images/productos/ME019.jpg" alt="Nobivac Rabies">
+                        <h2>Nobivac Rabies</h2>
+                    </a>
+                    <p class="categoria">Vacunas · Vial 1 dosis</p>
+                    <p class="precio">$5.800</p>
+                    <button type="button" class="boton-anadir" data-id="ME019">Añadir al carrito</button>
+                </li>
+
+                <!-- ME020 -->
+                <li class="tarjeta-producto" data-id="ME020">
+                    <a href="producto-detalle.html?id=ME020">
+                        <img src="assets/images/productos/ME020.jpg" alt="Felocell CVR">
+                        <h2>Felocell CVR</h2>
+                    </a>
+                    <p class="categoria">Vacunas · Vial 1 dosis</p>
+                    <p class="precio">$7.200</p>
+                    <button type="button" class="boton-anadir" data-id="ME020">Añadir al carrito</button>
+                </li>
+
+                <!-- ME021 -->
+                <li class="tarjeta-producto" data-id="ME021">
+                    <a href="producto-detalle.html?id=ME021">
+                        <img src="assets/images/productos/ME021.jpg" alt="Omega vet 3-6-9">
+                        <h2>Omega vet 3-6-9</h2>
+                    </a>
+                    <p class="categoria">Suplementos · Frasco 100ml</p>
+                    <p class="precio">$9.900</p>
+                    <button type="button" class="boton-anadir" data-id="ME021">Añadir al carrito</button>
+                </li>
+
+                <!-- ME022 -->
+                <li class="tarjeta-producto" data-id="ME022">
+                    <a href="producto-detalle.html?id=ME022">
+                        <img src="assets/images/productos/ME022.jpg" alt="Condrovet forte">
+                        <h2>Condrovet forte</h2>
+                    </a>
+                    <p class="categoria">Suplementos · Blíster 30 comp.</p>
+                    <p class="precio">$14.500</p>
+                    <button type="button" class="boton-anadir" data-id="ME022">Añadir al carrito</button>
+                </li>
+
             </ul>
         </section>
     </main>
