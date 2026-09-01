@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria San Marcos | Tienda General</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">Veterinaria San Marcos</a>
+        </div>
+
+        <nav class="nav-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="tienda.html" class="activo">Tienda</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <div class="acciones-usuario">
+            <a href="login.html">Iniciar sesión</a>
+            <a href="registro.html">Registrarse</a>
+            <a href="carrito.html" class="solicitud">Carrito (<span id="carrito-count">0</span>)</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="listado-productos">
+            <h1>Tienda Veterinaria San Marcos</h1>
+            <p>Explora todos nuestros servicios médicos y catálogo de productos para mascotas.</p>
+
+            <ul class="grid-productos">
+                <!-- Tarjeta de Producto -->
+                <li class="tarjeta-producto">
+                    <a href="producto_detalle.html">
+                        <img src="./assets/images/alimento_perro.png" width="400" alt="Alimento Canino Adulto 15kg">
+                        <h2>Alimento Canino Adulto 15kg</h2>
+                    </a>
+                    <p class="categoria">Producto · Alimento</p>
+                    <p class="precio">$42.990</p>
+                    <button type="button" class="boton-anadir">Añadir al carrito</button>
+                </li>
+
+                <!-- Tarjeta de Servicio -->
+                <li class="tarjeta-producto">
+                    <a href="servicio_detalle.html">
+                        <img src="./assets/images/veterinario_gato.png" width="400" alt="Consulta general">
+                        <h2>Consulta general</h2>
+                    </a>
+                    <p class="categoria">Servicio · Consultas</p>
+                    <p class="precio">$15.000</p>
+                    <button type="button" class="boton-anadir">Solicitar</button>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-info">
+            <p>Veterinaria San Marcos</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
