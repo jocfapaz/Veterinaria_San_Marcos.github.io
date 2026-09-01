@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veterinaria San Marcos | Detalle de Producto</title>
+    <title>Veterinaria San Marcos | Detalle del producto</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
@@ -27,33 +27,72 @@
         <div class="acciones-usuario">
             <a href="login.html">Iniciar sesión</a>
             <a href="registro.html">Registrarse</a>
-            <a href="carrito.html" class="solicitud">Carrito (<span id="carrito-count">0</span>)</a>
+            <a href="mi-solicitud.html" class="solicitud">Mi solicitud (<span id="solicitud-count">0</span>)</a>
+            <a href="carrito.html" class="carrito">Carrito (<span id="cart-count">0</span>)</a>
         </div>
     </header>
 
     <main>
-        <section class="detalle-contenedor">
-            <div class="detalle-imagen">
-                <img src="./assets/images/alimento_perro.png" width="450" alt="Alimento Canino Adulto">
+        <!--
+            IMPORTANTE: esta es una plantilla ÚNICA para el detalle de CUALQUIER producto.
+            No se crea una copia de este archivo por cada producto del catálogo.
+
+            Funcionamiento previsto (a implementar en js/main.js en una fase posterior):
+            1. El enlace que llega aquí trae el producto en la URL, ej: producto-detalle.html?id=MED001
+            2. JavaScript lee ese "id" con URLSearchParams.
+            3. Busca el producto correspondiente dentro del arreglo de productos (uno por cada
+               fila del catálogo Excel: código, categoría, nombre comercial, principio activo,
+               presentación, especie, precio).
+            4. Rellena dinámicamente los elementos marcados con id más abajo
+               (#producto-nombre, #producto-precio, etc.) con los datos de ESE producto.
+
+            Por eso los ids de los elementos son genéricos y no cambian según el producto.
+        -->
+
+        <nav class="migas-pan" aria-label="Ruta de navegación">
+            <a href="index.html">Inicio</a> &gt;
+            <a href="productos.html">Productos</a> &gt;
+            <span id="producto-migaja">Nombre comercial</span>
+        </nav>
+
+        <section class="detalle-producto">
+            <div class="galeria-producto">
+                <img src="img/producto-placeholder.jpg" alt="Imagen del producto" id="producto-imagen">
             </div>
 
-            <div class="detalle-info">
-                <h1>Alimento Canino Adulto 15kg</h1>
-                <p class="categoria">Categoría: Alimento · Perro</p>
-                <p class="precio">$42.990</p>
-                
-                <p class="descripcion">
-                    Fórmula nutricional completa diseñada para perros adultos de razas medianas y grandes. Enriquecido con vitaminas, minerales y ácidos grasos Omega 3 y 6 para mantener el pelaje brillante y articulaciones sanas.
+            <div class="info-producto">
+                <h1 id="producto-nombre">Nombre comercial</h1>
+                <p class="categoria">
+                    Categoría: <span id="producto-categoria">-</span> &nbsp;|&nbsp;
+                    Principio activo: <span id="producto-principio-activo">-</span> &nbsp;|&nbsp;
+                    Presentación: <span id="producto-presentacion">-</span> &nbsp;|&nbsp;
+                    Especie: <span id="producto-especie">-</span>
                 </p>
+                <p class="precio" id="producto-precio">$0.000</p>
+                <p class="disponibilidad" id="producto-disponibilidad">Disponible</p>
 
-                <div class="selector-cantidad">
-                    <label for="cantidad">Cantidad:</label>
-                    <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="10">
-                </div>
+                <form action="#" method="post" class="form-agregar-carrito" id="form-agregar-carrito">
+                    <input type="hidden" id="producto-id" name="producto-id" value="">
 
-                <button type="button" class="boton-anadir">Añadir al Carrito</button>
-                <a href="productos.html" class="boton-volver">Volver al catálogo</a>
+                    <div class="campo">
+                        <label for="cantidad-producto">Cantidad</label>
+                        <input type="number" id="cantidad-producto" name="cantidad" value="1" min="1" required>
+                        <span class="mensaje-error" id="error-cantidad-producto"></span>
+                    </div>
+
+                    <button type="submit" class="boton boton-carrito">Añadir al carrito</button>
+                </form>
             </div>
+        </section>
+
+        <section class="productos-relacionados">
+            <h2>Otros productos de esta categoría</h2>
+            <!-- También se generará dinámicamente, filtrando el arreglo por la misma categoría -->
+            <ul class="grid-productos" id="productos-relacionados-lista">
+                <li class="tarjeta-producto"><img src="img/producto-placeholder.jpg" alt="Producto relacionado"></li>
+                <li class="tarjeta-producto"><img src="img/producto-placeholder.jpg" alt="Producto relacionado"></li>
+                <li class="tarjeta-producto"><img src="img/producto-placeholder.jpg" alt="Producto relacionado"></li>
+            </ul>
         </section>
     </main>
 
