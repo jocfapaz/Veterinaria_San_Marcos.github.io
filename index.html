@@ -6,84 +6,96 @@
     <title>Veterinaria San Marcos | Inicio</title>
     <link rel="stylesheet" href="./assets/css/stele.css">
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    <header>
-        <div class="logo">
-            <a href="index.html">Veterinaria San Marcos</a>
-        </div>
+    <!-- HEADER / NAVEGACIÓN -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+            <div class="text-xl font-bold text-blue-700">
+                <a href="index.html">Veterinaria San Marcos</a>
+            </div>
 
-        <nav class="nav-principal">
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="servicios.html">Servicios</a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
-                <li><a href="blogs.html">Blog</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-        </nav>
+            <nav>
+                <ul class="flex space-x-6 text-sm font-medium text-gray-700">
+                    <li><a href="index.html" class="hover:text-blue-600">Inicio</a></li>
+                    <li><a href="servicios.html" class="hover:text-blue-600">Servicios</a></li>
+                    <li><a href="nosotros.html" class="hover:text-blue-600">Nosotros</a></li>
+                    <li><a href="blogs.html" class="hover:text-blue-600">Blog</a></li>
+                    <li><a href="contacto.html" class="hover:text-blue-600">Contacto</a></li>
+                </ul>
+            </nav>
 
-        <div class="acciones-usuario">
-            <a href="login.html">Iniciar sesión</a>
-            <a href="registro.html">Registrarse</a>
-            <a href="mi-solicitud.html" class="solicitud">Mi solicitud (<span id="solicitud-count">0</span>)</a>
+            <div class="flex items-center space-x-3 text-sm">
+                <a href="login.html" class="px-3 py-1.5 text-blue-600 border border-blue-600 rounded hover:bg-blue-50">Iniciar sesión</a>
+                <a href="registro.html" class="px-3 py-1.5 bg-blue-600 text-white rounded hover:bg-blue-700">Registrarse</a>
+                <a href="mi_solicitud.html" class="text-xs bg-gray-100 p-2 rounded">Mi solicitud (<span id="solicitud-count">0</span>)</a>
+            </div>
         </div>
     </header>
 
-    <main>
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-12">
 
-        <!-- Sección principal / banner -->
-        <section class="hero">
-            <div class="hero-texto">
-                <h1>Veterinaria San Marcos</h1>
-                <p>
+        <!-- BANNER / HERO -->
+        <section class="grid md:grid-cols-2 gap-8 items-center bg-white p-6 rounded-lg shadow-sm">
+            <div class="space-y-4">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">Veterinaria San Marcos</h1>
+                <p class="text-gray-600 text-lg">
                     Clínica veterinaria en Rancagua, Región de O'Higgins, con más de 15 años
                     de experiencia atendiendo perros, gatos, aves y conejos.
                 </p>
-                <a href="servicios.html" class="boton">Ver servicios</a>
-                <a href="registro.html" class="boton boton-secundario">Solicitar hora</a>
+                <div class="flex space-x-4 pt-2">
+                    <a href="servicios.html" class="px-5 py-2.5 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 font-medium">Ver servicios</a>
+                    <a href="registro.html" class="px-5 py-2.5 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 font-medium">Solicitar hora</a>
+                </div>
             </div>
-            <div class="hero-imagen">
-            <img src="./assets/images/veterinaria.png" alt="Imagen veterinaria San Marcos"width="700">     
-        </div>
+            <div class="overflow-hidden rounded-lg shadow">
+                <img src="./assets/images/veterinaria.png" alt="Imagen veterinaria San Marcos" class="w-full h-auto object-cover">    
+            </div>
         </section>
 
-        <!-- Servicios destacados -->
-        <section class="productos-destacados">
-            <h2>Servicios más solicitados</h2>
+        <!-- SERVICIOS DESTACADOS -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-bold text-center text-gray-900">Servicios más solicitados</h2>
 
-            <ul class="grid-productos">
-                <li class="tarjeta-producto">
-                    <img src="./assets/images/corte_pelo.png" alt="Consulta general"width="200">
-                    <h3>Consulta general</h3>
-                    <p class="atributos">Perro / Gato · 30 min</p>
-                    <p class="precio">$15.000</p>
-                </li>
-                <li class="tarjeta-producto">
-                    <img src="./assets/images/vacuna.png" alt="Vacuna antirrábica"width="200">
-                    <h3>Vacuna antirrábica</h3>
-                    <p class="atributos">Perro / Gato · 10 min</p>
-                    <p class="precio">$12.000</p>
-                </li>
-                <li class="tarjeta-producto">
-                    <img src="./assets/images/despasitacion.png" alt="Desparasitación interna"width="300">
-                    <h3>Desparasitación interna</h3>
-                    <p class="atributos">Perro / Gato · 5 min</p>
-                    <p class="precio">Desde $8.000</p>
-                </li>
-                <li class="tarjeta-producto">
-                    <img src="./assets/images/limpieza_bucal.png" alt="Limpieza dental"width="300">
-                    <h3>Limpieza dental</h3>
-                    <p class="atributos">Perro / Gato · 45 min</p>
-                    <p class="precio">$55.000</p>
-                </li>
-            </ul>
+            <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Tarjeta 1 -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
+                    <img src="./assets/images/corte_pelo.png" alt="Consulta general" class="w-32 h-32 object-contain mb-3">
+                    <h3 class="font-semibold text-lg text-gray-800">Consulta general</h3>
+                    <p class="text-sm text-gray-500">Perro / Gato · 30 min</p>
+                    <p class="text-blue-600 font-bold mt-2 text-lg">$15.000</p>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
+                    <img src="./assets/images/vacuna.png" alt="Vacuna antirrábica" class="w-32 h-32 object-contain mb-3">
+                    <h3 class="font-semibold text-lg text-gray-800">Vacuna antirrábica</h3>
+                    <p class="text-sm text-gray-500">Perro / Gato · 10 min</p>
+                    <p class="text-blue-600 font-bold mt-2 text-lg">$12.000</p>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
+                    <img src="./assets/images/despasitacion.png" alt="Desparasitación interna" class="w-32 h-32 object-contain mb-3">
+                    <h3 class="font-semibold text-lg text-gray-800">Desparasitación interna</h3>
+                    <p class="text-sm text-gray-500">Perro / Gato · 5 min</p>
+                    <p class="text-blue-600 font-bold mt-2 text-lg">Desde $8.000</p>
+                </div>
+
+                <!-- Tarjeta 4 -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
+                    <img src="./assets/images/limpieza_bucal.png" alt="Limpieza dental" class="w-32 h-32 object-contain mb-3">
+                    <h3 class="font-semibold text-lg text-gray-800">Limpieza dental</h3>
+                    <p class="text-sm text-gray-500">Perro / Gato · 45 min</p>
+                    <p class="text-blue-600 font-bold mt-2 text-lg">$55.000</p>
+                </div>
+            </div>
         </section>
 
-        <!-- Bloque de confianza / número de atenciones -->
-        <section class="seccion-destacados">
-            <h2>¿Por qué elegirnos?</h2>
-            <ul class="lista-destacados">
+        <!-- BLOQUE DE CONFIANZA -->
+        <section class="bg-blue-50 p-6 rounded-xl border border-blue-100 space-y-4">
+            <h2 class="text-2xl font-bold text-center text-blue-900">¿Por qué elegirnos?</h2>
+            <ul class="grid md:grid-cols-2 gap-3 max-w-2xl mx-auto text-gray-700 list-disc list-inside">
                 <li>Atendemos en promedio 25 pacientes al día</li>
                 <li>3 médicos veterinarios y 1 técnico veterinario</li>
                 <li>Historial clínico y de vacunación siempre disponible</li>
@@ -93,26 +105,27 @@
 
     </main>
 
-    <footer>
-        <div class="footer-info">
-            <p>Veterinaria San Marcos</p>
-            <ul class="footer-categorias">
-                <li><a href="servicios.html">Consultas</a></li>
-                <li><a href="servicios.html">Vacunación</a></li>
-                <li><a href="servicios.html">Cirugía</a></li>
-            </ul>
-        </div>
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-gray-300 mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-8 text-center md:text-left">
+            <div class="space-y-2">
+                <p class="font-bold text-white text-lg">Veterinaria San Marcos</p>
+                <ul class="flex justify-center md:justify-start space-x-4 text-sm text-gray-400">
+                    <li><a href="servicios.html" class="hover:text-white">Consultas</a></li>
+                    <li><a href="servicios.html" class="hover:text-white">Vacunación</a></li>
+                    <li><a href="servicios.html" class="hover:text-white">Cirugía</a></li>
+                </ul>
+            </div>
 
-        <div class="footer-newsletter">
-            <p>Recibe recordatorios de vacunación de tu mascota.</p>
-            <form action="#" method="post">
-                <label for="email-newsletter">Correo electrónico</label>
-                <input type="email" id="email-newsletter" name="email-newsletter" placeholder="Ingresa tu correo">
-                <button type="submit">Suscribirme</button>
-            </form>
+            <div class="space-y-2">
+                <p class="text-sm">Recibe recordatorios de vacunación de tu mascota.</p>
+                <form action="#" method="post" class="flex justify-center md:justify-start gap-2">
+                    <input type="email" id="email-newsletter" name="email-newsletter" placeholder="Ingresa tu correo" class="px-3 py-1.5 rounded text-gray-800 text-sm focus:outline-none">
+                    <button type="submit" class="bg-blue-600 px-4 py-1.5 rounded text-white text-sm font-semibold hover:bg-blue-500">Suscribirme</button>
+                </form>
+            </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
 </body>
 </html>
