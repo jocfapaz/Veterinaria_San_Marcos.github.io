@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador | Editar producto</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex min-h-screen">
+
+        <aside class="w-64 shrink-0 bg-slate-900 text-slate-200 flex flex-col">
+            <div class="px-6 py-5 text-lg font-bold text-white border-b border-slate-800">
+                <a href="index.html">San Marcos</a>
+            </div>
+            <nav class="flex-1 px-3 py-4 space-y-1">
+                <a href="index.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white">Dashboard</a>
+                <a href="servicios.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white">Servicios</a>
+                <a href="admin_productos.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium bg-slate-800 text-white">Productos</a>
+                <a href="usuarios.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white">Usuarios</a>
+            </nav>
+        </aside>
+
+        <div class="flex-1 flex flex-col">
+            <header class="bg-white border-b border-slate-200 px-8 py-4">
+                <h1 class="text-xl font-semibold text-slate-900">Editar producto</h1>
+            </header>
+
+            <main class="flex-1 px-8 py-6">
+                <div class="bg-white rounded-lg border border-slate-200 shadow-sm p-6 max-w-2xl">
+                    <form action="#" method="post" id="form-producto-editar" novalidate class="space-y-5">
+
+                        <div>
+                            <label for="codigo-producto" class="block text-sm font-medium text-slate-700">Código</label>
+                            <input type="text" id="codigo-producto" name="codigo" placeholder="Ej: MED005" required minlength="3"
+                                   class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                            <p class="mt-1 text-xs text-red-600" id="error-codigo-producto"></p>
+                        </div>
+
+                        <div>
+                            <label for="categoria-producto" class="block text-sm font-medium text-slate-700">Categoría</label>
+                            <select id="categoria-producto" name="categoria" required
+                                    class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                <option value="">-- Seleccione la categoría --</option>
+                                <option value="antiparasitarios">Antiparasitarios</option>
+                                <option value="vacunas">Vacunas</option>
+                                <option value="analgesicos">Analgésicos / Antiinflamatorios</option>
+                                <option value="suplementos">Suplementos</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                            <p class="mt-1 text-xs text-red-600" id="error-categoria-producto"></p>
+                        </div>
+
+                        <div>
+                            <label for="nombre-comercial-producto" class="block text-sm font-medium text-slate-700">Nombre comercial</label>
+                            <input type="text" id="nombre-comercial-producto" name="nombre-comercial" required maxlength="100"
+                                   class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                            <p class="mt-1 text-xs text-red-600" id="error-nombre-comercial-producto"></p>
+                        </div>
+
+                        <div>
+                            <label for="principio-activo-producto" class="block text-sm font-medium text-slate-700">Principio activo</label>
+                            <input type="text" id="principio-activo-producto" name="principio-activo" required maxlength="100"
+                                   class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                            <p class="mt-1 text-xs text-red-600" id="error-principio-activo-producto"></p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="presentacion-producto" class="block text-sm font-medium text-slate-700">Presentación</label>
+                                <input type="text" id="presentacion-producto" name="presentacion" required maxlength="50"
+                                       class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                <p class="mt-1 text-xs text-red-600" id="error-presentacion-producto"></p>
+                            </div>
+
+                            <div>
+                                <label for="especie-producto" class="block text-sm font-medium text-slate-700">Especie</label>
+                                <select id="especie-producto" name="especie" required
+                                        class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                    <option value="">-- Seleccione --</option>
+                                    <option value="perro">Perro</option>
+                                    <option value="gato">Gato</option>
+                                    <option value="perro-gato">Perro / Gato</option>
+                                    <option value="ave">Ave</option>
+                                    <option value="conejo">Conejo</option>
+                                    <option value="todas">Todas las especies</option>
+                                </select>
+                                <p class="mt-1 text-xs text-red-600" id="error-especie-producto"></p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="stock-producto" class="block text-sm font-medium text-slate-700">Stock actual</label>
+                                <input type="number" id="stock-producto" name="stock" required min="0" step="1"
+                                       class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                <p class="mt-1 text-xs text-red-600" id="error-stock-producto"></p>
+                            </div>
+
+                            <div>
+                                <label for="stock-critico-producto" class="block text-sm font-medium text-slate-700">Stock crítico (opcional)</label>
+                                <input type="number" id="stock-critico-producto" name="stock-critico" min="0" step="1"
+                                       class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="precio-producto" class="block text-sm font-medium text-slate-700">Precio unitario (CLP)</label>
+                            <input type="number" id="precio-producto" name="precio" required min="0" step="500"
+                                   class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                            <p class="mt-1 text-xs text-red-600" id="error-precio-producto"></p>
+                        </div>
+
+                        <div>
+                            <label for="imagen-producto" class="block text-sm font-medium text-slate-700">Imagen (opcional)</label>
+                            <input type="file" id="imagen-producto" name="imagen" accept="image/*"
+                                   class="mt-1 block w-full text-sm text-slate-600 file:mr-4 file:rounded-md file:border-0 file:bg-slate-100 file:px-4 file:py-2 file:text-sm file:font-medium hover:file:bg-slate-200">
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit"
+                                    class="inline-flex items-center rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700">
+                                Registrar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador | Productos</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex min-h-screen">
+
+        <aside class="w-64 shrink-0 bg-slate-900 text-slate-200 flex flex-col">
+            <div class="px-6 py-5 text-lg font-bold text-white border-b border-slate-800">
+                <a href="index.html">San Marcos</a>
+            </div>
+            <nav class="flex-1 px-3 py-4 space-y-1">
+                <a href="index.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white">Dashboard</a>
+                <a href="servicios.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white">Servicios</a>
+                <a href="admin_productos.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium bg-slate-800 text-white">Productos</a>
+                <a href="usuarios.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white">Usuarios</a>
+            </nav>
+        </aside>
+
+        <div class="flex-1 flex flex-col">
+            <header class="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between">
+                <h1 class="text-xl font-semibold text-slate-900">Productos</h1>
+                <a href="admin_producto_nuevo.html"
+                   class="inline-flex items-center rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700">
+                    + Nuevo producto
+                </a>
+            </header>
+
+            <main class="flex-1 px-8 py-6">
+                <div class="bg-white rounded-lg border border-slate-200 shadow-sm overflow-hidden">
+                    <table class="min-w-full divide-y divide-slate-200 text-sm">
+                        <thead class="bg-slate-100">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-medium text-slate-600">Código</th>
+                                <th class="px-4 py-3 text-left font-medium text-slate-600">Categoría</th>
+                                <th class="px-4 py-3 text-left font-medium text-slate-600">Nombre comercial</th>
+                                <th class="px-4 py-3 text-left font-medium text-slate-600">Especie</th>
+                                <th class="px-4 py-3 text-left font-medium text-slate-600">Stock</th>
+                                <th class="px-4 py-3 text-left font-medium text-slate-600">Precio</th>
+                                <th class="px-4 py-3 text-left font-medium text-slate-600">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla-productos" class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-4 py-3">MED001</td>
+                                <td class="px-4 py-3">Antiparasitarios</td>
+                                <td class="px-4 py-3">Nombre comercial</td>
+                                <td class="px-4 py-3">Perro / Gato</td>
+                                <td class="px-4 py-3">
+                                    <span class="inline-flex items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-800">3 (stock crítico)</span>
+                                </td>
+                                <td class="px-4 py-3">$8.000</td>
+                                <td class="px-4 py-3 space-x-3">
+                                    <a href="admin_producto_editar.html" class="text-emerald-700 hover:underline">Editar</a>
+                                    <button type="button" class="text-red-600 hover:underline">Eliminar</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-4 py-3">MED002</td>
+                                <td class="px-4 py-3">Vacunas</td>
+                                <td class="px-4 py-3">Nombre comercial</td>
+                                <td class="px-4 py-3">Perro</td>
+                                <td class="px-4 py-3">
+                                    <span class="inline-flex items-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-medium text-emerald-800">25</span>
+                                </td>
+                                <td class="px-4 py-3">$12.000</td>
+                                <td class="px-4 py-3 space-x-3">
+                                    <a href="admin_producto_editar.html" class="text-emerald-700 hover:underline">Editar</a>
+                                    <button type="button" class="text-red-600 hover:underline">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
