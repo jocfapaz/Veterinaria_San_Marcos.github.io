@@ -681,6 +681,9 @@
   .border-gray-200 {
     border-color: var(--color-gray-200);
   }
+  .border-gray-300 {
+    border-color: var(--color-gray-300);
+  }
   .border-slate-100 {
     border-color: var(--color-slate-100);
   }
@@ -1113,12 +1116,18 @@
   .file\:mr-4::file-selector-button {
     margin-right: calc(var(--spacing) * 4);
   }
+  .file\:rounded-lg::file-selector-button {
+    border-radius: var(--radius-lg);
+  }
   .file\:rounded-md::file-selector-button {
     border-radius: var(--radius-md);
   }
   .file\:border-0::file-selector-button {
     border-style: var(--tw-border-style);
     border-width: 0px;
+  }
+  .file\:bg-gray-100::file-selector-button {
+    background-color: var(--color-gray-100);
   }
   .file\:bg-slate-100::file-selector-button {
     background-color: var(--color-slate-100);
@@ -1193,6 +1202,9 @@
     .hover\:shadow-md:hover {
       --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
       box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    }
+    .hover\:file\:bg-gray-200:hover::file-selector-button {
+      background-color: var(--color-gray-200);
     }
     .hover\:file\:bg-slate-200:hover::file-selector-button {
       background-color: var(--color-slate-200);
