@@ -1,311 +1,507 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-full bg-slate-50">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veterinaria San Marcos | Productos</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <!-- CDN de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="flex flex-col min-h-full font-sans text-slate-800 antialiased">
 
-    <header>
-        <div class="logo">
-            <a href="index.html">Veterinaria San Marcos</a>
-        </div>
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-blue-700 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a href="index.html" class="text-xl sm:text-2xl font-bold tracking-tight text-white hover:text-emerald-100 transition-colors">
+                    Veterinaria San Marcos
+                </a>
+            </div>
 
-        <nav class="nav-principal">
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="servicios.html">Servicios</a></li>
-                <li><a href="productos.html" class="activo">Productos</a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
-                <li><a href="blogs.html">Blog</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-        </nav>
+            <!-- Navegación Principal -->
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-4">
+                <a href="index.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-600 transition-colors">Inicio</a>
+                <a href="servicios.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-600 transition-colors">Servicios</a>
+                <a href="productos.html" class="px-3 py-2 rounded-md text-sm font-medium bg-blue-800 text-white shadow-inner">Productos</a>
+                <a href="nosotros.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-600 transition-colors">Nosotros</a>
+                <a href="blogs.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-600 transition-colors">Blog</a>
+                <a href="contacto.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-600 transition-colors">Contacto</a>
+            </nav>
 
-        <div class="acciones-usuario">
-            <a href="login.html">Iniciar sesión</a>
-            <a href="registro.html">Registrarse</a>
-            <a href="mi_solicitud.html" class="solicitud">Mi solicitud (<span id="solicitud-count">0</span>)</a>
-            <a href="carrito.html" class="carrito">Carrito (<span id="cart-count">0</span>)</a>
+            <!-- Acciones de Usuario -->
+            <div class="flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm">
+                <a href="login.html" class="hidden sm:inline-block px-3 py-1.5 rounded-md hover:bg-emerald-600 transition-colors">Iniciar sesión</a>
+                <a href="registro.html" class="hidden sm:inline-block px-3 py-1.5 bg-blue-600 hover:bg-emerald-500 rounded-md font-medium transition-colors">Registrarse</a>
+                <a href="mi_solicitud.html" class="px-2.5 py-1.5 bg-blue-800 hover:bg-blue-900 rounded-md transition-colors flex items-center">
+                    Solicitud (<span id="solicitud-count" class="ml-1 font-bold">0</span>)
+                </a>
+                <a href="carrito.html" class="px-2.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold rounded-md transition-colors flex items-center shadow-sm">
+                    Carrito (<span id="cart-count" class="ml-1 font-bold">0</span>)
+                </a>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section class="listado-productos">
-            <h1>Productos</h1>
-            <p>Medicamentos y vacunas disponibles para venta directa.</p>
+    <!-- Contenido Principal -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        <section class="space-y-8">
+            
+            <!-- Encabezado de Sección -->
+            <div class="border-b border-slate-200 pb-5">
+                <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">Catálogo de Productos</h1>
+                <p class="mt-2 text-base text-slate-600">Medicamentos y vacunas disponibles para venta directa en Veterinaria San Marcos.</p>
+            </div>
 
-            <!-- Filtro por categoría alineado con el catálogo de la veterinaria -->
-            <form class="filtro-servicios" action="#">
-                <label for="filtro-categoria-producto">Categoría</label>
-                <select id="filtro-categoria-producto" name="categoria">
-                    <option value="todas">Todas</option>
-                    <option value="antibioticos">Antibióticos</option>
-                    <option value="antiparasitarios">Antiparasitarios</option>
-                    <option value="antiinflamatorios">Antiinflamatorios</option>
-                    <option value="dermatologia">Dermatología</option>
-                    <option value="digestivo">Digestivo</option>
-                    <option value="cardiaco">Cardíaco</option>
-                    <option value="analgesicos">Analgésicos</option>
-                    <option value="vacunas">Vacunas</option>
-                    <option value="suplementos">Suplementos</option>
-                </select>
-            </form>
+            <!-- Filtro por Categoría -->
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200 max-w-xs">
+                <form action="#" class="space-y-2">
+                    <label for="filtro-categoria-producto" class="block text-sm font-semibold text-slate-700">Filtrar por Categoría</label>
+                    <select id="filtro-categoria-producto" name="categoria" class="block w-full rounded-lg border-slate-300 bg-slate-50 p-2.5 text-sm text-slate-800 focus:border-emerald-500 focus:ring-emerald-500 border">
+                        <option value="todas">Todas las categorías</option>
+                        <option value="antibioticos">Antibióticos</option>
+                        <option value="antiparasitarios">Antiparasitarios</option>
+                        <option value="antiinflamatorios">Antiinflamatorios</option>
+                        <option value="dermatologia">Dermatología</option>
+                        <option value="digestivo">Digestivo</option>
+                        <option value="cardiaco">Cardíaco</option>
+                        <option value="analgesicos">Analgésicos</option>
+                        <option value="vacunas">Vacunas</option>
+                        <option value="suplementos">Suplementos</option>
+                    </select>
+                </form>
+            </div>
 
-            <!-- Listado completo derivado de la planilla de la Veterinaria San Marcos -->
-            <ul class="grid-productos" id="lista-productos">
+            <!-- Grid de Tarjetas de Producto -->
+            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="lista-productos">
                 
-                <!-- ME001 -->
-                <li class="tarjeta-producto" data-id="ME001">
-                    <a href="producto-detalle.html?id=ME001">
-                        <img src="./assets/images/amoxilina.png" alt="Amoxibay 250mg">
-                        <h2>Amoxibay 250mg</h2>
+                <!-- Tarjeta ME001 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME001">
+                    <a href="producto-detalle.html?id=ME001" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/amoxilina.png" alt="Amoxibay 250mg" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Antibióticos · Blíster 10 comp.</p>
-                    <p class="precio">$4.200</p>
-                    <button type="button" class="boton-anadir" data-id="ME001">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME001" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Amoxibay 250mg</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Antibióticos · Blíster 10 comp.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$4.200</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME001">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME002 -->
-                <li class="tarjeta-producto" data-id="ME002">
-                    <a href="producto-detalle.html?id=ME002">
-                        <img src="./assets/images/enrox.png" alt="Enrox 50mg">
-                        <h2>Enrox 50mg</h2>
+                <!-- Tarjeta ME002 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME002">
+                    <a href="producto-detalle.html?id=ME002" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/enrox.png" alt="Enrox 50mg" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Antibióticos · Blíster 10 comp.</p>
-                    <p class="precio">$6.800</p>
-                    <button type="button" class="boton-anadir" data-id="ME002">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME002" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Enrox 50mg</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Antibióticos · Blíster 10 comp.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$6.800</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME002">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME003 -->
-                <li class="tarjeta-producto" data-id="ME003">
-                    <a href="producto-detalle.html?id=ME003">
-                        <img src="./assets/images/metrocare.png" alt="Metrobay 250mg">
-                        <h2>Metrobay 250mg</h2>
+                <!-- Tarjeta ME003 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME003">
+                    <a href="producto-detalle.html?id=ME003" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/metrocare.png" alt="Metrobay 250mg" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Antibióticos · Blíster 10 comp.</p>
-                    <p class="precio">$3.900</p>
-                    <button type="button" class="boton-anadir" data-id="ME003">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME003" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Metrobay 250mg</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Antibióticos · Blíster 10 comp.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$3.900</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME003">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME004 -->
-                <li class="tarjeta-producto" data-id="ME004">
-                    <a href="producto-detalle.html?id=ME004">
-                        <img src="./assets/images/nexgard.png" alt="Nexgard">
-                        <h2>Nexgard</h2>
+                <!-- Tarjeta ME004 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME004">
+                    <a href="producto-detalle.html?id=ME004" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/nexgard.png" alt="Nexgard" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Antiparasitarios · Masticable 1 unid.</p>
-                    <p class="precio">$9.500</p>
-                    <button type="button" class="boton-anadir" data-id="ME004">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME004" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Nexgard</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Antiparasitarios · Masticable 1 unid.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$9.500</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME004">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME005 -->
-                <li class="tarjeta-producto" data-id="ME005">
-                    <a href="producto-detalle.html?id=ME005">
-                        <img src="./assets/images/bravecto.png" alt="Bravecto">
-                        <h2>Bravecto</h2>
+                <!-- Tarjeta ME005 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME005">
+                    <a href="producto-detalle.html?id=ME005" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/bravecto.png" alt="Bravecto" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Antiparasitarios · Masticable 1 unid.</p>
-                    <p class="precio">$18.900</p>
-                    <button type="button" class="boton-anadir" data-id="ME005">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME005" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Bravecto</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Antiparasitarios · Masticable 1 unid.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$18.900</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME005">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME006 -->
-                <li class="tarjeta-producto" data-id="ME006">
-                    <a href="producto-detalle.html?id=ME006">
-                        <img src="./assets/images/Revolution.png" alt="Revolution Plus">
-                        <h2>Revolution Plus</h2>
+                <!-- Tarjeta ME006 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME006">
+                    <a href="producto-detalle.html?id=ME006" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/Revolution.png" alt="Revolution Plus" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Antiparasitarios · Pipeta 1 unid.</p>
-                    <p class="precio">$14.500</p>
-                    <button type="button" class="boton-anadir" data-id="ME006">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME006" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Revolution Plus</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Antiparasitarios · Pipeta 1 unid.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$14.500</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME006">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME007 -->
-                <li class="tarjeta-producto" data-id="ME007">
-                    <a href="producto-detalle.html?id=ME007">
-                        <img src="./assets/images/drontal.png" alt="Drontal Plus">
-                        <h2>Drontal Plus</h2>
+                <!-- Tarjeta ME007 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME007">
+                    <a href="producto-detalle.html?id=ME007" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/drontal.png" alt="Drontal Plus" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Antiparasitarios · Comprimido 1 unid.</p>
-                    <p class="precio">$3.200</p>
-                    <button type="button" class="boton-anadir" data-id="ME007">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME007" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Drontal Plus</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Antiparasitarios · Comprimido 1 unid.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$3.200</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME007">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME008 -->
-                <li class="tarjeta-producto" data-id="ME008">
-                    <a href="producto-detalle.html?id=ME008">
-                        <img src="./assets/images/milbemax.png" alt="Milbemax Gato">
-                        <h2>Milbemax Gato</h2>
+                <!-- Tarjeta ME008 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME008">
+                    <a href="producto-detalle.html?id=ME008" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/milbemax.png" alt="Milbemax Gato" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Antiparasitarios · Comprimido 2 unid.</p>
-                    <p class="precio">$6.800</p>
-                    <button type="button" class="boton-anadir" data-id="ME008">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME008" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Milbemax Gato</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Antiparasitarios · Comprimido 2 unid.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$6.800</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME008">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME009 -->
-                <li class="tarjeta-producto" data-id="ME009">
-                    <a href="producto-detalle.html?id=ME009">
-                        <img src="./assets/images/meloxivet.png" alt="Meloxicam 1mg">
-                        <h2>Meloxicam 1mg</h2>
+                <!-- Tarjeta ME009 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME009">
+                    <a href="producto-detalle.html?id=ME009" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/meloxivet.png" alt="Meloxicam 1mg" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Antiinflamatorios · Blíster 10 comp.</p>
-                    <p class="precio">$4.500</p>
-                    <button type="button" class="boton-anadir" data-id="ME009">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME009" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Meloxicam 1mg</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Antiinflamatorios · Blíster 10 comp.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$4.500</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME009">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME010 -->
-                <li class="tarjeta-producto" data-id="ME010">
-                    <a href="producto-detalle.html?id=ME010">
-                        <img src="./assets/images/Carprofelican.png" alt="Carprofen 50mg">
-                        <h2>Carprofen 50mg</h2>
+                <!-- Tarjeta ME010 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME010">
+                    <a href="producto-detalle.html?id=ME010" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/Carprofelican.png" alt="Carprofen 50mg" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Antiinflamatorios · Blíster 10 comp.</p>
-                    <p class="precio">$9.800</p>
-                    <button type="button" class="boton-anadir" data-id="ME010">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME010" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Carprofen 50mg</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Antiinflamatorios · Blíster 10 comp.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$9.800</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME010">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME011 -->
-                <li class="tarjeta-producto" data-id="ME011">
-                    <a href="producto-detalle.html?id=ME011">
-                        <img src="./assets/images/champo.png" alt="Clorhexidina shampoo">
-                        <h2>Clorhexidina shampoo</h2>
+                <!-- Tarjeta ME011 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME011">
+                    <a href="producto-detalle.html?id=ME011" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/champo.png" alt="Clorhexidina shampoo" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Dermatología · Frasco 250ml</p>
-                    <p class="precio">$8.900</p>
-                    <button type="button" class="boton-anadir" data-id="ME011">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME011" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Clorhexidina shampoo</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Dermatología · Frasco 250ml</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$8.900</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME011">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME012 -->
-                <li class="tarjeta-producto" data-id="ME012">
-                    <a href="producto-detalle.html?id=ME012">
-                        <img src="./assets/images/malaseb.png" alt="Malaseb shampoo">
-                        <h2>Malaseb shampoo</h2>
+                <!-- Tarjeta ME012 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME012">
+                    <a href="producto-detalle.html?id=ME012" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/malaseb.png" alt="Malaseb shampoo" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Dermatología · Frasco 250ml</p>
-                    <p class="precio">$12.500</p>
-                    <button type="button" class="boton-anadir" data-id="ME012">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME012" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Malaseb shampoo</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Dermatología · Frasco 250ml</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$12.500</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME012">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME013 -->
-                <li class="tarjeta-producto" data-id="ME013">
-                    <a href="producto-detalle.html?id=ME013">
-                        <img src="./assets/images/apoquel.png" alt="Apoquel 16mg">
-                        <h2>Apoquel 16mg</h2>
+                <!-- Tarjeta ME013 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME013">
+                    <a href="producto-detalle.html?id=ME013" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/apoquel.png" alt="Apoquel 16mg" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Dermatología · Blíster 10 comp.</p>
-                    <p class="precio">$22.000</p>
-                    <button type="button" class="boton-anadir" data-id="ME013">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME013" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Apoquel 16mg</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Dermatología · Blíster 10 comp.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$22.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME013">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME014 -->
-                <li class="tarjeta-producto" data-id="ME014">
-                    <a href="producto-detalle.html?id=ME014">
-                        <img src="./assets/images/probifor.png" alt="Probifor">
-                        <h2>Probifor</h2>
+                <!-- Tarjeta ME014 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME014">
+                    <a href="producto-detalle.html?id=ME014" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/probifor.png" alt="Probifor" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Digestivo · Sobre 5ml x10</p>
-                    <p class="precio">$5.600</p>
-                    <button type="button" class="boton-anadir" data-id="ME014">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME014" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Probifor</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Digestivo · Sobre 5ml x10</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$5.600</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME014">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME015 -->
-                <li class="tarjeta-producto" data-id="ME015">
-                    <a href="producto-detalle.html?id=ME015">
-                        <img src="./assets/images/omeprazol.pmg.jpg" alt="Omeprazol 10mg vet">
-                        <h2>Omeprazol 10mg vet</h2>
+                <!-- Tarjeta ME015 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME015">
+                    <a href="producto-detalle.html?id=ME015" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/omeprazol.pmg.jpg" alt="Omeprazol 10mg vet" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Digestivo · Blíster 10 comp.</p>
-                    <p class="precio">$3.800</p>
-                    <button type="button" class="boton-anadir" data-id="ME015">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME015" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Omeprazol 10mg vet</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Digestivo · Blíster 10 comp.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$3.800</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME015">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME016 -->
-                <li class="tarjeta-producto" data-id="ME016">
-                    <a href="producto-detalle.html?id=ME016">
-                        <img src="./assets/images/vetmedin.png" alt="Vetmedin 2.5mg">
-                        <h2>Vetmedin 2.5mg</h2>
+                <!-- Tarjeta ME016 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME016">
+                    <a href="producto-detalle.html?id=ME016" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/vetmedin.png" alt="Vetmedin 2.5mg" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Cardíaco · Blíster 10 comp.</p>
-                    <p class="precio">$28.000</p>
-                    <button type="button" class="boton-anadir" data-id="ME016">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME016" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Vetmedin 2.5mg</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Cardíaco · Blíster 10 comp.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$28.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME016">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME017 -->
-                <li class="tarjeta-producto" data-id="ME017">
-                    <a href="producto-detalle.html?id=ME017">
-                        <img src="./assets/images/tramadol.png" alt="Tramadol 50mg vet">
-                        <h2>Tramadol 50mg vet</h2>
+                <!-- Tarjeta ME017 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME017">
+                    <a href="producto-detalle.html?id=ME017" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/tramadol.png" alt="Tramadol 50mg vet" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Analgésicos · Blíster 10 comp.</p>
-                    <p class="precio">$5.200</p>
-                    <button type="button" class="boton-anadir" data-id="ME017">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME017" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Tramadol 50mg vet</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Analgésicos · Blíster 10 comp.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$5.200</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME017">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME018 -->
-                <li class="tarjeta-producto" data-id="ME018">
-                    <a href="producto-detalle.html?id=ME018">
-                        <img src="./assets/images/Nobivac.png" alt="Nobivac DHPPi">
-                        <h2>Nobivac DHPPi</h2>
+                <!-- Tarjeta ME018 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME018">
+                    <a href="producto-detalle.html?id=ME018" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/Nobivac.png" alt="Nobivac DHPPi" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Vacunas · Vial 1 dosis</p>
-                    <p class="precio">$8.500</p>
-                    <button type="button" class="boton-anadir" data-id="ME018">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME018" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Nobivac DHPPi</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Vacunas · Vial 1 dosis</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$8.500</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME018">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME019 -->
-                <li class="tarjeta-producto" data-id="ME019">
-                    <a href="producto-detalle.html?id=ME019">
-                        <img src="./assets/images/novibac.png" alt="Nobivac Rabies">
-                        <h2>Nobivac Rabies</h2>
+                <!-- Tarjeta ME019 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME019">
+                    <a href="producto-detalle.html?id=ME019" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/novibac.png" alt="Nobivac Rabies" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Vacunas · Vial 1 dosis</p>
-                    <p class="precio">$5.800</p>
-                    <button type="button" class="boton-anadir" data-id="ME019">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME019" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Nobivac Rabies</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Vacunas · Vial 1 dosis</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$5.800</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME019">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME020 -->
-                <li class="tarjeta-producto" data-id="ME020">
-                    <a href="producto-detalle.html?id=ME020">
-                        <img src="./assets/images/Felocell.png" alt="Felocell CVR">
-                        <h2>Felocell CVR</h2>
+                <!-- Tarjeta ME020 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME020">
+                    <a href="producto-detalle.html?id=ME020" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/Felocell.png" alt="Felocell CVR" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Vacunas · Vial 1 dosis</p>
-                    <p class="precio">$7.200</p>
-                    <button type="button" class="boton-anadir" data-id="ME020">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME020" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Felocell CVR</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Vacunas · Vial 1 dosis</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$7.200</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME020">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME021 -->
-                <li class="tarjeta-producto" data-id="ME021">
-                    <a href="producto-detalle.html?id=ME021">
-                        <img src="./assets/images/omega.png" alt="Omega vet 3-6-9">
-                        <h2>Omega vet 3-6-9</h2>
+                <!-- Tarjeta ME021 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME021">
+                    <a href="producto-detalle.html?id=ME021" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/omega.png" alt="Omega vet 3-6-9" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Suplementos · Frasco 100ml</p>
-                    <p class="precio">$9.900</p>
-                    <button type="button" class="boton-anadir" data-id="ME021">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME021" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Omega vet 3-6-9</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Suplementos · Frasco 100ml</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$9.900</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME021">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
-                <!-- ME022 -->
-                <li class="tarjeta-producto" data-id="ME022">
-                    <a href="producto-detalle.html?id=ME022">
-                        <img src="./assets/images/condro.png" alt="Condrovet forte">
-                        <h2>Condrovet forte</h2>
+                <!-- Tarjeta ME022 -->
+                <li class="group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition-all duration-200" data-id="ME022">
+                    <a href="producto-detalle.html?id=ME022" class="block overflow-hidden bg-slate-100 aspect-square flex items-center justify-center p-4">
+                        <img src="./assets/images/condro.png" alt="Condrovet forte" class="object-contain h-full w-full group-hover:scale-105 transition-transform duration-300">
                     </a>
-                    <p class="categoria">Suplementos · Blíster 30 comp.</p>
-                    <p class="precio">$14.500</p>
-                    <button type="button" class="boton-anadir" data-id="ME022">Añadir al carrito</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="producto-detalle.html?id=ME022" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">Condrovet forte</h2>
+                        </a>
+                        <p class="text-xs text-slate-500 mt-1">Suplementos · Blíster 30 comp.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="text-xl font-extrabold text-emerald-700">$14.500</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors" data-id="ME022">
+                                Añadir
+                            </button>
+                        </div>
+                    </div>
                 </li>
 
             </ul>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-info">
-            <p>Veterinaria San Marcos</p>
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>&copy; Veterinaria San Marcos. Todos los derechos reservados.</p>
         </div>
     </footer>
 
