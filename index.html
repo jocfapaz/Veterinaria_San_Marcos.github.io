@@ -6,20 +6,22 @@
     <title>Veterinaria San Marcos | Inicio</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
 
     <!-- HEADER / NAVEGACIÓN -->
-    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-100">
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-100 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
             <div class="logo">
-                <a href="index.html" class="flex items-center gap-2 text-emerald-600 font-bold text-xl hover:text-emerald-700 transition-colors">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <a href="index.html" class="flex items-center gap-2 text-emerald-600 font-bold text-lg md:text-xl hover:text-emerald-700 transition-colors">
+                    <svg class="w-6 h-6 md:w-8 md:h-8 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                     </svg>
-                    <span>Veterinaria San Marcos</span>
+                    <span class="truncate">Veterinaria San Marcos</span>
                 </a>
             </div>
 
+            <!-- Navegación web (Oculta en celular) -->
             <nav class="hidden md:flex">
                 <ul class="flex space-x-6 text-sm font-medium text-slate-600">
                     <li><a href="index.html" class="hover:text-emerald-600 transition-colors">Inicio</a></li>
@@ -31,12 +33,40 @@
                 </ul>
             </nav>
 
-            <div class="acciones-usuario flex items-center gap-3 text-sm font-semibold">
+            <!-- Acciones web (Ocultas en celular) -->
+            <div class="hidden md:flex acciones-usuario items-center gap-3 text-sm font-semibold">
                 <a href="login.html" class="text-slate-700 hover:text-emerald-600 px-3 py-2 transition-colors">Iniciar sesión</a>
                 <a href="registro.html" class="text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2 rounded-lg shadow-sm transition-all">Registrarse</a>
                 <a href="mi_solicitud.html" class="solicitud bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 px-3 py-2 rounded-lg transition-colors flex items-center gap-1">
                     📋 Mi solicitud (<span id="solicitud-count">0</span>)
                 </a>
+            </div>
+
+            <!-- Botón Menú Hamburguesa (Solo visible en celular) -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-emerald-600 focus:outline-none p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Menú Desplegable Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-t border-slate-100 shadow-lg pb-4 z-50">
+            <div class="px-4 py-3 space-y-2 font-medium">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-slate-700 hover:text-emerald-600 hover:bg-emerald-50">Inicio</a>
+                <a href="servicios.html" class="block px-3 py-2 rounded-md text-slate-700 hover:text-emerald-600 hover:bg-emerald-50">Servicios</a>
+                <a href="nosotros.html" class="block px-3 py-2 rounded-md text-slate-700 hover:text-emerald-600 hover:bg-emerald-50">Nosotros</a>
+                <a href="blogs.html" class="block px-3 py-2 rounded-md text-emerald-600 bg-emerald-50 font-semibold border-l-4 border-emerald-600">Blog</a>
+                <a href="contacto.html" class="block px-3 py-2 rounded-md text-slate-700 hover:text-emerald-600 hover:bg-emerald-50">Contacto</a>
+                <a href="tienda.html" class="block px-3 py-2 rounded-md text-slate-700 hover:text-emerald-600 hover:bg-emerald-50">Tienda</a>
+                
+                <hr class="border-slate-100 my-2">
+                
+                <div class="flex flex-col gap-2 px-3 pt-2">
+                    <a href="login.html" class="text-center px-4 py-2 border border-slate-300 rounded-lg text-slate-700 hover:bg-slate-50">Iniciar sesión</a>
+                    <a href="registro.html" class="text-center px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">Registrarse</a>
+                    <a href="mi_solicitud.html" class="text-center px-4 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg">📋 Mi solicitud (0)</a>
+                </div>
             </div>
         </div>
     </header>
@@ -45,18 +75,18 @@
 
         <!-- BANNER / HERO -->
         <section class="grid md:grid-cols-2 gap-8 items-center bg-white p-6 rounded-lg shadow-sm">
-            <div class="space-y-4">
+            <div class="space-y-4 text-center md:text-left">
                 <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">Veterinaria San Marcos</h1>
-                <p class="text-gray-600 text-lg">
+                <p class="text-gray-600 text-base md:text-lg">
                     Clínica veterinaria en Rancagua, Región de O'Higgins, con más de 15 años
                     de experiencia atendiendo perros, gatos, aves y conejos.
                 </p>
-                <div class="flex space-x-4 pt-2">
-                    <a href="servicios.html" class="text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2 rounded-lg shadow-sm transition-all">Ver servicios</a>
-                    <a href="registro.html" class="text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2 rounded-lg shadow-sm transition-all">Solicitar hora</a>
+                <div class="flex flex-col sm:flex-row gap-3 sm:space-x-4 pt-2">
+                    <a href="servicios.html" class="text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-3 md:py-2 rounded-lg shadow-sm transition-all text-center">Ver servicios</a>
+                    <a href="registro.html" class="text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-3 md:py-2 rounded-lg shadow-sm transition-all text-center">Solicitar hora</a>
                 </div>
             </div>
-            <div class="overflow-hidden rounded-lg shadow">
+            <div class="overflow-hidden rounded-lg shadow mt-4 md:mt-0">
                 <img src="./assets/images/veterinaria.png" alt="Imagen veterinaria San Marcos" class="w-full h-auto object-cover">    
             </div>
         </section>
@@ -65,13 +95,13 @@
         <section class="space-y-6">
             <h2 class="text-2xl font-bold text-center text-gray-900">Servicios más solicitados</h2>
 
-            <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                 <!-- Tarjeta 1 -->
                 <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
                     <img src="./assets/images/corte_pelo.png" alt="Consulta general" class="w-32 h-32 object-contain mb-3">
                     <h3 class="font-semibold text-lg text-gray-800">Consulta general</h3>
                     <p class="text-sm text-gray-500">Perro / Gato · 30 min</p>
-                    <p class="precio text-xl font-extrabold text-emerald-700">$15.000</p>
+                    <p class="precio text-xl font-extrabold text-emerald-700 mt-2">$15.000</p>
                 </div>
 
                 <!-- Tarjeta 2 -->
@@ -79,7 +109,7 @@
                     <img src="./assets/images/vacuna.png" alt="Vacuna antirrábica" class="w-32 h-32 object-contain mb-3">
                     <h3 class="font-semibold text-lg text-gray-800">Vacuna antirrábica</h3>
                     <p class="text-sm text-gray-500">Perro / Gato · 10 min</p>
-                    <p class="precio text-xl font-extrabold text-emerald-700">$12.000</p>
+                    <p class="precio text-xl font-extrabold text-emerald-700 mt-2">$12.000</p>
                 </div>
 
                 <!-- Tarjeta 3 -->
@@ -87,7 +117,7 @@
                     <img src="./assets/images/despasitacion.png" alt="Desparasitación interna" class="w-32 h-32 object-contain mb-3">
                     <h3 class="font-semibold text-lg text-gray-800">Desparasitación interna</h3>
                     <p class="text-sm text-gray-500">Perro / Gato · 5 min</p>
-                    <p class="precio text-xl font-extrabold text-emerald-700">Desde $8.000</p>
+                    <p class="precio text-xl font-extrabold text-emerald-700 mt-2">Desde $8.000</p>
                 </div>
 
                 <!-- Tarjeta 4 -->
@@ -95,7 +125,7 @@
                     <img src="./assets/images/limpieza_bucal.png" alt="Limpieza dental" class="w-32 h-32 object-contain mb-3">
                     <h3 class="font-semibold text-lg text-gray-800">Limpieza dental</h3>
                     <p class="text-sm text-gray-500">Perro / Gato · 45 min</p>
-                    <p class="precio text-xl font-extrabold text-emerald-700">$55.000</p>
+                    <p class="precio text-xl font-extrabold text-emerald-700 mt-2">$55.000</p>
                 </div>
             </div>
         </section>
@@ -103,8 +133,7 @@
         <!-- BLOQUE DE CONFIANZA -->
         <section class="bg-blue-50 p-6 rounded-xl border border-blue-100 space-y-4">
             <h2 class="text-xl font-extrabold text-center text-emerald-700">¿Por qué elegirnos?</h2>
-            <!--class="precio text-xl font-extrabold text-emerald-700" -->
-            <ul class="grid md:grid-cols-2 gap-3 max-w-2xl mx-auto text-gray-700 list-disc list-inside">
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-2xl mx-auto text-gray-700 list-disc list-inside">
                 <li>Atendemos en promedio 25 pacientes al día</li>
                 <li>3 médicos veterinarios y 1 técnico veterinario</li>
                 <li>Historial clínico y de vacunación siempre disponible</li>
@@ -116,9 +145,9 @@
 
     <!-- FOOTER -->
     <footer class="bg-slate-900 text-slate-300 py-10 border-t border-slate-800 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
             <div class="footer-info space-y-3">
-                <div class="flex items-center gap-2 text-white font-bold text-lg">
+                <div class="flex items-center justify-center md:justify-start gap-2 text-white font-bold text-lg">
                     <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                     </svg>
@@ -151,5 +180,12 @@
         </div>
     </footer>
 
+    <!-- SCRIPT DEL MENÚ MÓVIL -->
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
