@@ -4,53 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador | Veterinaria San Marcos</title>
-    <link rel="stylesheet" href="../css/estilos.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body class ="bg-slate-50 text-slate-800">
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    <div class="layout-admin">
+    <div class="flex min-h-screen relative">
 
-        <aside class="sidebar-admin">
-            <div class="logo-admin">
-                <a href="index.html">San Marcos</a>
+        <!-- Fondo oscuro (Backdrop) para móvil cuando el menú está abierto -->
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-900/50 z-40 hidden md:hidden transition-opacity"></div>
+
+        <!-- Sidebar (Barra Lateral) -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-200 flex flex-col transform -translate-x-full transition-transform duration-300 ease-in-out md:relative md:translate-x-0 shrink-0">
+            
+            <div class="px-6 py-5 border-b border-slate-800 flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-2 text-white font-bold text-base">
+                    <svg class="w-6 h-6 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                    <span>Veterinaria San Marcos</span>
+                </a>
+                
+                <!-- Botón Cerrar (X) Solo visible en móvil -->
+                <button id="close-sidebar-btn" class="md:hidden text-slate-400 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
 
-            <nav class="nav-admin">
-                <ul>
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="usuarios.html">Usuarios</a></li>
-                </ul>
+            <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+                <a href="index.html"
+                   class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold bg-emerald-600 text-white shadow-sm">
+                    Dashboard
+                </a>
+                <a href="servicios.html"
+                   class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                    Servicios
+                </a>
+                <a href="admin_productos.html"
+                   class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                    Productos
+                </a>
+                <a href="usuarios.html"
+                   class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">
+                    Usuarios
+                </a>
             </nav>
 
-            <nav class="nav-admin-secundaria">
-                <ul>
-                    <li><a href="#">Ajustes</a></li>
-                    <li><a href="#">Mi perfil</a></li>
-                    <li><a href="#">Ayuda</a></li>
-                </ul>
-            </nav>
+            <div class="px-3 py-4 border-t border-slate-800 space-y-1">
+                <a href="#" class="block rounded-lg px-3 py-2 text-sm text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">Ajustes</a>
+                <a href="#" class="block rounded-lg px-3 py-2 text-sm text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">Mi perfil</a>
+            </div>
         </aside>
 
-        <div class="contenido-admin">
-            <header class="header-admin">
-                <h1>¡Hola Administrador!</h1>
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col min-w-0">
+            
+            <header class="bg-white shadow-sm border-b border-slate-100 px-4 md:px-8 py-4 flex items-center gap-4">
+                <!-- Botón Menú Hamburguesa (Solo visible en celular) -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-emerald-600 focus:outline-none p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                
+                <h1 class="text-xl md:text-2xl font-extrabold text-gray-900 truncate">¡Hola Administrador!</h1>
             </header>
 
-            <main>
-                <section class="panel-resumen">
-                    <p>Resumen general: citas del día, pacientes atendidos y servicios más solicitados.</p>
+            <main class="flex-1 bg-gray-50 px-4 md:px-8 py-6 space-y-6">
+                <section class="bg-white rounded-xl border border-gray-100 shadow-sm p-5 md:p-6">
+                    <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Resumen general</h2>
+                    <p class="text-gray-700 text-sm md:text-base">Citas del día, pacientes atendidos y servicios más solicitados.</p>
                 </section>
 
-                <section class="panel-secundario">
-                    <p>Alertas de stock crítico de medicamentos y vacunas.</p>
+                <section class="bg-white rounded-xl border border-gray-100 shadow-sm p-5 md:p-6">
+                    <h2 class="text-xs font-semibold text-amber-600 uppercase tracking-wide mb-2">Alertas de stock</h2>
+                    <p class="text-gray-700 text-sm md:text-base">Medicamentos y vacunas con stock igual o inferior al stock crítico.</p>
                 </section>
             </main>
         </div>
 
     </div>
 
-    <script src="../js/admin.js"></script>
+    <!-- Menú móvil lateral para admin -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        const openBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-sidebar-btn');
+
+        // Abrir la barra lateral
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full'); // Desliza hacia adentro
+            backdrop.classList.remove('hidden');           // Muestra el fondo oscuro
+        }
+
+        // Cerrar la barra lateral
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');    // Desliza hacia afuera
+            backdrop.classList.add('hidden');              // Oculta el fondo oscuro
+        }
+
+        // Asignar los eventos de click
+        openBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        
+        // Cerrar el menú si el usuario toca la parte oscura de la pantalla
+        backdrop.addEventListener('click', closeSidebar);
+    </script>
 </body>
 </html>
