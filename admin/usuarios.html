@@ -4,67 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador | Usuarios</title>
-    <link rel="stylesheet" href="../css/estilos.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    <div class="layout-admin">
+    <div class="flex min-h-screen relative">
 
-        <aside class="sidebar-admin">
-            <div class="logo-admin">
-                <a href="index.html">San Marcos</a>
+        <!-- Fondo oscuro (Backdrop) para móvil cuando el menú está abierto -->
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-900/50 z-40 hidden md:hidden transition-opacity"></div>
+
+        <!-- Sidebar (Barra Lateral) -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-200 flex flex-col transform -translate-x-full transition-transform duration-300 ease-in-out md:relative md:translate-x-0 shrink-0">
+
+            <div class="px-6 py-5 border-b border-slate-800 flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-2 text-white font-bold text-base">
+                    <svg class="w-6 h-6 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                    <span>Veterinaria San Marcos</span>
+                </a>
+
+                <!-- Botón Cerrar (X) Solo visible en móvil -->
+                <button id="close-sidebar-btn" class="md:hidden text-slate-400 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
-
-            <nav class="nav-admin">
-                <ul>
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="usuarios.html">Usuarios</a></li>
-                </ul>
+            
+            <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+                <a href="index.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Dashboard</a>
+                <a href="servicios.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Servicios</a>
+                <a href="productos.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Productos</a>
+                <!-- Enlace Activo -->
+                <a href="usuarios.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold bg-emerald-600 text-white shadow-sm">Usuarios</a>
             </nav>
         </aside>
 
-        <div class="contenido-admin">
-            <header class="header-admin">
-                <h1>Usuarios</h1>
-                <a href="usuario_nuevo.html" class="boton">Nuevo usuario</a>
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col min-w-0">
+            
+            <header class="bg-white shadow-sm border-b border-slate-100 px-4 md:px-8 py-4 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-4 min-w-0">
+                    <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-emerald-600 focus:outline-none p-1 shrink-0">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <h1 class="text-xl md:text-2xl font-extrabold text-gray-900 truncate">Usuarios</h1>
+                </div>
+                
+                <!-- Botón Nuevo Usuario -->
+                <a href="usuario_nuevo.html"
+                   class="inline-flex items-center gap-1 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 transition-colors">
+                    + Nuevo usuario
+                </a>
             </header>
 
-            <main>
-                <section class="tabla-listado">
-                    <!-- Este listado se generará dinámicamente con JavaScript en una fase posterior -->
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Run</th>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Correo</th>
-                                <th>Rol</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cuerpo-tabla-usuarios">
-                            <tr>
-                                <td>19011022K</td>
-                                <td>Nombre</td>
-                                <td>Apellidos</td>
-                                <td>correo@duoc.cl</td>
-                                <td>Recepcionista</td>
-                                <td>
-                                    <a href="usuario_editar.html">Editar</a>
-                                    <button type="button" class="boton-eliminar">Desactivar</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
+            <main class="flex-1 bg-gray-50 px-4 md:px-8 py-6">
+                <!-- Tarjeta que contiene la tabla -->
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                    
+                    <!-- Contenedor con Scroll Horizontal para Móviles -->
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-slate-200 text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Run</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Nombre</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Apellidos</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Correo</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Rol</th>
+                                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpo-tabla-usuarios" class="divide-y divide-gray-100">
+                                
+                                <!-- Fila 1 -->
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 whitespace-nowrap">19011022-K</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">Nombre</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">Apellidos</td>
+                                    <td class="px-4 py-3 text-gray-500 whitespace-nowrap">correo@duoc.cl</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <!-- Etiqueta de estado/rol -->
+                                        <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                                            Recepcionista
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap space-x-3">
+                                        <a href="usuario_editar.html" class="text-emerald-700 font-medium hover:underline">Editar</a>
+                                        <!-- En el código original el botón decía "Desactivar" en lugar de Eliminar -->
+                                        <button type="button" class="text-red-600 font-medium hover:underline">Desactivar</button>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Puedes agregar más filas aquí si lo deseas para probar el diseño -->
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </main>
         </div>
 
     </div>
 
-    <script src="../js/admin.js"></script>
+    <!-- Script del Menú Móvil Lateral -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        const openBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-sidebar-btn');
+
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            backdrop.classList.remove('hidden');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        }
+
+        openBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        backdrop.addEventListener('click', closeSidebar);
+    </script>
 </body>
 </html>
