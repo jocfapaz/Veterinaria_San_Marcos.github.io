@@ -4,106 +4,179 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador | Nuevo usuario</title>
-    <link rel="stylesheet" href="../css/estilos.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    <div class="layout-admin">
+    <div class="flex min-h-screen relative">
 
-        <aside class="sidebar-admin">
-            <div class="logo-admin">
-                <a href="index.html">San Marcos</a>
+        <!-- Fondo oscuro (Backdrop) para móvil cuando el menú está abierto -->
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-900/50 z-40 hidden md:hidden transition-opacity"></div>
+
+        <!-- Sidebar (Barra Lateral) -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-200 flex flex-col transform -translate-x-full transition-transform duration-300 ease-in-out md:relative md:translate-x-0 shrink-0">
+
+            <div class="px-6 py-5 border-b border-slate-800 flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-2 text-white font-bold text-base">
+                    <svg class="w-6 h-6 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                    <span>Veterinaria San Marcos</span>
+                </a>
+
+                <!-- Botón Cerrar (X) Solo visible en móvil -->
+                <button id="close-sidebar-btn" class="md:hidden text-slate-400 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
-
-            <nav class="nav-admin">
-                <ul>
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="usuarios.html">Usuarios</a></li>
-                </ul>
+            <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+                <a href="index.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Dashboard</a>
+                <a href="servicios.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Servicios</a>
+                <a href="productos.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Productos</a>
+                <!-- Enlace Activo -->
+                <a href="usuarios.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold bg-emerald-600 text-white shadow-sm">Usuarios</a>
             </nav>
         </aside>
 
-        <div class="contenido-admin">
-            <main>
-                <section class="seccion-formulario">
-                    <h1>Nuevo usuario</h1>
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col min-w-0">
+            <header class="bg-white shadow-sm border-b border-slate-100 px-4 md:px-8 py-4 flex items-center gap-4">
+                <!-- Botón Menú Hamburguesa -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-emerald-600 focus:outline-none p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <h1 class="text-xl md:text-2xl font-extrabold text-gray-900 truncate">Nuevo usuario</h1>
+            </header>
 
-                    <form action="#" method="post" id="form-usuario" novalidate>
-                        <div class="campo">
-                            <label for="run-usuario">Run</label>
-                            <input type="text" id="run-usuario" name="run" placeholder="Ej: 19011022K" required minlength="7" maxlength="9">
-                            <span class="mensaje-error" id="error-run-usuario"></span>
+            <main class="flex-1 bg-gray-50 px-4 md:px-8 py-6">
+                <!-- Contenedor del Formulario -->
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 max-w-2xl">
+                    <form action="#" method="post" id="form-usuario" novalidate class="space-y-5">
+
+                        <div>
+                            <label for="run-usuario" class="block text-sm font-medium text-gray-700">Run</label>
+                            <input type="text" id="run-usuario" name="run" placeholder="Ej: 19011022-K" required minlength="7" maxlength="10"
+                                   class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                            <p class="mt-1 text-xs text-red-600" id="error-run-usuario"></p>
                         </div>
 
-                        <div class="campo">
-                            <label for="nombre-usuario">Nombre</label>
-                            <input type="text" id="nombre-usuario" name="nombre" required maxlength="50">
-                            <span class="mensaje-error" id="error-nombre-usuario"></span>
-                        </div>
-
-                        <div class="campo">
-                            <label for="apellidos-usuario">Apellidos</label>
-                            <input type="text" id="apellidos-usuario" name="apellidos" required maxlength="100">
-                            <span class="mensaje-error" id="error-apellidos-usuario"></span>
-                        </div>
-
-                        <div class="campo">
-                            <label for="correo-usuario">Correo</label>
-                            <input type="email" id="correo-usuario" name="correo" required maxlength="100">
-                            <span class="mensaje-error" id="error-correo-usuario"></span>
-                        </div>
-
-                        <div class="campo">
-                            <label for="fecha-nacimiento-usuario">Fecha de nacimiento (opcional)</label>
-                            <input type="date" id="fecha-nacimiento-usuario" name="fecha-nacimiento">
-                        </div>
-
-                        <div class="campo">
-                            <label for="rol-usuario">Rol</label>
-                            <select id="rol-usuario" name="rol" required>
-                                <option value="">-- Seleccione el rol --</option>
-                                <option value="administrador">Administrador</option>
-                                <option value="recepcionista">Recepcionista / Operador</option>
-                                <option value="dueno-mascota">Dueño de mascota</option>
-                            </select>
-                            <span class="mensaje-error" id="error-rol-usuario"></span>
-                        </div>
-
-                        <div class="campo-doble">
-                            <div class="campo">
-                                <label for="region-usuario">Región</label>
-                                <select id="region-usuario" name="region">
-                                    <option value="">-- Seleccione la región --</option>
-                                    <option value="ohiggins">Región del Libertador Bernardo O'Higgins</option>
-                                    <option value="rm">Región Metropolitana de Santiago</option>
-                                </select>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="nombre-usuario" class="block text-sm font-medium text-gray-700">Nombre</label>
+                                <input type="text" id="nombre-usuario" name="nombre" required maxlength="50"
+                                       class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                <p class="mt-1 text-xs text-red-600" id="error-nombre-usuario"></p>
                             </div>
 
-                            <div class="campo">
-                                <label for="comuna-usuario">Comuna</label>
-                                <select id="comuna-usuario" name="comuna">
-                                    <option value="">-- Seleccione la comuna --</option>
-                                    <option value="rancagua">Rancagua</option>
-                                    <option value="machali">Machalí</option>
-                                </select>
+                            <div>
+                                <label for="apellidos-usuario" class="block text-sm font-medium text-gray-700">Apellidos</label>
+                                <input type="text" id="apellidos-usuario" name="apellidos" required maxlength="100"
+                                       class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                <p class="mt-1 text-xs text-red-600" id="error-apellidos-usuario"></p>
                             </div>
                         </div>
 
-                        <div class="campo">
-                            <label for="direccion-usuario">Dirección (opcional)</label>
-                            <input type="text" id="direccion-usuario" name="direccion" maxlength="300">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="correo-usuario" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+                                <input type="email" id="correo-usuario" name="correo" required maxlength="100" placeholder="ejemplo@correo.cl"
+                                       class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                <p class="mt-1 text-xs text-red-600" id="error-correo-usuario"></p>
+                            </div>
+
+                            <div>
+                                <label for="rol-usuario" class="block text-sm font-medium text-gray-700">Rol del usuario</label>
+                                <select id="rol-usuario" name="rol" required
+                                        class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                    <option value="">-- Seleccione el rol --</option>
+                                    <option value="administrador">Administrador</option>
+                                    <option value="recepcionista">Recepcionista / Operador</option>
+                                    <option value="dueno-mascota">Dueño de mascota</option>
+                                </select>
+                                <p class="mt-1 text-xs text-red-600" id="error-rol-usuario"></p>
+                            </div>
                         </div>
 
-                        <button type="submit" class="boton">Registrar</button>
+                        <div>
+                            <label for="fecha-nacimiento-usuario" class="block text-sm font-medium text-gray-700">Fecha de nacimiento (opcional)</label>
+                            <input type="date" id="fecha-nacimiento-usuario" name="fecha-nacimiento"
+                                   class="mt-1 block w-full sm:w-1/2 rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                        </div>
+
+                        <!-- Ubicación -->
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100 space-y-4 mt-2">
+                            <h3 class="text-sm font-semibold text-gray-700">Ubicación (Opcional)</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="region-usuario" class="block text-sm font-medium text-gray-700">Región</label>
+                                    <select id="region-usuario" name="region"
+                                            class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                        <option value="">-- Seleccione la región --</option>
+                                        <option value="ohiggins">Región de O'Higgins</option>
+                                        <option value="rm">Región Metropolitana</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="comuna-usuario" class="block text-sm font-medium text-gray-700">Comuna</label>
+                                    <select id="comuna-usuario" name="comuna"
+                                            class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                        <option value="">-- Seleccione la comuna --</option>
+                                        <option value="rancagua">Rancagua</option>
+                                        <option value="machali">Machalí</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="direccion-usuario" class="block text-sm font-medium text-gray-700">Dirección</label>
+                                <input type="text" id="direccion-usuario" name="direccion" maxlength="300" placeholder="Calle, número, depto..."
+                                       class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                            </div>
+                        </div>
+
+                        <!-- Botones de Acción -->
+                        <div class="pt-4 flex items-center gap-3 border-t border-gray-100 mt-6">
+                            <button type="submit"
+                                    class="inline-flex items-center gap-1 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 transition-colors">
+                                Registrar usuario
+                            </button>
+                            <a href="usuarios.html" 
+                               class="inline-flex items-center gap-1 rounded-lg bg-white border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition-colors">
+                                Cancelar
+                            </a>
+                        </div>
                     </form>
-                </section>
+                </div>
             </main>
         </div>
 
     </div>
 
-    <script src="../js/admin.js"></script>
+    <!-- Script del Menú Móvil Lateral -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        const openBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-sidebar-btn');
+
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            backdrop.classList.remove('hidden');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        }
+
+        openBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        backdrop.addEventListener('click', closeSidebar);
+    </script>
 </body>
 </html>

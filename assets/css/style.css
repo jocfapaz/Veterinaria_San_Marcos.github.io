@@ -1262,6 +1262,9 @@
     .sm\:h-6 {
       height: calc(var(--spacing) * 6);
     }
+    .sm\:w-1\/2 {
+      width: calc(1 / 2 * 100%);
+    }
     .sm\:w-6 {
       width: calc(var(--spacing) * 6);
     }
