@@ -1,46 +1,57 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-full bg-slate-50">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veterinaria San Marcos | Servicios</title>
+    <!-- CDN de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body class="flex flex-col min-h-full font-sans text-slate-800 antialiased">
 
-    <header>
-        <div class="logo">
-            <a href="index.html">Veterinaria San Marcos</a>
-        </div>
+    <!-- Header / Nav -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            <div class="logo shrink-0">
+                <a href="index.html" class="text-xl font-bold text-emerald-600 hover:text-emerald-700 transition">
+                    Veterinaria San Marcos
+                </a>
+            </div>
 
-        <nav>
-                <ul class="flex space-x-6 text-sm font-medium text-gray-700">
-                    <li><a href="index.html" class="hover:text-blue-600">Inicio</a></li>
-                    <li><a href="servicios.html" class="hover:text-blue-600">Servicios</a></li>
-                    <li><a href="nosotros.html" class="hover:text-blue-600">Nosotros</a></li>
-                    <li><a href="blogs.html" class="hover:text-blue-600">Blog</a></li>
-                    <li><a href="contacto.html" class="hover:text-blue-600">Contacto</a></li>
-                    <li><a href="tienda.html" class="hover:text-blue-600">Tienda</a></li>
-
+            <nav class="hidden md:flex items-center">
+                <ul class="flex space-x-6 text-sm font-medium text-slate-600">
+                    <li><a href="index.html" class="hover:text-emerald-600 transition">Inicio</a></li>
+                    <li><a href="servicios.html" class="text-emerald-600 font-semibold">Servicios</a></li>
+                    <li><a href="nosotros.html" class="hover:text-emerald-600 transition">Nosotros</a></li>
+                    <li><a href="blogs.html" class="hover:text-emerald-600 transition">Blog</a></li>
+                    <li><a href="contacto.html" class="hover:text-emerald-600 transition">Contacto</a></li>
+                    <li><a href="tienda.html" class="hover:text-emerald-600 transition">Tienda</a></li>
                 </ul>
             </nav>
 
-        <div class="acciones-usuario">
-            <a href="login.html">Iniciar sesión</a>
-            <a href="registro.html">Registrarse</a>
-            <a href="mi-solicitud.html" class="solicitud">Mi solicitud (<span id="solicitud-count">0</span>)</a>
+            <div class="acciones-usuario flex items-center space-x-3 text-xs sm:text-sm font-medium">
+                <a href="login.html" class="text-slate-600 hover:text-emerald-600 px-2 py-1 transition">Iniciar sesión</a>
+                <a href="registro.html" class="bg-emerald-600 text-white px-3 py-1.5 rounded-lg hover:bg-emerald-700 transition">Registrarse</a>
+                <a href="mi-solicitud.html" class="solicitud bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-200 transition flex items-center gap-1.5">
+                    Mi solicitud <span id="solicitud-count" class="bg-emerald-600 text-white text-xs px-1.5 py-0.5 rounded-full font-bold">0</span>
+                </a>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section class="listado-productos">
-            <h1>Servicios</h1>
-            <p>Catálogo de servicios disponibles en la clínica. Filtra por categoría o especie.</p>
+    <!-- Contenido Principal -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        <section class="listado-productos space-y-8">
+            <div class="border-b border-slate-200 pb-5">
+                <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Servicios</h1>
+                <p class="mt-2 text-base text-slate-500">Catálogo de servicios disponibles en la clínica. Filtra por categoría o especie.</p>
+            </div>
 
-            <!-- Filtro por categoría sin lógica (se va a implementar con JavaScript?) -->
-            <form class="filtro-servicios" action="#">
-                <label for="filtro-categoria">Categoría</label>
-                <select id="filtro-categoria" name="categoria">
+            <!-- Filtro -->
+            <form class="filtro-servicios bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 max-w-xs" action="#">
+                <label for="filtro-categoria" class="text-sm font-semibold text-slate-700 shrink-0">Categoría:</label>
+                <select id="filtro-categoria" name="categoria" class="w-full bg-slate-50 border border-slate-300 text-slate-800 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block p-2">
                     <option value="todas">Todas</option>
                     <option value="consultas">Consultas</option>
                     <option value="vacunacion">Vacunación</option>
@@ -51,313 +62,532 @@
                 </select>
             </form>
 
-            <!-- Catálogo completo de servicios -> listado se generará 
-             dinámicamente con JavaScript en el futuro! -->
-            <ul class="grid-productos" id="lista-servicios">
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/veterinario_gato.png"width="400" alt="Consulta general">
-                        <h2>Consulta general</h2>
+            <!-- Grid de Servicios -->
+            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="lista-servicios">
+                
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/veterinario_gato.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Consulta general">
                     </a>
-                    <p class="categoria">Consultas · Perro / Gato · 30 min</p>
-                    <p class="precio">$15.000</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Consulta general</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Consultas · Perro / Gato · 30 min</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$15.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="assets/images/consulta_emergencia.png"width="400" alt="Consulta urgencia">
-                        <h2>Consulta urgencia</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="assets/images/consulta_emergencia.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Consulta urgencia">
                     </a>
-                    <p class="categoria">Consultas · Perro / Gato · 30 min</p>
-                    <p class="precio">$25.000 </p>
-                    <p class="nota">Nota: Fuera de horario + $10.000.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Consulta urgencia</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Consultas · Perro / Gato · 30 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Fuera de horario + $10.000.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$25.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="assets/images/post_operatorio.png"width="400" alt="Control postoperatorio">
-                        <h2>Control postoperatorio</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="assets/images/post_operatorio.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Control postoperatorio">
                     </a>
-                    <p class="categoria">Consultas · Perro / Gato · 20 min</p>
-                    <p class="precio">$10.000</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Control postoperatorio</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Consultas · Perro / Gato · 20 min</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$10.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/ave_conejo.png"width="400" alt="Consulta ave / conejo">
-                        <h2>Consulta ave / conejo</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/ave_conejo.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Consulta ave / conejo">
                     </a>
-                    <p class="categoria">Consultas · Ave / Conejo · 30 min</p>
-                    <p class="precio">$18.000</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Consulta ave / conejo</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Consultas · Ave / Conejo · 30 min</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$18.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="" alt="Segunda opinión médica">
-                        <h2>Segunda opinión médica</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video flex items-center justify-center text-slate-400">
+                        <img src="" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Segunda opinión médica">
                     </a>
-                    <p class="categoria">Consultas · Todas · 40 min</p>
-                    <p class="precio">$20.000</p>
-                    <p class="nota">Nota: Se requiere ficha previa.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Segunda opinión médica</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Consultas · Todas · 40 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Se requiere ficha previa.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$20.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/vacuna_perro.png"width="400" alt="Vacuna antirrábica canina">
-                        <h2>Vacuna antirrábica canina</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/vacuna_perro.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Vacuna antirrábica canina">
                     </a>
-                    <p class="categoria">Vacunación · Perro · 10 min</p>
-                    <p class="precio">$12.000 </p>
-                    <p class="nota">Nota: Obligatoria por ley.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Vacuna antirrábica canina</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Vacunación · Perro · 10 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Obligatoria por ley.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$12.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/vacuna_sextuple.png"width="400" alt="Vacuna sextuple canina">
-                        <h2>Vacuna sextuple canina</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/vacuna_sextuple.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Vacuna sextuple canina">
                     </a>
-                    <p class="categoria">Vacunación · Perro · 10 min</p>
-                    <p class="precio">$18.000</p>
-                    <p class="nota">Nota: Refuerzo anual.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Vacuna sextuple canina</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Vacunación · Perro · 10 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Refuerzo anual.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$18.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/vacuna_felina.png"width="400" alt="Vacuna bivalente felina">
-                        <h2>Vacuna bivalente felina</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/vacuna_felina.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Vacuna bivalente felina">
                     </a>
-                    <p class="categoria">Vacunación · Gato · 10 min</p>
-                    <p class="precio">$15.000 </p>
-                    <p class="nota">Nota: Refuerzo anual.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Vacuna bivalente felina</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Vacunación · Gato · 10 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Refuerzo anual.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$15.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/vacuna_triple_felina.png"width="400" alt="Vacuna triple felina">
-                        <h2>Vacuna triple felina</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/vacuna_triple_felina.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Vacuna triple felina">
                     </a>
-                    <p class="categoria">Vacunación · Gato · 10 min</p>
-                    <p class="precio">$17.000 </p>
-                    <p class="nota">Nota: Refuerzo anual.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Vacuna triple felina</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Vacunación · Gato · 10 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Refuerzo anual.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$17.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/vacuna_bordetella.png"width="400" alt="Vacuna Bordetella canina">
-                        <h2>Vacuna Bordetella canina</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/vacuna_bordetella.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Vacuna Bordetella canina">
                     </a>
-                    <p class="categoria">Vacunación · Perro · 10 min</p>
-                    <p class="precio">$14.000 </p>
-                    <p class="nota">Nota: Tos de las perreras.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Vacuna Bordetella canina</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Vacunación · Perro · 10 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Tos de las perreras.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$14.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/vacuna_antirrabica_felina.png"width="400"  alt="Vacuna antirrábica felina">
-                        <h2>Vacuna antirrábica felina</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/vacuna_antirrabica_felina.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Vacuna antirrábica felina">
                     </a>
-                    <p class="categoria">Vacunación · Gato · 10 min</p>
-                    <p class="precio">$12.000 </p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Vacuna antirrábica felina</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Vacunación · Gato · 10 min</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$12.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/esterilizacion_canina.png"width="400" alt="Esterilización hembra canina">
-                        <h2>Esterilización hembra canina</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/esterilizacion_canina.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Esterilización hembra canina">
                     </a>
-                    <p class="categoria">Cirugía · Perra · 90 min</p>
-                    <p class="precio">$80.000 </p>
-                    <p class="nota">Nota: Incluye anestesia y hospitalización 24h.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Esterilización hembra canina</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Cirugía · Perra · 90 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye anestesia y hospitalización 24h.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$80.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/esterilizacion_canino.png"width="400" alt="Esterilización macho canino">
-                        <h2>Esterilización macho canino</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/esterilizacion_canino.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Esterilización macho canino">
                     </a>
-                    <p class="categoria">Cirugía · Perro · 60 min</p>
-                    <p class="precio">$60.000 </p>
-                    <p class="nota">Nota: Incluye anestesia.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Esterilización macho canino</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Cirugía · Perro · 60 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye anestesia.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$60.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/esterilizacion_felinaa.png"width="400" alt="Esterilización hembra felina">
-                        <h2>Esterilización hembra felina</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/esterilizacion_felinaa.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Esterilización hembra felina">
                     </a>
-                    <p class="categoria">Cirugía · Gata · 60 min</p>
-                    <p class="precio">$65.000</p>
-                    <p class="nota">Nota: Incluye anestesia y hospitalización 24h.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Esterilización hembra felina</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Cirugía · Gata · 60 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye anestesia y hospitalización 24h.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$65.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/esterilizacion_felino.png"width="400" alt="Esterilización macho felino">
-                        <h2>Esterilización macho felino</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/esterilizacion_felino.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Esterilización macho felino">
                     </a>
-                    <p class="categoria">Cirugía · Gato · 65 min</p>
-                    <p class="precio">$50.000 </p>
-                    <p class="nota">Nota: Incluye anestesia.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Esterilización macho felino</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Cirugía · Gato · 65 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye anestesia.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$50.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/cirugia.png"width="400"  alt="Extirpación de tumor cutáneo">
-                        <h2>Extirpación de tumor cutáneo</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/cirugia.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Extirpación de tumor cutáneo">
                     </a>
-                    <p class="categoria">Cirugía · Perro / Gato · 60 min</p>
-                    <p class="precio">$120.000 </p>
-                    <p class="nota">Nota: Precio referencial; varía según tamaño.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Extirpación de tumor cutáneo</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Cirugía · Perro / Gato · 60 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Precio referencial; varía según tamaño.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$120.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/embarazaso_canina.png"width="400"alt="Cesárea de urgencia">
-                        <h2>Cesárea de urgencia</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/embarazaso_canina.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Cesárea de urgencia">
                     </a>
-                    <p class="categoria">Cirugía · Perra / Gata · 120 min</p>
-                    <p class="precio">$180.000 </p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Cesárea de urgencia</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Cirugía · Perra / Gata · 120 min</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$180.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/desparacitacion_perro_pequeño.png"width="400" alt="Desparasitación interna pequeños (< 10 kg)">
-                        <h2>Desparasitación interna pequeños (< 10 kg)</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/desparacitacion_perro_pequeño.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Desparasitación interna pequeños (< 10 kg)">
                     </a>
-                    <p class="categoria">Desparasitación · Perro · 5 min</p>
-                    <p class="precio">$8.000 </p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Desparasitación interna pequeños (&lt; 10 kg)</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Desparasitación · Perro · 5 min</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$8.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/desparacitacion_perro_cachorro.png"width="400" alt="Desparasitación interna medianos (10-25 kg)">
-                        <h2>Desparasitación interna medianos (10-25 kg)</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/desparacitacion_perro_cachorro.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Desparasitación interna medianos (10-25 kg)">
                     </a>
-                    <p class="categoria">Desparasitación · Perro · 5 min</p>
-                    <p class="precio">$9.500</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Desparasitación interna medianos (10-25 kg)</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Desparasitación · Perro · 5 min</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$9.500</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/desparacitacion_perro_grande.png"width="400" alt="Desparasitación interna grandes (> 25 kg)">
-                        <h2>Desparasitación interna grandes (> 25 kg)</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/desparacitacion_perro_grande.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Desparasitación interna grandes (> 25 kg)">
                     </a>
-                    <p class="categoria">Desparasitación · Perro · 5 min</p>
-                    <p class="precio">$11.000 </p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Desparasitación interna grandes (&gt; 25 kg)</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Desparasitación · Perro · 5 min</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$11.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/desparacitacion_felina.png"width="400" alt="Desparasitación interna felina">
-                        <h2>Desparasitación interna felina</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/desparacitacion_felina.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Desparasitación interna felina">
                     </a>
-                    <p class="categoria">Desparasitación · Gato · 5 min</p>
-                    <p class="precio">$8.000 </p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Desparasitación interna felina</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Desparasitación · Gato · 5 min</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$8.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/antiparasitario.png"width="400" alt="Antiparasitario externo (pipeta)">
-                        <h2>Antiparasitario externo (pipeta)</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/antiparasitario.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Antiparasitario externo (pipeta)">
                     </a>
-                    <p class="categoria">Desparasitación · Perro / Gato · 5 min</p>
-                    <p class="precio">$7.500 </p>
-                    <p class="nota">Nota: Incluye aplicación.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Antiparasitario externo (pipeta)</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Desparasitación · Perro / Gato · 5 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye aplicación.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$7.500</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/hemograma.png"width="400" alt="Hemograma completo">
-                        <h2>Hemograma completo</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/hemograma.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Hemograma completo">
                     </a>
-                    <p class="categoria">Exámenes · Perro / Gato · 30 min</p>
-                    <p class="precio">$22.000</p>
-                    <p class="nota">Nota: Resultado en 24 - 48 horas.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Hemograma completo</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Exámenes · Perro / Gato · 30 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Resultado en 24 - 48 horas.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$22.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/perfil_biomico.png"width="400"alt="Perfil bioquímico completo">
-                        <h2>Perfil bioquímico completo</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/perfil_biomico.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Perfil bioquímico completo">
                     </a>
-                    <p class="categoria">Exámenes · Perro / Gato · 30 min</p>
-                    <p class="precio">$35.000 </p>
-                    <p class="nota">Nota: Resultado en 24 - 48 horas.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Perfil bioquímico completo</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Exámenes · Perro / Gato · 30 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Resultado en 24 - 48 horas.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$35.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/radiografia.png"width="400" alt="Radiografía (1 proyección)">
-                        <h2>Radiografía (1 proyección)</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/radiografia.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Radiografía (1 proyección)">
                     </a>
-                    <p class="categoria">Exámenes · Perro / Gato · 20 min</p>
-                    <p class="precio">$28.000 </p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Radiografía (1 proyección)</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Exámenes · Perro / Gato · 20 min</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$28.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/ecografia.png"width="400" alt="Ecografía abdominal">
-                        <h2>Ecoografía abdominal</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/ecografia.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Ecografía abdominal">
                     </a>
-                    <p class="categoria">Exámenes · Perro / Gato · 30 min</p>
-                    <p class="precio">$45.000 </p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Ecoografía abdominal</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Exámenes · Perro / Gato · 30 min</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$45.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/test_leishmaniasis.png"width="400" alt="Test de leishmaniasis">
-                        <h2>Test de leishmaniasis</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/test_leishmaniasis.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Test de leishmaniasis">
                     </a>
-                    <p class="categoria">Exámenes · Perro · 20 min</p>
-                    <p class="precio">$18.000 </p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Test de leishmaniasis</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Exámenes · Perro · 20 min</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$18.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/corte_uñas.png"width="400" alt="Corte de uñas">
-                        <h2>Corte de uñas.</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/corte_uñas.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Corte de uñas">
                     </a>
-                    <p class="categoria">Otros · Perro / Gato · 15 min</p>
-                    <p class="precio">$5.000 </p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Corte de uñas.</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Otros · Perro / Gato · 15 min</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$5.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/limpieza_dental.png"width="400" alt="Limpieza dental">
-                        <h2>Limpieza dental</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/limpieza_dental.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Limpieza dental">
                     </a>
-                    <p class="categoria">Otros · Perro / Gato · 45 min</p>
-                    <p class="precio">$55.000 </p>
-                    <p class="nota">Nota: Requere anestesia.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Limpieza dental</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Otros · Perro / Gato · 45 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Requere anestesia.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$55.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/microchip.png"width="400" alt="Microchip identificación">
-                        <h2>Microchip identificación</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/microchip.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Microchip identificación">
                     </a>
-                    <p class="categoria">Otros · Perro / Gato · 10 min</p>
-                    <p class="precio">$15.000 </p>
-                    <p class="nota">Nota: Incluye registro.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Microchip identificación</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Otros · Perro / Gato · 10 min</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye registro.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$15.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
-                <li class="tarjeta-producto">
-                    <a href="servicio-detalle.html">
-                        <img src="./assets/images/hospitalizacion.png"width="400" alt="Hospitalización (por día)">
-                        <h2>Hospitalización (por día)</h2>
+
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                    <a href="servicio-detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
+                        <img src="./assets/images/hospitalizacion.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Hospitalización (por día)">
                     </a>
-                    <p class="categoria">Otros · Perro / Gato · 24 hrs</p>
-                    <p class="precio">$30.000 </p>
-                    <p class="nota">Nota: Incluye monitoreo y alimentación básica.</p>
-                    <button type="button" class="boton-anadir">Solicitar</button>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <a href="servicio-detalle.html" class="block">
+                            <h2 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">Hospitalización (por día)</h2>
+                        </a>
+                        <p class="categoria text-xs text-slate-500 mt-1">Otros · Perro / Gato · 24 hrs</p>
+                        <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye monitoreo y alimentación básica.</p>
+                        <div class="mt-auto pt-4 flex items-center justify-between">
+                            <p class="precio text-xl font-extrabold text-emerald-700">$30.000</p>
+                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                        </div>
+                    </div>
                 </li>
+
             </ul>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-info">
-            <p>Veterinaria San Marcos</p>
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+            <p class="font-medium text-slate-300">Veterinaria San Marcos</p>
+            <p class="text-xs text-slate-500 mt-1">© Todos los derechos reservados.</p>
         </div>
     </footer>
 
