@@ -4,44 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador | Nuevo producto</title>
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    <div class="flex min-h-screen">
+    <div class="flex min-h-screen relative">
 
-        <aside class="w-64 shrink-0 bg-slate-900 text-slate-200 flex flex-col">
-            <div class="px-6 py-5 text-lg font-bold text-white border-b border-slate-800">
-                <a href="index.html">San Marcos</a>
+        <!-- Fondo oscuro (Backdrop) para móvil cuando el menú está abierto -->
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-900/50 z-40 hidden md:hidden transition-opacity"></div>
+
+        <!-- Sidebar (Barra Lateral) -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-200 flex flex-col transform -translate-x-full transition-transform duration-300 ease-in-out md:relative md:translate-x-0 shrink-0">
+
+            <div class="px-6 py-5 border-b border-slate-800 flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-2 text-white font-bold text-base">
+                    <svg class="w-6 h-6 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                    <span>Veterinaria San Marcos</span>
+                </a>
+
+                <!-- Botón Cerrar (X) Solo visible en móvil -->
+                <button id="close-sidebar-btn" class="md:hidden text-slate-400 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
-            <nav class="flex-1 px-3 py-4 space-y-1">
-                <a href="index.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white">Dashboard</a>
-                <a href="servicios.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white">Servicios</a>
-                <a href="admin_productos.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium bg-slate-800 text-white">Productos</a>
-                <a href="usuarios.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white">Usuarios</a>
+            
+            <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+                <a href="index.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Dashboard</a>
+                <a href="servicios.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Servicios</a>
+                <a href="admin_productos.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold bg-emerald-600 text-white shadow-sm">Productos</a>
+                <a href="usuarios.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Usuarios</a>
             </nav>
         </aside>
 
-        <div class="flex-1 flex flex-col">
-            <header class="bg-white border-b border-slate-200 px-8 py-4">
-                <h1 class="text-xl font-semibold text-slate-900">Nuevo producto</h1>
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col min-w-0">
+            
+            <header class="bg-white shadow-sm border-b border-slate-100 px-4 md:px-8 py-4 flex items-center gap-4">
+                <!-- Botón Menú Hamburguesa -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-emerald-600 focus:outline-none p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <h1 class="text-xl md:text-2xl font-extrabold text-gray-900 truncate">Nuevo producto</h1>
             </header>
 
-            <main class="flex-1 px-8 py-6">
-                <div class="bg-white rounded-lg border border-slate-200 shadow-sm p-6 max-w-2xl">
+            <main class="flex-1 bg-gray-50 px-4 md:px-8 py-6">
+                <!-- Contenedor del Formulario -->
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 max-w-2xl">
                     <form action="#" method="post" id="form-producto" novalidate class="space-y-5">
 
                         <div>
-                            <label for="codigo-producto" class="block text-sm font-medium text-slate-700">Código</label>
+                            <label for="codigo-producto" class="block text-sm font-medium text-gray-700">Código</label>
                             <input type="text" id="codigo-producto" name="codigo" placeholder="Ej: MED005" required minlength="3"
-                                   class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                   class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
                             <p class="mt-1 text-xs text-red-600" id="error-codigo-producto"></p>
                         </div>
 
                         <div>
-                            <label for="categoria-producto" class="block text-sm font-medium text-slate-700">Categoría</label>
+                            <label for="categoria-producto" class="block text-sm font-medium text-gray-700">Categoría</label>
                             <select id="categoria-producto" name="categoria" required
-                                    class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                    class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
                                 <option value="">-- Seleccione la categoría --</option>
                                 <option value="antiparasitarios">Antiparasitarios</option>
                                 <option value="vacunas">Vacunas</option>
@@ -53,31 +80,31 @@
                         </div>
 
                         <div>
-                            <label for="nombre-comercial-producto" class="block text-sm font-medium text-slate-700">Nombre comercial</label>
+                            <label for="nombre-comercial-producto" class="block text-sm font-medium text-gray-700">Nombre comercial</label>
                             <input type="text" id="nombre-comercial-producto" name="nombre-comercial" required maxlength="100"
-                                   class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                   class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
                             <p class="mt-1 text-xs text-red-600" id="error-nombre-comercial-producto"></p>
                         </div>
 
                         <div>
-                            <label for="principio-activo-producto" class="block text-sm font-medium text-slate-700">Principio activo</label>
+                            <label for="principio-activo-producto" class="block text-sm font-medium text-gray-700">Principio activo</label>
                             <input type="text" id="principio-activo-producto" name="principio-activo" required maxlength="100"
-                                   class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                   class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
                             <p class="mt-1 text-xs text-red-600" id="error-principio-activo-producto"></p>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label for="presentacion-producto" class="block text-sm font-medium text-slate-700">Presentación</label>
-                                <input type="text" id="presentacion-producto" name="presentacion" required maxlength="50"
-                                       class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                <label for="presentacion-producto" class="block text-sm font-medium text-gray-700">Presentación</label>
+                                <input type="text" id="presentacion-producto" name="presentacion" required maxlength="50" placeholder="Ej: Caja 10 comprimidos"
+                                       class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
                                 <p class="mt-1 text-xs text-red-600" id="error-presentacion-producto"></p>
                             </div>
 
                             <div>
-                                <label for="especie-producto" class="block text-sm font-medium text-slate-700">Especie</label>
+                                <label for="especie-producto" class="block text-sm font-medium text-gray-700">Especie objetivo</label>
                                 <select id="especie-producto" name="especie" required
-                                        class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                        class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
                                     <option value="">-- Seleccione --</option>
                                     <option value="perro">Perro</option>
                                     <option value="gato">Gato</option>
@@ -90,39 +117,43 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label for="stock-producto" class="block text-sm font-medium text-slate-700">Stock actual</label>
+                                <label for="stock-producto" class="block text-sm font-medium text-gray-700">Stock actual</label>
                                 <input type="number" id="stock-producto" name="stock" required min="0" step="1"
-                                       class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                       class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
                                 <p class="mt-1 text-xs text-red-600" id="error-stock-producto"></p>
                             </div>
 
                             <div>
-                                <label for="stock-critico-producto" class="block text-sm font-medium text-slate-700">Stock crítico (opcional)</label>
-                                <input type="number" id="stock-critico-producto" name="stock-critico" min="0" step="1"
-                                       class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                <label for="stock-critico-producto" class="block text-sm font-medium text-gray-700">Stock crítico (opcional)</label>
+                                <input type="number" id="stock-critico-producto" name="stock-critico" min="0" step="1" placeholder="Avisar si es menor a..."
+                                       class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
                             </div>
                         </div>
 
                         <div>
-                            <label for="precio-producto" class="block text-sm font-medium text-slate-700">Precio unitario (CLP)</label>
+                            <label for="precio-producto" class="block text-sm font-medium text-gray-700">Precio unitario (CLP)</label>
                             <input type="number" id="precio-producto" name="precio" required min="0" step="500"
-                                   class="mt-1 block w-full rounded-md border border-slate-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                   class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
                             <p class="mt-1 text-xs text-red-600" id="error-precio-producto"></p>
                         </div>
 
                         <div>
-                            <label for="imagen-producto" class="block text-sm font-medium text-slate-700">Imagen (opcional)</label>
+                            <label for="imagen-producto" class="block text-sm font-medium text-gray-700">Imagen (opcional)</label>
                             <input type="file" id="imagen-producto" name="imagen" accept="image/*"
-                                   class="mt-1 block w-full text-sm text-slate-600 file:mr-4 file:rounded-md file:border-0 file:bg-slate-100 file:px-4 file:py-2 file:text-sm file:font-medium hover:file:bg-slate-200">
+                                   class="mt-1 block w-full text-sm text-gray-600 file:mr-4 file:rounded-lg file:border-0 file:bg-gray-100 file:px-4 file:py-2 file:text-sm file:font-medium hover:file:bg-gray-200 transition-colors">
                         </div>
 
-                        <div class="pt-2">
+                        <div class="pt-4 flex items-center gap-3 border-t border-gray-100 mt-6">
                             <button type="submit"
-                                    class="inline-flex items-center rounded-md bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700">
-                                Registrar
+                                    class="inline-flex items-center gap-1 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 transition-colors">
+                                Registrar producto
                             </button>
+                            <a href="admin_productos.html" 
+                               class="inline-flex items-center gap-1 rounded-lg bg-white border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition-colors">
+                                Cancelar
+                            </a>
                         </div>
                     </form>
                 </div>
@@ -131,6 +162,29 @@
 
     </div>
 
-    <script src="../js/admin.js"></script>
+    <!-- Script del Menú Móvil Lateral -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        const openBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-sidebar-btn');
+
+        // Función para abrir la barra lateral
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            backdrop.classList.remove('hidden');
+        }
+
+        // Función para cerrar la barra lateral
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+        }
+
+        // Asignar los eventos de clic
+        openBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        backdrop.addEventListener('click', closeSidebar);
+    </script>
 </body>
 </html>
