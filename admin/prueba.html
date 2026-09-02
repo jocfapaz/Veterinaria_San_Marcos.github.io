@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador | Servicios</title>
+    <title>Administrador | Productos</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
@@ -47,11 +47,11 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
-                    <h1 class="text-xl md:text-2xl font-extrabold text-gray-900 truncate">Servicios</h1>
+                    <h1 class="text-xl md:text-2xl font-extrabold text-gray-900 truncate">Productos</h1>
                 </div>
-                <a href="servicio_nuevo.html"
+                <a href="producto_nuevo.html"
                    class="inline-flex items-center gap-1 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 transition-colors">
-                    + Nuevo servicio
+                    + Nuevo Producto
                 </a>
             </header>
 
@@ -62,35 +62,39 @@
                             <tr>
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Código</th>
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Categoría</th>
-                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Nombre del servicio</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Nombre comercial</th>
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Especie</th>
-                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Duración</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Stock</th>
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Precio</th>
                                 <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody id="cuerpo-tabla-servicios" class="divide-y divide-gray-100">
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-4 py-3">SV001</td>
-                                <td class="px-4 py-3">Consultas</td>
-                                <td class="px-4 py-3">Consulta general</td>
+                        <tbody id="cuerpo-tabla-productos" class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-4 py-3">MED001</td>
+                                <td class="px-4 py-3">Antiparasitarios</td>
+                                <td class="px-4 py-3">Nombre comercial</td>
                                 <td class="px-4 py-3">Perro / Gato</td>
-                                <td class="px-4 py-3">30 min</td>
-                                <td class="px-4 py-3">$15.000</td>
+                                <td class="px-4 py-3">
+                                    <span class="inline-flex items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-800">3 (stock crítico)</span>
+                                </td>
+                                <td class="px-4 py-3">$8.000</td>
                                 <td class="px-4 py-3 space-x-3">
-                                    <a href="servicio_editar.html" class="text-emerald-700 hover:underline">Editar</a>
+                                    <a href="producto_editar.html" class="text-emerald-700 hover:underline">Editar</a>
                                     <button type="button" class="text-red-600 hover:underline">Eliminar</button>
                                 </td>
                             </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-4 py-3">VA001</td>
-                                <td class="px-4 py-3">Vacunación</td>
-                                <td class="px-4 py-3">Vacuna antirrábica canina</td>
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-4 py-3">MED002</td>
+                                <td class="px-4 py-3">Vacunas</td>
+                                <td class="px-4 py-3">Nombre comercial</td>
                                 <td class="px-4 py-3">Perro</td>
-                                <td class="px-4 py-3">10 min</td>
+                                <td class="px-4 py-3">
+                                    <span class="inline-flex items-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-medium text-emerald-800">25</span>
+                                </td>
                                 <td class="px-4 py-3">$12.000</td>
                                 <td class="px-4 py-3 space-x-3">
-                                    <a href="servicio_editar.html" class="text-emerald-700 hover:underline">Editar</a>
+                                    <a href="producto_editar.html" class="text-emerald-700 hover:underline">Editar</a>
                                     <button type="button" class="text-red-600 hover:underline">Eliminar</button>
                                 </td>
                             </tr>

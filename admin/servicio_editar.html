@@ -4,103 +4,180 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador | Editar servicio</title>
-    <link rel="stylesheet" href="../css/estilos.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    <div class="layout-admin">
+    <div class="flex min-h-screen relative">
 
-        <aside class="sidebar-admin">
-            <div class="logo-admin">
-                <a href="index.html">San Marcos</a>
+        <!-- Fondo oscuro (Backdrop) para móvil cuando el menú está abierto -->
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-900/50 z-40 hidden md:hidden transition-opacity"></div>
+
+        <!-- Sidebar (Barra Lateral) -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-200 flex flex-col transform -translate-x-full transition-transform duration-300 ease-in-out md:relative md:translate-x-0 shrink-0">
+
+            <div class="px-6 py-5 border-b border-slate-800 flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-2 text-white font-bold text-base">
+                    <svg class="w-6 h-6 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                    <span>Veterinaria San Marcos</span>
+                </a>
+
+                <!-- Botón Cerrar (X) Solo visible en móvil -->
+                <button id="close-sidebar-btn" class="md:hidden text-slate-400 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
-
-            <nav class="nav-admin">
-                <ul>
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="usuarios.html">Usuarios</a></li>
-                </ul>
+            
+            <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+                <a href="index.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Dashboard</a>
+                <a href="servicios.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold bg-emerald-600 text-white shadow-sm">Servicios</a>
+                <a href="productos.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Productos</a>
+                <a href="usuarios.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Usuarios</a>
             </nav>
         </aside>
 
-        <div class="contenido-admin">
-            <main>
-                <section class="seccion-formulario">
-                    <h1>Editar servicio</h1>
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col min-w-0">
+            
+            <header class="bg-white shadow-sm border-b border-slate-100 px-4 md:px-8 py-4 flex items-center gap-4">
+                <!-- Botón de Menú Hamburguesa -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-emerald-600 focus:outline-none p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <h1 class="text-xl md:text-2xl font-extrabold text-gray-900 truncate">Editar servicio</h1>
+            </header>
 
-                    <form action="#" method="post" id="form-servicio-editar" novalidate>
-                        <div class="campo">
-                            <label for="codigo-servicio">Código</label>
-                            <input type="text" id="codigo-servicio" name="codigo" placeholder="Ej: SV006" required minlength="3">
-                            <span class="mensaje-error" id="error-codigo-servicio"></span>
+            <main class="flex-1 bg-gray-50 px-4 md:px-8 py-6">
+                <!-- Contenedor del Formulario -->
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 max-w-2xl">
+                    
+                    <form action="#" method="post" id="form-servicio-editar" novalidate class="space-y-5">
+
+                        <div>
+                            <label for="codigo-servicio" class="block text-sm font-medium text-gray-700">Código</label>
+                            <!-- Nota: En edición, a veces el código se pone como 'readonly' o 'disabled' -->
+                            <input type="text" id="codigo-servicio" name="codigo" value="SV006" required minlength="3"
+                                   class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                            <p class="mt-1 text-xs text-red-600" id="error-codigo-servicio"></p>
                         </div>
 
-                        <div class="campo">
-                            <label for="categoria-servicio">Categoría</label>
-                            <select id="categoria-servicio" name="categoria" required>
+                        <div>
+                            <label for="categoria-servicio" class="block text-sm font-medium text-gray-700">Categoría</label>
+                            <select id="categoria-servicio" name="categoria" required
+                                    class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
                                 <option value="">-- Seleccione la categoría --</option>
-                                <option value="consultas">Consultas</option>
+                                <option value="consultas" selected>Consultas</option>
                                 <option value="vacunacion">Vacunación</option>
                                 <option value="cirugia">Cirugía</option>
                                 <option value="desparasitacion">Desparasitación</option>
                                 <option value="examenes">Exámenes</option>
                                 <option value="otros">Otros</option>
                             </select>
-                            <span class="mensaje-error" id="error-categoria-servicio"></span>
+                            <p class="mt-1 text-xs text-red-600" id="error-categoria-servicio"></p>
                         </div>
 
-                        <div class="campo">
-                            <label for="nombre-servicio">Nombre del servicio</label>
-                            <input type="text" id="nombre-servicio" name="nombre" required maxlength="100">
-                            <span class="mensaje-error" id="error-nombre-servicio"></span>
+                        <div>
+                            <label for="nombre-servicio" class="block text-sm font-medium text-gray-700">Nombre del servicio</label>
+                            <input type="text" id="nombre-servicio" name="nombre" value="Consulta Veterinaria General" required maxlength="100"
+                                   class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                            <p class="mt-1 text-xs text-red-600" id="error-nombre-servicio"></p>
                         </div>
 
-                        <div class="campo">
-                            <label for="especie-servicio">Especie</label>
-                            <select id="especie-servicio" name="especie" required>
-                                <option value="">-- Seleccione --</option>
-                                <option value="perro">Perro</option>
-                                <option value="gato">Gato</option>
-                                <option value="perro-gato">Perro / Gato</option>
-                                <option value="ave">Ave</option>
-                                <option value="conejo">Conejo</option>
-                                <option value="todas">Todas las especies</option>
-                            </select>
-                            <span class="mensaje-error" id="error-especie-servicio"></span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="especie-servicio" class="block text-sm font-medium text-gray-700">Especie</label>
+                                <select id="especie-servicio" name="especie" required
+                                        class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                    <option value="">-- Seleccione --</option>
+                                    <option value="perro">Perro</option>
+                                    <option value="gato">Gato</option>
+                                    <option value="perro-gato" selected>Perro / Gato</option>
+                                    <option value="ave">Ave</option>
+                                    <option value="conejo">Conejo</option>
+                                    <option value="todas">Todas las especies</option>
+                                </select>
+                                <p class="mt-1 text-xs text-red-600" id="error-especie-servicio"></p>
+                            </div>
+
+                            <div>
+                                <label for="duracion-servicio" class="block text-sm font-medium text-gray-700">Duración (min)</label>
+                                <input type="number" id="duracion-servicio" name="duracion" value="30" required min="5" step="5"
+                                       class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                                <p class="mt-1 text-xs text-red-600" id="error-duracion-servicio"></p>
+                            </div>
                         </div>
 
-                        <div class="campo">
-                            <label for="duracion-servicio">Duración aproximada (minutos)</label>
-                            <input type="number" id="duracion-servicio" name="duracion" required min="5" step="5">
-                            <span class="mensaje-error" id="error-duracion-servicio"></span>
+                        <div>
+                            <label for="precio-servicio" class="block text-sm font-medium text-gray-700">Precio (CLP)</label>
+                            <input type="number" id="precio-servicio" name="precio" value="15000" required min="0" step="500"
+                                   class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">
+                            <p class="mt-1 text-xs text-red-600" id="error-precio-servicio"></p>
                         </div>
 
-                        <div class="campo">
-                            <label for="precio-servicio">Precio (CLP)</label>
-                            <input type="number" id="precio-servicio" name="precio" required min="0" step="500">
-                            <span class="mensaje-error" id="error-precio-servicio"></span>
+                        <div>
+                            <label for="observaciones-servicio" class="block text-sm font-medium text-gray-700">Observaciones (opcional)</label>
+                            <textarea id="observaciones-servicio" name="observaciones" maxlength="300" rows="3"
+                                      class="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm">Revisión general del paciente, incluye toma de peso y temperatura.</textarea>
                         </div>
 
-                        <div class="campo">
-                            <label for="observaciones-servicio">Observaciones (opcional)</label>
-                            <textarea id="observaciones-servicio" name="observaciones" maxlength="300"></textarea>
+                        <div>
+                            <label for="imagen-servicio" class="block text-sm font-medium text-gray-700">Actualizar Imagen (opcional)</label>
+                            <div class="mt-2 flex items-center gap-4">
+                                <!-- Imagen actual del servicio -->
+                                <div class="shrink-0">
+                                    <img src="../assets/images/corte_pelo.png" alt="Imagen actual" class="h-16 w-16 object-cover rounded-md border border-gray-200">
+                                </div>
+                                <input type="file" id="imagen-servicio" name="imagen" accept="image/*"
+                                       class="block w-full text-sm text-gray-600 file:mr-4 file:rounded-lg file:border-0 file:bg-gray-100 file:px-4 file:py-2 file:text-sm file:font-medium hover:file:bg-gray-200 transition-colors">
+                            </div>
                         </div>
 
-                        <div class="campo">
-                            <label for="imagen-servicio">Imagen (opcional)</label>
-                            <input type="file" id="imagen-servicio" name="imagen" accept="image/*">
+                        <div class="pt-4 flex items-center gap-3 border-t border-gray-100 mt-6">
+                            <button type="submit"
+                                    class="inline-flex items-center gap-1 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 transition-colors">
+                                Guardar cambios
+                            </button>
+                            <a href="servicios.html" 
+                               class="inline-flex items-center gap-1 rounded-lg bg-white border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition-colors">
+                                Cancelar
+                            </a>
                         </div>
-
-                        <button type="submit" class="boton">Guardar cambios</button>
                     </form>
-                </section>
+                </div>
             </main>
         </div>
 
     </div>
 
-    <script src="../js/admin.js"></script>
+    <!-- Menú móvil lateral para admin -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        const openBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-sidebar-btn');
+
+        // Abrir la barra lateral
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full'); 
+            backdrop.classList.remove('hidden');           
+        }
+
+        // Cerrar la barra lateral
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');    
+            backdrop.classList.add('hidden');              
+        }
+
+        // Asignar los eventos de click
+        openBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        backdrop.addEventListener('click', closeSidebar);
+    </script>
 </body>
 </html>
