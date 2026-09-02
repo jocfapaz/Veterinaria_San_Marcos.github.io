@@ -4,82 +4,131 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador | Servicios</title>
-    <link rel="stylesheet" href="../css/estilos.css">
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    <div class="layout-admin">
+    <div class="flex min-h-screen relative">
 
-        <aside class="sidebar-admin">
-            <div class="logo-admin">
-                <a href="index.html">San Marcos</a>
+        <!-- Fondo oscuro (Backdrop) para móvil cuando el menú está abierto -->
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-900/50 z-40 hidden md:hidden transition-opacity"></div>
+
+        <!-- Sidebar (Barra Lateral) -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-200 flex flex-col transform -translate-x-full transition-transform duration-300 ease-in-out md:relative md:translate-x-0 shrink-0">
+
+            <div class="px-6 py-5 border-b border-slate-800 flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-2 text-white font-bold text-base">
+                    <svg class="w-6 h-6 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                    <span>Veterinaria San Marcos</span>
+                </a>
+
+                <!-- Botón Cerrar (X) Solo visible en móvil -->
+                <button id="close-sidebar-btn" class="md:hidden text-slate-400 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
-
-            <nav class="nav-admin">
-                <ul>
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="servicios.html">Servicios</a></li>
-                    <li><a href="usuarios.html">Usuarios</a></li>
-                </ul>
+            <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+                <a href="index.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Dashboard</a>
+                <a href="servicios.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold bg-emerald-600 text-white shadow-sm">Servicios</a>
+                <a href="admin_productos.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Productos</a>
+                <a href="usuarios.html" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Usuarios</a>
             </nav>
         </aside>
 
-        <div class="contenido-admin">
-            <header class="header-admin">
-                <h1>Servicios</h1>
-                <a href="servicio-nuevo.html" class="boton">Nuevo servicio</a>
+        <div class="flex-1 flex flex-col min-w-0">
+            <header class="bg-white shadow-sm border-b border-slate-100 px-4 md:px-8 py-4 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-4 min-w-0">
+                    <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-emerald-600 focus:outline-none p-1 shrink-0">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <h1 class="text-xl md:text-2xl font-extrabold text-gray-900 truncate">Servicios</h1>
+                </div>
+                <a href="servicio_nuevo.html"
+                   class="inline-flex items-center gap-1 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 transition-colors">
+                    + Nuevo servicio
+                </a>
             </header>
 
-            <main>
-                <section class="tabla-listado">
-                    <!-- Este listado se generará dinámicamente con JavaScript en una fase posterior,
-                         a partir del catálogo de servicios de la clínica -->
-                    <table>
-                        <thead>
+            <main class="flex-1 bg-gray-50 px-4 md:px-8 py-6">
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                    <table class="min-w-full divide-y divide-slate-200 text-sm">
+                        <thead class="bg-gray-50">
                             <tr>
-                                <th>Código</th>
-                                <th>Categoría</th>
-                                <th>Nombre del servicio</th>
-                                <th>Especie</th>
-                                <th>Duración</th>
-                                <th>Precio</th>
-                                <th>Acciones</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Código</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Categoría</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Nombre del servicio</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Especie</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Duración</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Precio</th>
+                                <th class="px-4 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody id="cuerpo-tabla-servicios">
-                            <tr>
-                                <td>SV001</td>
-                                <td>Consultas</td>
-                                <td>Consulta general</td>
-                                <td>Perro / Gato</td>
-                                <td>30 min</td>
-                                <td>$15.000</td>
-                                <td>
-                                    <a href="servicio-editar.html">Editar</a>
-                                    <button type="button" class="boton-eliminar">Eliminar</button>
+                        <tbody id="cuerpo-tabla-servicios" class="divide-y divide-gray-100">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3">SV001</td>
+                                <td class="px-4 py-3">Consultas</td>
+                                <td class="px-4 py-3">Consulta general</td>
+                                <td class="px-4 py-3">Perro / Gato</td>
+                                <td class="px-4 py-3">30 min</td>
+                                <td class="px-4 py-3">$15.000</td>
+                                <td class="px-4 py-3 space-x-3">
+                                    <a href="servicio_editar.html" class="text-emerald-700 hover:underline">Editar</a>
+                                    <button type="button" class="text-red-600 hover:underline">Eliminar</button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>VA001</td>
-                                <td>Vacunación</td>
-                                <td>Vacuna antirrábica canina</td>
-                                <td>Perro</td>
-                                <td>10 min</td>
-                                <td>$12.000</td>
-                                <td>
-                                    <a href="servicio-editar.html">Editar</a>
-                                    <button type="button" class="boton-eliminar">Eliminar</button>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3">VA001</td>
+                                <td class="px-4 py-3">Vacunación</td>
+                                <td class="px-4 py-3">Vacuna antirrábica canina</td>
+                                <td class="px-4 py-3">Perro</td>
+                                <td class="px-4 py-3">10 min</td>
+                                <td class="px-4 py-3">$12.000</td>
+                                <td class="px-4 py-3 space-x-3">
+                                    <a href="servicio_editar.html" class="text-emerald-700 hover:underline">Editar</a>
+                                    <button type="button" class="text-red-600 hover:underline">Eliminar</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                </section>
+                </div>
             </main>
         </div>
 
     </div>
 
     <script src="../js/admin.js"></script>
+
+    <!-- Menú móvil lateral para admin -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        const openBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-sidebar-btn');
+
+        // Abrir la barra lateral
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full'); // Desliza hacia adentro
+            backdrop.classList.remove('hidden');           // Muestra el fondo oscuro
+        }
+
+        // Cerrar la barra lateral
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');    // Desliza hacia afuera
+            backdrop.classList.add('hidden');              // Oculta el fondo oscuro
+        }
+
+        // Asignar los eventos de click
+        openBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+
+        // Cerrar el menú si el usuario toca la parte oscura de la pantalla
+        backdrop.addEventListener('click', closeSidebar);
+    </script>
 </body>
 </html>
