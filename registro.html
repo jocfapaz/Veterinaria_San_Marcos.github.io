@@ -126,8 +126,13 @@
                     <p class="text-slate-600 text-sm">Crea tu cuenta para gestionar tus citas e historial clínico.</p>
                 </div>
 
+                <div id="mensaje-exito" class="hidden mb-4 p-4 text-sm text-emerald-800 rounded-lg bg-emerald-50 border border-emerald-200" role="alert">
+                    <span class="font-bold">¡Registro exitoso!</span> Todos los datos son válidos y tu cuenta ha sido simulada.
+                </div>
+
                 <!-- Formulario -->
                 <form action="#" method="post" id="form-registro" novalidate class="space-y-4">
+                    
                     
                     <h4 class="text-sm font-bold uppercase tracking-wider text-emerald-600 border-b border-slate-100 pb-1">Datos del Dueño</h4>
 
@@ -163,12 +168,12 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-semibold text-slate-700 mb-1" for="contrasena">Contraseña*</label>
-                            <input type="password" id="contrasena" name="contrasena" required minlength="4" maxlength="10" placeholder="········" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500" />
+                            <input type="password" id="contrasena" name="contrasena" required minlength="6" maxlength="50" placeholder="········" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500" />
                             <span class="text-xs text-red-500 hidden" id="error-contrasena"></span>
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-700 mb-1" for="confirmar-contrasena">Confirmar contraseña*</label>
-                            <input type="password" id="confirmar-contrasena" name="confirmar-contrasena" required minlength="4" maxlength="10" placeholder="········" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500" />
+                            <input type="password" id="confirmar-contrasena" name="confirmar-contrasena" required minlength="6" maxlength="50" placeholder="········" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500" />
                             <span class="text-xs text-red-500 hidden" id="error-confirmar-contrasena"></span>
                         </div>
                     </div>
@@ -178,6 +183,7 @@
                         <div>
                             <label class="block text-xs font-semibold text-slate-700 mb-1" for="telefono">Teléfono</label>
                             <input type="tel" id="telefono" name="telefono" placeholder="+56 9 1234 5678" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500" />
+                            <span class="text-xs text-red-500 hidden" id="error-telefono"></span>
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-700 mb-1" for="direccion">Dirección*</label>
@@ -195,6 +201,7 @@
                                 <option value="ohiggins" selected>O'Higgins</option>
                                 <option value="rm">Metropolitana</option>
                             </select>
+                            <span class="text-xs text-red-500 hidden" id="error-region"></span>
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-700 mb-1" for="comuna">Comuna*</label>
@@ -204,6 +211,7 @@
                                 <option value="machali">Machalí</option>
                                 <option value="graneros">Graneros</option>
                             </select>
+                            <span class="text-xs text-red-500 hidden" id="error-comuna"></span>
                         </div>
                     </div>
 
@@ -290,6 +298,244 @@
             &copy; 2026 Veterinaria San Marcos. Todos los derechos reservados.
         </div>
     </footer>
+
+    <!-- Validaciones de formularios -->
+    <script>
+        function showError(input, message) {
+            const errorSpan = document.getElementById('error-' + input.id);
+            if (errorSpan) {
+                errorSpan.textContent = message;
+                errorSpan.classList.remove('hidden');
+            }
+            input.classList.remove('border-slate-200');
+            input.classList.add('border-rose-500');
+        }
+
+        function clearError(input) {
+            const errorSpan = document.getElementById('error-' + input.id);
+            if (errorSpan) {
+                errorSpan.textContent = '';
+                errorSpan.classList.add('hidden');
+            }
+            input.classList.remove('border-rose-500');
+            input.classList.add('border-slate-200');
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function isValidRun(run) {
+            run = run.replace(/\./g, '').replace('-', '').toUpperCase();
+            if (!/^[0-9]{7,8}[0-9K]$/.test(run)) return false;
+            const body = run.slice(0, -1);
+            const dv = run.slice(-1);
+            let sum = 0;
+            let mult = 2;
+            for (let i = body.length - 1; i >= 0; i--) {
+                sum += parseInt(body.charAt(i)) * mult;
+                mult = mult === 7 ? 2 : mult + 1;
+            }
+            const res = 11 - (sum % 11);
+            let calcDv;
+            if (res === 11) calcDv = '0';
+            else if (res === 10) calcDv = 'K';
+            else calcDv = String(res);
+            return calcDv === dv;
+        }
+
+        function isValidPhone(phone) {
+        // Quitar todos los espacios
+        const cleaned = phone.replace(/\s+/g, '');
+        // Acepta opcionalmente el +56 y exige exactamente 9 dígitos del 1 al 9
+        return /^(\+?56)?[1-9]\d{8}$/.test(cleaned);
+}
+
+        function isValidName(name) {
+            // Se agregaron \- y \' al final del bloque
+        return /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s\-\']+$/.test(name.trim());
+}
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('form-registro');
+            const run = document.getElementById('run');
+            const nombre = document.getElementById('nombre-completo');
+            const apellidos = document.getElementById('apellidos');
+            const correo = document.getElementById('correo');
+            const pass = document.getElementById('contrasena');
+            const pass2 = document.getElementById('confirmar-contrasena');
+            const telefono = document.getElementById('telefono');
+            const direccion = document.getElementById('direccion');
+            const region = document.getElementById('region');
+            const comuna = document.getElementById('comuna');
+
+            function validateRun() {
+                const val = run.value.trim().toUpperCase();
+                if (!val) {
+                    showError(run, 'El RUN es obligatorio.');
+                    return false;
+                }
+                if (!isValidRun(val)) {
+                    showError(run, 'Ingresa un RUN válido (ej: 19011022K).');
+                    return false;
+                }
+                clearError(run);
+                return true;
+            }
+
+            function validateNombre() {
+                const val = nombre.value.trim();
+                if (!val) {
+                    showError(nombre, 'El nombre es obligatorio.');
+                    return false;
+                }
+                if (!isValidName(val)) {
+                    showError(nombre, 'El nombre solo puede contener letras y espacios.');
+                    return false;
+                }
+                clearError(nombre);
+                return true;
+            }
+
+            function validateApellidos() {
+                const val = apellidos.value.trim();
+                if (!val) {
+                    showError(apellidos, 'Los apellidos son obligatorios.');
+                    return false;
+                }
+                if (!isValidName(val)) {
+                    showError(apellidos, 'Los apellidos solo pueden contener letras y espacios.');
+                    return false;
+                }
+                clearError(apellidos);
+                return true;
+            }
+
+            function validateCorreo() {
+                const val = correo.value.trim();
+                if (!val) {
+                    showError(correo, 'El correo electrónico es obligatorio.');
+                    return false;
+                }
+                if (!isValidEmail(val)) {
+                    showError(correo, 'Ingresa un correo electrónico válido.');
+                    return false;
+                }
+                clearError(correo);
+                return true;
+            }
+
+            function validatePass() {
+                const val = pass.value;
+                if (!val) {
+                    showError(pass, 'La contraseña es obligatoria.');
+                    return false;
+                }
+                if (val.length < 6 || val.length > 50) {
+                    showError(pass, 'La contraseña debe tener al menos 6 caracteres.');
+                    return false;
+}
+                clearError(pass);
+                return true;
+            }
+
+            function validatePass2() {
+                const val = pass2.value;
+                if (!val) {
+                    showError(pass2, 'Debes confirmar tu contraseña.');
+                    return false;
+                }
+                if (val !== pass.value) {
+                    showError(pass2, 'Las contraseñas no coinciden.');
+                    return false;
+                }
+                clearError(pass2);
+                return true;
+            }
+
+            function validateTelefono() {
+                const val = telefono.value.trim();
+                if (val && !isValidPhone(val)) {
+                    showError(telefono, 'Ingresa un teléfono chileno válido (ej: +56 9 1234 5678).');
+                    return false;
+                }
+                clearError(telefono);
+                return true;
+            }
+
+            function validateDireccion() {
+                const val = direccion.value.trim();
+                if (!val) {
+                    showError(direccion, 'La dirección es obligatoria.');
+                    return false;
+                }
+                clearError(direccion);
+                return true;
+            }
+
+            function validateRegion() {
+                if (!region.value) {
+                    showError(region, 'Debes seleccionar una región.');
+                    return false;
+                }
+                clearError(region);
+                return true;
+            }
+
+            function validateComuna() {
+                if (!comuna.value) {
+                    showError(comuna, 'Debes seleccionar una comuna.');
+                    return false;
+                }
+                clearError(comuna);
+                return true;
+            }
+
+            run.addEventListener('blur', validateRun);
+            nombre.addEventListener('blur', validateNombre);
+            apellidos.addEventListener('blur', validateApellidos);
+            correo.addEventListener('blur', validateCorreo);
+            pass.addEventListener('blur', validatePass);
+            pass2.addEventListener('blur', validatePass2);
+            telefono.addEventListener('blur', validateTelefono);
+            direccion.addEventListener('blur', validateDireccion);
+            region.addEventListener('change', validateRegion);
+            comuna.addEventListener('change', validateComuna);
+
+            form.addEventListener('submit', function(e) {
+                // 1. Frenar la recarga de página
+                e.preventDefault();
+
+                // 2. Ejecutar todas las validaciones
+                const results = [
+                    validateRun(), validateNombre(), validateApellidos(),
+                    validateCorreo(), validatePass(), validatePass2(),
+                    validateTelefono(), validateDireccion(),
+                    validateRegion(), validateComuna()
+                ];
+
+                // 3. Si todo es correcto
+                if (results.every(r => r)) {
+                    // Mostrar cartel verde
+                    const mensajeExito = document.getElementById('mensaje-exito');
+                    mensajeExito.classList.remove('hidden');
+                    
+                    // Limpiar todo el formulario
+                    form.reset();
+
+                    // Limpiar los posibles estilos de error previos que hayan quedado "verdes" o limpios
+                    document.querySelectorAll('input, select').forEach(input => {
+                        clearError(input);
+                    });
+
+                    // Ocultar mensaje a los 5 segundos
+                    setTimeout(() => {
+                        mensajeExito.classList.add('hidden');
+                    }, 5000);
+                }
+            });
+        });
+    </script>
 
     <!-- Función para el menú de hamburguesa -->
     <script>

@@ -128,6 +128,9 @@
 
                 <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
                     <form action="#" method="post" id="form-contacto" novalidate class="space-y-4">
+                        <div id="mensaje-exito" class="hidden mb-4 p-4 text-sm text-emerald-800 rounded-lg bg-emerald-50 border border-emerald-200" role="alert">
+                            <span class="font-bold">¡Mensaje enviado!</span> Tus datos pasaron la validación correctamente.
+                        </div>
                         <h2 class="text-xl font-bold text-slate-900 border-b border-slate-100 pb-3">Formulario de contacto</h2>
 
                         <div class="campo flex flex-col gap-1.5">
@@ -193,6 +196,120 @@
             &copy; 2026 Veterinaria San Marcos. Todos los derechos reservados.
         </div>
     </footer>
+
+    <!-- Validaciones de formularios -->
+    <script>
+        function getStyledElement(input) {
+            const campo = input.closest('.campo');
+            if (campo && campo.classList.contains('border')) {
+                return campo;
+            }
+            return input;
+        }
+
+        function showError(input, message) {
+            const errorSpan = document.getElementById('error-' + input.id);
+            if (errorSpan) {
+                errorSpan.textContent = message;
+                errorSpan.classList.remove('hidden');
+            }
+            const el = getStyledElement(input);
+            el.classList.remove('border-slate-300', 'border-slate-200');
+            el.classList.add('border-rose-500');
+        }
+
+        function clearError(input) {
+            const errorSpan = document.getElementById('error-' + input.id);
+            if (errorSpan) {
+                errorSpan.textContent = '';
+                errorSpan.classList.add('hidden');
+            }
+            const el = getStyledElement(input);
+            el.classList.remove('border-rose-500');
+            if (el.classList.contains('campo')) {
+                el.classList.add('border-slate-300');
+            } else {
+                el.classList.add('border-slate-200');
+            }
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function isValidName(name) {
+            // CORRECCIÓN APLICADA AQUÍ: Se agregan el guion medio (\-) y el apóstrofe (\')
+            return /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s\-\']+$/.test(name.trim());
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('form-contacto');
+            const nombre = document.getElementById('nombre-contacto');
+            const correo = document.getElementById('correo-contacto');
+            const comentario = document.getElementById('comentario-contacto');
+
+            function validateNombre() {
+                const val = nombre.value.trim();
+                if (!val) {
+                    showError(nombre, 'El nombre completo es obligatorio.');
+                    return false;
+                }
+                if (!isValidName(val)) {
+                    showError(nombre, 'El nombre solo puede contener letras y espacios.');
+                    return false;
+                }
+                clearError(nombre);
+                return true;
+            }
+
+            function validateCorreo() {
+                const val = correo.value.trim();
+                if (val && !isValidEmail(val)) {
+                    showError(correo, 'Ingresa un correo electrónico válido.');
+                    return false;
+                }
+                clearError(correo);
+                return true;
+            }
+
+            function validateComentario() {
+                const val = comentario.value.trim();
+                if (!val) {
+                    showError(comentario, 'El comentario es obligatorio.');
+                    return false;
+                }
+                clearError(comentario);
+                return true;
+            }
+
+            nombre.addEventListener('blur', validateNombre);
+            correo.addEventListener('blur', validateCorreo);
+            comentario.addEventListener('blur', validateComentario);
+
+            form.addEventListener('submit', function(e) {
+            // 1. Prevenimos el envío por defecto para que la página no se recargue
+            e.preventDefault(); 
+            
+            // 2. Ejecutamos todas las validaciones
+            const results = [validateNombre(), validateCorreo(), validateComentario()];
+            
+            // 3. Si todo es válido (true)
+            if (results.every(r => r)) {
+                // Mostramos el mensaje de éxito
+                const mensajeExito = document.getElementById('mensaje-exito');
+                mensajeExito.classList.remove('hidden');
+                
+                // Limpiamos el formulario (borra los textos ingresados)
+                form.reset();
+
+                // Opcional: Ocultar el mensaje después de 5 segundos (5000 milisegundos)
+                setTimeout(() => {
+                    mensajeExito.classList.add('hidden');
+                }, 5000);
+            }
+        });
+        });
+    </script>
 
     <!-- Función para el menú de hamburguesa -->
     <script>
