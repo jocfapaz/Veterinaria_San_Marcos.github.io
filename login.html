@@ -1,64 +1,112 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veterinaria San Marcos | Iniciar sesión</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body class="flex flex-col min-h-screen font-sans bg-slate-50 text-slate-800 antialiased">
 
-    <header>
-        <div class="logo">
-            <a href="index.html">Veterinaria San Marcos</a>
-        </div>
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <div class="logo">
+                <a href="index.html" class="flex items-center gap-2 text-emerald-600 font-bold text-lg md:text-xl hover:text-emerald-700 transition-colors">
+                    <svg class="w-6 h-6 md:w-8 md:h-8 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                    <span class="truncate">Veterinaria San Marcos</span>
+                </a>
+            </div>
 
-        <nav>
-                <ul class="flex space-x-6 text-sm font-medium text-gray-700">
-                    <li><a href="index.html" class="hover:text-blue-600">Inicio</a></li>
-                    <li><a href="servicios.html" class="hover:text-blue-600">Servicios</a></li>
-                    <li><a href="nosotros.html" class="hover:text-blue-600">Nosotros</a></li>
-                    <li><a href="blogs.html" class="hover:text-blue-600">Blog</a></li>
-                    <li><a href="contacto.html" class="hover:text-blue-600">Contacto</a></li>
-                    <li><a href="tienda.html" class="hover:text-blue-600">Tienda</a></li>
-
+            <nav class="hidden md:flex">
+                <ul class="flex space-x-6 text-sm font-medium text-slate-600">
+                    <li><a href="index.html" class="hover:text-emerald-600 transition-colors">Inicio</a></li>
+                    <li><a href="servicios.html" class="hover:text-emerald-600 transition-colors">Servicios</a></li>
+                    <li><a href="nosotros.html" class="hover:text-emerald-600 transition-colors">Nosotros</a></li>
+                    <li><a href="blogs.html" class="hover:text-emerald-600 transition-colors">Blog</a></li>
+                    <li><a href="contacto.html" class="hover:text-emerald-600 transition-colors">Contacto</a></li>
+                    <li><a href="tienda.html" class="hover:text-emerald-600 transition-colors">Tienda</a></li>
                 </ul>
             </nav>
 
-        <div class="acciones-usuario">
-            <a href="mi-solicitud.html" class="solicitud">Mi solicitud (<span id="solicitud-count">0</span>)</a>
+            <div class="acciones-usuario flex items-center gap-3 text-sm font-semibold">
+                <a href="mi-solicitud.html" class="solicitud bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 px-3 py-2 rounded-lg transition-colors flex items-center gap-1">
+                    📋 Mi solicitud (<span id="solicitud-count">0</span>)
+                </a>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section class="seccion-login">
-            <img src="./assets/images/logo_veterinaria.png" alt="Logo Veterinaria San Marcos" class="logo-login" width="500">
-            <h1>Veterinaria San Marcos</h1>
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        
+        <form action="#" method="post" id="form-login" novalidate class="max-w-96 w-full text-center border border-slate-200 rounded-2xl px-8 bg-white shadow-sm my-auto">
+            <h1 class="text-slate-900 text-3xl mt-10 font-medium">Iniciar sesión</h1>
+            <p class="text-slate-500 text-sm mt-2">Por favor ingresa tus datos para continuar</p>
+            
+            <div class="campo flex items-center w-full mt-10 bg-white border border-slate-300 h-12 rounded-full overflow-hidden pl-6 gap-2 focus-within:border-emerald-500 focus-within:ring-1 focus-within:ring-emerald-500 transition-all">
+                <svg width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 .55.571 0H15.43l.57.55v9.9l-.571.55H.57L0 10.45zm1.143 1.138V9.9h13.714V1.69l-6.503 4.8h-.697zM13.749 1.1H2.25L8 5.356z" fill="#6B7280"/>
+                </svg>
+                <input type="email" id="correo-login" name="correo" placeholder="Correo electrónico" class="bg-transparent text-slate-800 placeholder-slate-400 outline-none text-sm w-full h-full pr-4" required maxlength="100">                 
+            </div>
+            <span class="mensaje-error text-xs text-rose-500 text-left block pl-4 mt-1 hidden" id="error-correo-login"></span>
 
-            <form action="#" method="post" id="form-login" novalidate>
-                <h2>Inicio de sesión</h2>
+            <div class="campo flex items-center mt-4 w-full bg-white border border-slate-300 h-12 rounded-full overflow-hidden pl-6 gap-2 focus-within:border-emerald-500 focus-within:ring-1 focus-within:ring-emerald-500 transition-all">
+                <svg width="13" height="17" viewBox="0 0 13 17" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+                    <path d="M13 8.5c0-.938-.729-1.7-1.625-1.7h-.812V4.25C10.563 1.907 8.74 0 6.5 0S2.438 1.907 2.438 4.25V6.8h-.813C.729 6.8 0 7.562 0 8.5v6.8c0 .938.729 1.7 1.625 1.7h9.75c.896 0 1.625-.762 1.625-1.7zM4.063 4.25c0-1.406 1.093-2.55 2.437-2.55s2.438 1.144 2.438 2.55V6.8H4.061z" fill="#6B7280"/>
+                </svg>
+                <input type="password" id="contrasena-login" name="contrasena" placeholder="Contraseña" class="bg-transparent text-slate-800 placeholder-slate-400 outline-none text-sm w-full h-full pr-4" required minlength="4" maxlength="10">                 
+            </div>
+            <span class="mensaje-error text-xs text-rose-500 text-left block pl-4 mt-1 hidden" id="error-contrasena-login"></span>
 
-                <div class="campo">
-                    <label for="correo-login">Correo</label>
-                    <input type="email" id="correo-login" name="correo" required maxlength="100">
-                    <span class="mensaje-error" id="error-correo-login"></span>
-                </div>
+            <div class="mt-5 text-left text-emerald-600">
+                <a class="text-sm hover:underline" href="#">¿Olvidaste tu contraseña?</a>
+            </div>
 
-                <div class="campo">
-                    <label for="contrasena-login">Contraseña</label>
-                    <input type="password" id="contrasena-login" name="contrasena" required minlength="4" maxlength="10">
-                    <span class="mensaje-error" id="error-contrasena-login"></span>
-                </div>
+            <button type="submit" class="boton mt-4 w-full h-11 rounded-full text-white bg-emerald-600 hover:bg-emerald-700 font-medium transition-colors shadow-sm">
+                Iniciar sesión
+            </button>
+            <p class="ayuda-login text-slate-500 text-sm mt-3 mb-11">¿Aún no tienes cuenta? <a class="text-emerald-600 font-semibold hover:underline" href="registro.html">Regístrate</a></p>
+        </form>
 
-                <button type="submit" class="boton">Iniciar sesión</button>
-                <p class="ayuda-login">¿Aún no tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
-            </form>
-        </section>
     </main>
 
-    <footer>
-        <div class="footer-info">
-            <p>Veterinaria San Marcos</p>
+    <footer class="bg-slate-900 text-slate-300 py-10 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="footer-info space-y-3">
+                <div class="flex items-center gap-2 text-white font-bold text-lg">
+                    <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                    <span>Veterinaria San Marcos</span>
+                </div>
+                <p class="text-xs text-slate-400">Atención médica profesional y consejos especializados para el bienestar constante de tus animales de compañía.</p>
+            </div>
+
+            <div>
+                <h5 class="text-white text-sm font-semibold mb-3">Secciones</h5>
+                <ul class="space-y-2 text-xs text-slate-400">
+                    <li><a href="servicios.html" class="hover:text-emerald-400 transition-colors">Servicios Médicos</a></li>
+                    <li><a href="tienda.html" class="hover:text-emerald-400 transition-colors">Tienda y Farmacia</a></li>
+                    <li><a href="contacto.html" class="hover:text-emerald-400 transition-colors">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-white text-sm font-semibold mb-3">Contacto</h5>
+                <ul class="space-y-2 text-xs text-slate-400">
+                    <li>📍 Av. San Marcos #1234, Rancagua</li>
+                    <li>📞 +56 9 8765 4321</li>
+                    <li>✉️ contacto@veterinariasanmarcos.cl</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2026 Veterinaria San Marcos. Todos los derechos reservados.
         </div>
     </footer>
 
