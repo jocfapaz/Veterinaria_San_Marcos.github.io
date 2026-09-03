@@ -1,89 +1,167 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veterinaria San Marcos | Mi solicitud de cita</title>
+    <!-- CDN de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body class="flex flex-col min-h-screen font-sans bg-slate-50 text-slate-800 antialiased">
 
-    <header>
-        <div class="logo">
-            <a href="index.html">Veterinaria San Marcos</a>
-        </div>
+    <!-- Header de navegación -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <!-- Logo Principal -->
+            <div class="logo">
+                <a href="index.html" class="flex items-center gap-2 text-emerald-600 font-bold text-lg md:text-xl hover:text-emerald-700 transition-colors">
+                    <svg class="w-6 h-6 md:w-8 md:h-8 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                    <span class="truncate">Veterinaria San Marcos</span>
+                </a>
+            </div>
 
-        <nav>
-                <ul class="flex space-x-6 text-sm font-medium text-gray-700">
-                    <li><a href="index.html" class="hover:text-blue-600">Inicio</a></li>
-                    <li><a href="servicios.html" class="hover:text-blue-600">Servicios</a></li>
-                    <li><a href="nosotros.html" class="hover:text-blue-600">Nosotros</a></li>
-                    <li><a href="blogs.html" class="hover:text-blue-600">Blog</a></li>
-                    <li><a href="contacto.html" class="hover:text-blue-600">Contacto</a></li>
-                    <li><a href="tienda.html" class="hover:text-blue-600">Tienda</a></li>
-
+            <!-- Navegación web (Oculta en celular) -->
+            <nav class="hidden md:flex">
+                <ul class="flex space-x-6 text-sm font-medium text-slate-600">
+                    <li><a href="index.html" class="hover:text-emerald-600 transition-colors">Inicio</a></li>
+                    <li><a href="servicios.html" class="hover:text-emerald-600 transition-colors">Servicios</a></li>
+                    <li><a href="nosotros.html" class="hover:text-emerald-600 transition-colors">Nosotros</a></li>
+                    <li><a href="blogs.html" class="hover:text-emerald-600 transition-colors">Blog</a></li>
+                    <li><a href="contacto.html" class="hover:text-emerald-600 transition-colors">Contacto</a></li>
+                    <li><a href="tienda.html" class="hover:text-emerald-600 transition-colors">Tienda</a></li>
                 </ul>
             </nav>
 
-        <div class="acciones-usuario">
-            <a href="mi-solicitud.html" class="solicitud">Mi solicitud (<span id="solicitud-count">2</span>)</a>
+            <!-- Acciones de usuario -->
+            <div class="acciones-usuario flex items-center gap-3 text-sm font-semibold">
+                <a href="login.html" class="text-slate-700 hover:text-emerald-600 px-3 py-2 transition-colors">Iniciar sesión</a>
+                <a href="registro.html" class="text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2 rounded-lg shadow-sm transition-all">Registrarse</a>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section class="seccion-carrito">
-            <h1>Mi solicitud de cita</h1>
-            <p>Revisa los servicios que quieres solicitar y confirma los datos de la cita.</p>
+    <!-- MAIN -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <section class="seccion-carrito space-y-8">
+            <div class="border-b border-slate-200 pb-4">
+                <h1 class="text-3xl font-extrabold text-slate-900">Mi solicitud de cita</h1>
+                <p class="text-slate-500 text-sm mt-1">Revisa los servicios que quieres solicitar y confirma los datos de la cita.</p>
+            </div>
 
-            <!-- Este listado se generará dinámicamente con JavaScript en una fase posterior -->
-            <ul class="lista-carrito" id="lista-solicitud">
-                <li class="item-carrito">
-                    <div class="info-item">
-                        <h2>Consulta general</h2>
-                        <p>Mascota: Firulais</p>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                
+                <!-- LISTADO DE SERVICIOS -->
+                <div class="lg:col-span-2">
+                    <!-- Este listado se generará dinámicamente con JavaScript en una fase posterior -->
+                    <ul class="lista-carrito space-y-4" id="lista-solicitud">
+                        
+                        <!-- Item 1 -->
+                        <li class="item-carrito bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div class="info-item space-y-1">
+                                <h2 class="text-lg font-bold text-slate-900">Consulta general</h2>
+                                <p class="text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-0.5 rounded-full inline-block">Mascota: Firulais</p>
+                            </div>
+                            <div class="flex items-center justify-between w-full sm:w-auto sm:justify-end gap-6">
+                                <p class="precio-unitario font-extrabold text-slate-900 text-lg">$ 15.000</p>
+                                <button type="button" class="boton-eliminar text-xs font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-100 px-3 py-1.5 rounded-lg transition-colors">
+                                    Quitar
+                                </button>
+                            </div>
+                        </li>
+
+                        <!-- Item 2 -->
+                        <li class="item-carrito bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div class="flex items-center gap-4">
+                                <img src="./assets/images/vacuna.png" alt="Vacuna antirrábica" class="w-16 h-16 object-cover rounded-lg bg-slate-50 border border-slate-100 shrink-0">
+                                <div class="info-item space-y-1">
+                                    <h2 class="text-lg font-bold text-slate-900">Vacuna antirrábica</h2>
+                                    <p class="text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-0.5 rounded-full inline-block">Mascota: Firulais</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between w-full sm:w-auto sm:justify-end gap-6">
+                                <p class="precio-unitario font-extrabold text-slate-900 text-lg">$ 12.000</p>
+                                <button type="button" class="boton-eliminar text-xs font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-100 px-3 py-1.5 rounded-lg transition-colors">
+                                    Quitar
+                                </button>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <!-- RESUMEN Y FORMULARIO DE CONFIRMACIÓN -->
+                <aside class="resumen-carrito bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100 space-y-6 sticky top-20">
+                    <div class="border-b border-slate-100 pb-4">
+                        <p class="total text-xl font-extrabold text-slate-900 flex justify-between items-center">
+                            <span>Total estimado:</span>
+                            <span id="total-solicitud" class="text-emerald-600 text-2xl">$ 27.000</span>
+                        </p>
                     </div>
-                    <p class="precio-unitario">$ 15.000</p>
-                    <button type="button" class="boton-eliminar">Quitar</button>
-                </li>
-                <li class="item-carrito">
-                    <img src="./assets/images/vacuna.png" alt="Vacuna antirrábica" width="300">
-                    <div class="info-item">
-                        <h2>Vacuna antirrábica</h2>
-                        <p>Mascota: Firulais</p>
-                    </div>
-                    <p class="precio-unitario">$ 12.000</p>
-                    <button type="button" class="boton-eliminar">Quitar</button>
-                </li>
-            </ul>
 
-            <aside class="resumen-carrito">
-                <p class="total">Total estimado: <span id="total-solicitud">$ 27.000</span></p>
+                    <form action="#" method="post" class="form-solicitud-cita space-y-4" novalidate>
+                        <div class="campo flex flex-col gap-1.5">
+                            <label for="fecha-cita" class="text-xs font-semibold text-slate-700">Fecha preferida*</label>
+                            <input type="date" id="fecha-cita" name="fecha-cita" required class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500">
+                        </div>
 
-                <form action="#" method="post" class="form-solicitud-cita" novalidate>
-                    <div class="campo">
-                        <label for="fecha-cita">Fecha preferida</label>
-                        <input type="date" id="fecha-cita" name="fecha-cita" required>
-                    </div>
+                        <div class="campo flex flex-col gap-1.5">
+                            <label for="hora-cita" class="text-xs font-semibold text-slate-700">Hora preferida*</label>
+                            <input type="time" id="hora-cita" name="hora-cita" required class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500">
+                        </div>
 
-                    <div class="campo">
-                        <label for="hora-cita">Hora preferida</label>
-                        <input type="time" id="hora-cita" name="hora-cita" required>
-                    </div>
+                        <div class="campo flex flex-col gap-1.5">
+                            <label for="comentario-cita" class="text-xs font-semibold text-slate-700">Comentario (opcional)</label>
+                            <textarea id="comentario-cita" name="comentario-cita" maxlength="300" rows="3" placeholder="Ej: Mi mascota está nerviosa..." class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 resize-none"></textarea>
+                        </div>
 
-                    <div class="campo">
-                        <label for="comentario-cita">Comentario (opcional)</label>
-                        <textarea id="comentario-cita" name="comentario-cita" maxlength="300"></textarea>
-                    </div>
+                        <button type="submit" class="boton boton-pagar w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-sm">
+                            Enviar solicitud de cita
+                        </button>
+                    </form>
+                </aside>
 
-                    <button type="submit" class="boton boton-pagar">Enviar solicitud de cita</button>
-                </form>
-            </aside>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-info">
-            <p>Veterinaria San Marcos</p>
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-300 py-10 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="footer-info space-y-3">
+                <div class="flex items-center gap-2 text-white font-bold text-lg">
+                    <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                    <span>Veterinaria San Marcos</span>
+                </div>
+                <p class="text-xs text-slate-400">Atención médica profesional y consejos especializados para el bienestar constante de tus animales de compañía.</p>
+            </div>
+
+            <div>
+                <h5 class="text-white text-sm font-semibold mb-3">Secciones</h5>
+                <ul class="space-y-2 text-xs text-slate-400">
+                    <li><a href="servicios.html" class="hover:text-emerald-400 transition-colors">Servicios Médicos</a></li>
+                    <li><a href="tienda.html" class="hover:text-emerald-400 transition-colors">Tienda y Farmacia</a></li>
+                    <li><a href="contacto.html" class="hover:text-emerald-400 transition-colors">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-white text-sm font-semibold mb-3">Contacto</h5>
+                <ul class="space-y-2 text-xs text-slate-400">
+                    <li>📍 Av. San Marcos #1234, Rancagua</li>
+                    <li>📞 +56 9 8765 4321</li>
+                    <li>✉️ contacto@veterinariasanmarcos.cl</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2026 Veterinaria San Marcos. Todos los derechos reservados.
         </div>
     </footer>
 
