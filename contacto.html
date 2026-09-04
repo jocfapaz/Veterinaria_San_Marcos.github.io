@@ -74,7 +74,6 @@
                 <hr class="border-slate-100 my-3">
                 
                 <div class="flex flex-col gap-3 px-3">
-                    <!-- Botón unificado de Login en Móvil -->
                     <a href="login.html" class="flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffffff" viewBox="0 0 256 256">
     <path d="M239.71,125l-16.42-88a16,16,0,0,0-19.61-12.58l-.31.09L150.85,40h-45.7L52.63,24.56l-.31-.09A16,16,0,0,0,32.71,37.05L16.29,125a15.77,15.77,0,0,0,9.12,17.52A16.26,16.26,0,0,0,32.12,144,15.48,15.48,0,0,0,40,141.84V184a40,40,0,0,0,40,40h96a40,40,0,0,0,40-40V141.85a15.5,15.5,0,0,0,7.87,2.16,16.31,16.31,0,0,0,6.72-1.47A15.77,15.77,0,0,0,239.71,125ZM32,128h0L48.43,40,90.5,52.37Zm144,80H136V195.31l13.66-13.65a8,8,0,0,0-11.32-11.32L128,180.69l-10.34-10.35a8,8,0,0,0-11.32,11.32L120,195.31V208H80a24,24,0,0,1-24-24V123.11L107.92,56h40.15L200,123.11V184A24,24,0,0,1,176,208Zm48-80L165.5,52.37,207.57,40,224,128ZM104,140a12,12,0,1,1-12-12A12,12,0,0,1,104,140Zm72,0a12,12,0,1,1-12-12A12,12,0,0,1,176,140Z"></path>
@@ -82,7 +81,6 @@
                         <span>Ingresar a mi cuenta</span>
                     </a>
                     
-                    <!-- Fila para Mi Solicitud y Carrito en Móvil -->
                     <div class="flex gap-2 mt-1">
                         <a href="mi_solicitud.html" class="w-1/2 flex justify-center items-center gap-1 px-2 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 rounded-lg text-sm font-semibold">
                             📋 Solicitud (0)
@@ -135,19 +133,19 @@
 
                         <div class="campo flex flex-col gap-1.5">
                             <label for="nombre-contacto" class="text-xs font-semibold text-slate-700">Nombre completo*</label>
-                            <input type="text" id="nombre-contacto" name="nombre" required maxlength="100" placeholder="Tu nombre y apellido" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all">
+                            <input type="text" id="nombre-contacto" name="nombre" required minlength="3" maxlength="100" placeholder="Tu nombre y apellido" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all">
                             <span class="mensaje-error text-xs text-rose-500 hidden" id="error-nombre-contacto"></span>
                         </div>
 
                         <div class="campo flex flex-col gap-1.5">
-                            <label for="correo-contacto" class="text-xs font-semibold text-slate-700">Correo electrónico</label>
-                            <input type="email" id="correo-contacto" name="correo" maxlength="100" placeholder="ejemplo@correo.com" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all">
+                            <label for="correo-contacto" class="text-xs font-semibold text-slate-700">Correo electrónico*</label>
+                            <input type="email" id="correo-contacto" name="correo" required maxlength="100" placeholder="ejemplo@duoc.cl" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all">
                             <span class="mensaje-error text-xs text-rose-500 hidden" id="error-correo-contacto"></span>
                         </div>
 
                         <div class="campo flex flex-col gap-1.5">
                             <label for="comentario-contacto" class="text-xs font-semibold text-slate-700">Comentario*</label>
-                            <textarea id="comentario-contacto" name="comentario" required maxlength="500" rows="4" placeholder="¿En qué te podemos ayudar?" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all resize-none"></textarea>
+                            <textarea id="comentario-contacto" name="comentario" required minlength="10" maxlength="500" rows="4" placeholder="¿En qué te podemos ayudar?" class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all resize-none"></textarea>
                             <span class="mensaje-error text-xs text-rose-500 hidden" id="error-comentario-contacto"></span>
                         </div>
 
@@ -238,7 +236,6 @@
         }
 
         function isValidName(name) {
-            // CORRECCIÓN APLICADA AQUÍ: Se agregan el guion medio (\-) y el apóstrofe (\')
             return /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s\-\']+$/.test(name.trim());
         }
 
@@ -254,6 +251,10 @@
                     showError(nombre, 'El nombre completo es obligatorio.');
                     return false;
                 }
+                if (val.length < 3) {
+                    showError(nombre, 'El nombre debe tener al menos 3 caracteres.');
+                    return false;
+                }
                 if (!isValidName(val)) {
                     showError(nombre, 'El nombre solo puede contener letras y espacios.');
                     return false;
@@ -263,11 +264,28 @@
             }
 
             function validateCorreo() {
-                const val = correo.value.trim();
-                if (val && !isValidEmail(val)) {
-                    showError(correo, 'Ingresa un correo electrónico válido.');
+                // Se convierte el correo a minúsculas para evitar problemas (ej: "Juan@GMAIL.COM")
+                const val = correo.value.trim().toLowerCase();
+                
+                if (!val) {
+                    showError(correo, 'El correo electrónico es obligatorio.');
                     return false;
                 }
+                if (!isValidEmail(val)) {
+                    showError(correo, 'Ingresa un formato de correo electrónico válido.');
+                    return false;
+                }
+
+                // Extracción del dominio y validamos estrictamente los 3 solicitados
+                const partes = val.split('@');
+                if (partes.length === 2) {
+                    const dominio = partes[1];
+                    if (dominio !== 'duoc.cl' && dominio !== 'profesor.duoc.cl' && dominio !== 'gmail.com') {
+                        showError(correo, 'Solo se permiten correos @duoc.cl, @profesor.duoc.cl y @gmail.com.');
+                        return false;
+                    }
+                }
+
                 clearError(correo);
                 return true;
             }
@@ -276,6 +294,10 @@
                 const val = comentario.value.trim();
                 if (!val) {
                     showError(comentario, 'El comentario es obligatorio.');
+                    return false;
+                }
+                if (val.length < 10) {
+                    showError(comentario, 'El comentario debe ser más detallado (mínimo 10 caracteres).');
                     return false;
                 }
                 clearError(comentario);
@@ -287,27 +309,21 @@
             comentario.addEventListener('blur', validateComentario);
 
             form.addEventListener('submit', function(e) {
-            // 1. Prevenimos el envío por defecto para que la página no se recargue
-            e.preventDefault(); 
-            
-            // 2. Ejecutamos todas las validaciones
-            const results = [validateNombre(), validateCorreo(), validateComentario()];
-            
-            // 3. Si todo es válido (true)
-            if (results.every(r => r)) {
-                // Mostramos el mensaje de éxito
-                const mensajeExito = document.getElementById('mensaje-exito');
-                mensajeExito.classList.remove('hidden');
+                e.preventDefault(); 
                 
-                // Limpiamos el formulario (borra los textos ingresados)
-                form.reset();
+                const results = [validateNombre(), validateCorreo(), validateComentario()];
+                
+                if (results.every(r => r)) {
+                    const mensajeExito = document.getElementById('mensaje-exito');
+                    mensajeExito.classList.remove('hidden');
+                    
+                    form.reset();
 
-                // Opcional: Ocultar el mensaje después de 5 segundos (5000 milisegundos)
-                setTimeout(() => {
-                    mensajeExito.classList.add('hidden');
-                }, 5000);
-            }
-        });
+                    setTimeout(() => {
+                        mensajeExito.classList.add('hidden');
+                    }, 5000);
+                }
+            });
         });
     </script>
 
