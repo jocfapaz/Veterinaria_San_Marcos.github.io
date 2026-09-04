@@ -123,7 +123,7 @@
                 <!-- Título y Descripción -->
                 <div>
                     <h3 class="text-slate-900 mb-1.5 text-2xl font-semibold">Registro de Usuario</h3>
-                    <p class="text-slate-600 text-sm">Crea tu cuenta para gestionar tus citas e historial clínico.</p>
+                    <p class="text-slate-600 text-sm mb-4">Crea tu cuenta para gestionar tus citas e historial clínico.</p>
                 </div>
 
                 <div id="mensaje-exito" class="hidden mb-4 p-4 text-sm text-emerald-800 rounded-lg bg-emerald-50 border border-emerald-200" role="alert">
@@ -160,7 +160,8 @@
                     <!-- Correo -->
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1" for="correo">Correo Electrónico*</label>
-                        <input type="email" id="correo" name="correo" required maxlength="100" placeholder="nombre@ejemplo.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500" />
+                        <!-- Placeholder refleja los correos permitidos -->
+                        <input type="email" id="correo" name="correo" required maxlength="100" placeholder="ejemplo@duoc.cl" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500" />
                         <span class="text-xs text-red-500 hidden" id="error-correo"></span>
                     </div>
 
@@ -345,16 +346,13 @@
         }
 
         function isValidPhone(phone) {
-        // Quitar todos los espacios
-        const cleaned = phone.replace(/\s+/g, '');
-        // Acepta opcionalmente el +56 y exige exactamente 9 dígitos del 1 al 9
-        return /^(\+?56)?[1-9]\d{8}$/.test(cleaned);
-}
+            const cleaned = phone.replace(/\s+/g, '');
+            return /^(\+?56)?[1-9]\d{8}$/.test(cleaned);
+        }
 
         function isValidName(name) {
-            // Se agregaron \- y \' al final del bloque
-        return /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s\-\']+$/.test(name.trim());
-}
+            return /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s\-\']+$/.test(name.trim());
+        }
 
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('form-registro');
@@ -404,7 +402,7 @@
                     return false;
                 }
                 if (!isValidName(val)) {
-                    showError(apellidos, 'Los apellidos solo pueden contener letras y espacios.');
+                    showError(apellidos, 'Los apellidos solo puede contener letras y espacios.');
                     return false;
                 }
                 clearError(apellidos);
@@ -412,15 +410,27 @@
             }
 
             function validateCorreo() {
-                const val = correo.value.trim();
+                // Se convierte a minúsculas para evitar errores
+                const val = correo.value.trim().toLowerCase();
                 if (!val) {
                     showError(correo, 'El correo electrónico es obligatorio.');
                     return false;
                 }
                 if (!isValidEmail(val)) {
-                    showError(correo, 'Ingresa un correo electrónico válido.');
+                    showError(correo, 'Ingresa un formato de correo electrónico válido.');
                     return false;
                 }
+
+                // Extracción del dominio y validamos estrictamente los 3 solicitados
+                const partes = val.split('@');
+                if (partes.length === 2) {
+                    const dominio = partes[1];
+                    if (dominio !== 'duoc.cl' && dominio !== 'profesor.duoc.cl' && dominio !== 'gmail.com') {
+                        showError(correo, 'Solo se permiten correos @duoc.cl, @profesor.duoc.cl y @gmail.com.');
+                        return false;
+                    }
+                }
+
                 clearError(correo);
                 return true;
             }
@@ -434,7 +444,7 @@
                 if (val.length < 6 || val.length > 50) {
                     showError(pass, 'La contraseña debe tener al menos 6 caracteres.');
                     return false;
-}
+                }
                 clearError(pass);
                 return true;
             }
