@@ -86,10 +86,10 @@
                     <!-- Fila para Mi Solicitud y Carrito en Móvil -->
                     <div class="flex gap-2 mt-1">
                         <a href="mi_solicitud.html" class="w-1/2 flex justify-center items-center gap-1 px-2 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 rounded-lg text-sm font-semibold">
-                            📋 Solicitud (0)
+                            📋 Solicitud (<span id="solicitud-count">0</span>)
                         </a>
                         <a href="carrito.html" class="w-1/2 flex justify-center items-center gap-1 px-2 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 rounded-lg text-sm font-semibold">
-                            🛒 Carrito (0)
+                            🛒 Carrito (<span id="carrito-count">0</span>)
                         </a>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
             <!-- Grid de Servicios -->
             <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="lista-servicios">
                 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV001">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/veterinario_gato.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Consulta general">
                     </a>
@@ -133,12 +133,12 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Consultas · Perro / Gato · 30 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$15.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV001">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV002">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="assets/images/consulta_emergencia.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Consulta urgencia">
                     </a>
@@ -150,12 +150,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Fuera de horario + $10.000.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$25.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV002">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV003">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="assets/images/post_operatorio.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Control postoperatorio">
                     </a>
@@ -166,12 +166,12 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Consultas · Perro / Gato · 20 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$10.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV003">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV004">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/ave_conejo.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Consulta ave / conejo">
                     </a>
@@ -182,12 +182,12 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Consultas · Ave / Conejo · 30 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$18.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV004">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV005">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video flex items-center justify-center text-slate-400">
                         <img src="./assets/images/segunda_opcion.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Segunda opinión médica">
                     </a>
@@ -199,12 +199,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Se requiere ficha previa.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$20.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV005">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV006">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/vacuna_perro.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Vacuna antirrábica canina">
                     </a>
@@ -216,12 +216,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Obligatoria por ley.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$12.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV006">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV007">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/vacuna_sextuple.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Vacuna sextuple canina">
                     </a>
@@ -233,12 +233,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Refuerzo anual.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$18.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV007">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV008">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/vacuna_felina.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Vacuna bivalente felina">
                     </a>
@@ -250,12 +250,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Refuerzo anual.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$15.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV008">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV009">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/vacuna_triple_felina.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Vacuna triple felina">
                     </a>
@@ -267,12 +267,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Refuerzo anual.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$17.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV009">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV010">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/vacuna_bordetella.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Vacuna Bordetella canina">
                     </a>
@@ -284,12 +284,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Tos de las perreras.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$14.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV010">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV011">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/vacuna_antirrabica_felina.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Vacuna antirrábica felina">
                     </a>
@@ -300,12 +300,12 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Vacunación · Gato · 10 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$12.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV011">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV012">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/esterilizacion_canina.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Esterilización hembra canina">
                     </a>
@@ -317,12 +317,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye anestesia y hospitalización 24h.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$80.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV012">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV013">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/esterilizacion_canino.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Esterilización macho canino">
                     </a>
@@ -334,12 +334,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye anestesia.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$60.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV013">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV014">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/esterilizacion_felinaa.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Esterilización hembra felina">
                     </a>
@@ -351,12 +351,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye anestesia y hospitalización 24h.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$65.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV014">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV015">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/esterilizacion_felino.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Esterilización macho felino">
                     </a>
@@ -368,12 +368,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye anestesia.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$50.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV015">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV016">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/cirugia.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Extirpación de tumor cutáneo">
                     </a>
@@ -385,12 +385,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Precio referencial; varía según tamaño.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$120.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV016">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV017">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/embarazaso_canina.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Cesárea de urgencia">
                     </a>
@@ -401,12 +401,12 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Cirugía · Perra / Gata · 120 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$180.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV017">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV018">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/desparacitacion_perro_pequeño.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Desparasitación interna pequeños (< 10 kg)">
                     </a>
@@ -417,12 +417,12 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Desparasitación · Perro · 5 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$8.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV018">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV019">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/desparacitacion_perro_cachorro.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Desparasitación interna medianos (10-25 kg)">
                     </a>
@@ -433,12 +433,12 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Desparasitación · Perro · 5 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$9.500</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV019">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV020">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/desparacitacion_perro_grande.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Desparasitación interna grandes (> 25 kg)">
                     </a>
@@ -449,12 +449,12 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Desparasitación · Perro · 5 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$11.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV020">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV021">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/desparacitacion_felina.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Desparasitación interna felina">
                     </a>
@@ -465,12 +465,12 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Desparasitación · Gato · 5 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$8.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV021">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV022">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/antiparasitario.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Antiparasitario externo (pipeta)">
                     </a>
@@ -482,12 +482,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye aplicación.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$7.500</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV022">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV023">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/hemograma.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Hemograma completo">
                     </a>
@@ -499,12 +499,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Resultado en 24 - 48 horas.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$22.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV023">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV024">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/perfil_biomico.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Perfil bioquímico completo">
                     </a>
@@ -516,12 +516,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Resultado en 24 - 48 horas.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$35.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV024">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV025">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/radiografia.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Radiografía (1 proyección)">
                     </a>
@@ -532,12 +532,12 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Exámenes · Perro / Gato · 20 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$28.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV025">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV026">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/ecografia.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Ecografía abdominal">
                     </a>
@@ -548,12 +548,12 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Exámenes · Perro / Gato · 30 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$45.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV026">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV027">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/test_leishmaniasis.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Test de leishmaniasis">
                     </a>
@@ -564,12 +564,12 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Exámenes · Perro · 20 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$18.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV027">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV028">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/corte_uñas.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Corte de uñas">
                     </a>
@@ -580,12 +580,12 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Otros · Perro / Gato · 15 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$5.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV028">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV029">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/limpieza_dental.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Limpieza dental">
                     </a>
@@ -597,12 +597,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Requere anestesia.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$55.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV029">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV030">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/microchip.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Microchip identificación">
                     </a>
@@ -614,12 +614,12 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye registro.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$15.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV030">Solicitar</button>
                         </div>
                     </div>
                 </li>
 
-                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200">
+                <li class="tarjeta-producto group bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col transition duration-200" data-id="SERV031">
                     <a href="servicio_detalle.html" class="block overflow-hidden bg-slate-100 aspect-video">
                         <img src="./assets/images/hospitalizacion.png" class="object-cover w-full h-full group-hover:scale-105 transition duration-300" alt="Hospitalización (por día)">
                     </a>
@@ -631,7 +631,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye monitoreo y alimentación básica.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$30.000</p>
-                            <button type="button" class="boton-anadir bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV031">Solicitar</button>
                         </div>
                     </div>
                 </li>
