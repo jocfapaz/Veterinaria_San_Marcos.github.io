@@ -102,33 +102,6 @@
 
     </div>
 
-    <script src="../js/admin.js"></script>
-
-    <!-- Menú móvil lateral para admin -->
-    <script>
-        const sidebar = document.getElementById('sidebar');
-        const backdrop = document.getElementById('sidebar-backdrop');
-        const openBtn = document.getElementById('mobile-menu-btn');
-        const closeBtn = document.getElementById('close-sidebar-btn');
-
-        // Abrir la barra lateral
-        function openSidebar() {
-            sidebar.classList.remove('-translate-x-full'); // Desliza hacia adentro
-            backdrop.classList.remove('hidden');           // Muestra el fondo oscuro
-        }
-
-        // Cerrar la barra lateral
-        function closeSidebar() {
-            sidebar.classList.add('-translate-x-full');    // Desliza hacia afuera
-            backdrop.classList.add('hidden');              // Oculta el fondo oscuro
-        }
-
-        // Asignar los eventos de click
-        openBtn.addEventListener('click', openSidebar);
-        closeBtn.addEventListener('click', closeSidebar);
-
-        // Cerrar el menú si el usuario toca la parte oscura de la pantalla
-        backdrop.addEventListener('click', closeSidebar);
-    </script>
+    <script src="../assets/js/main.js"></script>
 </body>
 </html>

@@ -158,26 +158,6 @@
 
     </div>
 
-    <!-- Script del Menú Móvil Lateral -->
-    <script>
-        const sidebar = document.getElementById('sidebar');
-        const backdrop = document.getElementById('sidebar-backdrop');
-        const openBtn = document.getElementById('mobile-menu-btn');
-        const closeBtn = document.getElementById('close-sidebar-btn');
-
-        function openSidebar() {
-            sidebar.classList.remove('-translate-x-full');
-            backdrop.classList.remove('hidden');
-        }
-
-        function closeSidebar() {
-            sidebar.classList.add('-translate-x-full');
-            backdrop.classList.add('hidden');
-        }
-
-        openBtn.addEventListener('click', openSidebar);
-        closeBtn.addEventListener('click', closeSidebar);
-        backdrop.addEventListener('click', closeSidebar);
-    </script>
+    <script src="../assets/js/main.js"></script>
 </body>
 </html>
