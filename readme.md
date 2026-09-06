@@ -20,7 +20,6 @@ El sitio incluye un portal público responsivo para clientes y usuarios generale
 ```text
 Veterinaria_San_Marcos.github.io/
 ├── index.html              # Portada principal y servicios destacados
-├── productos.html          # Catálogo general de productos y medicamentos
 ├── producto_detalle.html   # Vista detallada de un producto
 ├── nosotros.html           # Información institucional de la veterinaria
 ├── servicios.html          # Detalle de servicios médicos y peluquería
@@ -44,6 +43,10 @@ Veterinaria_San_Marcos.github.io/
 │   ├── usuarios.html       # Gestión / Listado de usuarios
 │   ├── usuario_nuevo.html  # Crear nuevo usuario
 │   └── usuario_editar.html # Editar usuario existente
+│   └── productos.html      # Gestion de productos
+│   └── productos_editar.html   # Editar producto
+│   └── productos_nuevo.html    # Agregar nuevo producto
+
 │
 ├── assets/                 # Recursos Estáticos
 │   ├── css/
