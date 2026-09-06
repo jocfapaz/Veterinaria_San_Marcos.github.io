@@ -45,191 +45,113 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-
     // -----------------------------------------------------------
-    // 2. Lectura del localstorage, contadores del header 
-    // -----------------------------------------------------------
-
-    // || '0': El operador || significa "O" (OR).
-    // Si el usuario entra por primera vez y no hay nada en el localStorage, se le devuelve '0'
-    const cantidadCarrito = localStorage.getItem('carritoVeterinaria') || '0';
-    const cantidadSolicitud = localStorage.getItem('solicitudesVeterinaria') || '0';
-
-
-    // Tengo dos barras de navegación: la de computadores y la de celulares.
-    // querySelectorAll atrapa todos los elementos que tengan ese ID y los guarda en un array
-    const carritoCountElements = document.querySelectorAll('#carrito-count');
-    const solicitudCountElements = document.querySelectorAll('#solicitud-count');
-
-    // forEach --> para cada uno de estos carritos en la pantalla (el), 
-    // cámbiales el texto (textContent) y ponles el número de la memoria
-    carritoCountElements.forEach(el => {
-        el.textContent = cantidadCarrito;
-    });
-
-    // forEach --> lo mismo, pero para actualizar todas las solicitudes
-    solicitudCountElements.forEach(el => {
-        el.textContent = cantidadSolicitud;
-    });
-
-    // -----------------------------------------------------------
-    // 3. LÓGICA PARA AGREGAR AL CARRITO (Botones de la Tienda)
+    // 2. HELPERS GENÉRICOS PARA LOCALSTORAGE Y CONTADORES
     // -----------------------------------------------------------
     
-    // Buscamos todos los botones que tengan la clase 'boton-anadir' que usamos en HTML
-    const botonesAgregarCarrito = document.querySelectorAll('.boton-anadir');
+    // Lee un número del localStorage. Si no existe o es inválido, devuelve 0.
+    function getStoredCount(key) {
+        return parseInt(localStorage.getItem(key)) || 0;
+    }
 
-    botonesAgregarCarrito.forEach(boton => {
+    // Guarda un número en el localStorage, pero NUNCA permite guardar negativos.
+    function setStoredCount(key, value) {
+        if (value < 0) value = 0;
+        localStorage.setItem(key, value);
+    }
+
+    // Actualiza TODOS los elementos .contador-header que tengan el data-storage indicado.
+    // Esto es clave porque hay contadores en desktop y en el menú móvil.
+    function updateCounterDisplay(key) {
+        document.querySelectorAll(`.contador-header[data-storage="${key}"]`).forEach(el => {
+            el.textContent = getStoredCount(key);
+        });
+    }
+
+    // ============================================================
+    // 3. LÓGICA DE AGREGAR (Carrito + Solicitudes en una sola función)
+    // ============================================================
+
+    function handleAdd(button) {
+        // data-storage dice QUÉ contador actualizar (carritoVeterinaria o solicitudesVeterinaria)
+        const storageKey = button.dataset.storage;
+        // data-success dice qué texto mostrar temporalmente (ej: "¡Agregado! :D")
+        const successText = button.dataset.success;
+        
+        if (!storageKey) return;
+
+        // 1. Leer, sumar y guardar
+        const newCount = getStoredCount(storageKey) + 1;
+        setStoredCount(storageKey, newCount);
+
+        // 2. Actualizar todos los contadores visuales (header desktop + móvil)
+        updateCounterDisplay(storageKey);
+
+        // 3. Feedback visual: cambiamos el texto y oscurecemos el botón
+        const originalText = button.textContent;
+        button.textContent = successText;
+        button.classList.replace('bg-emerald-600', 'bg-emerald-800');
+
+        // Después de 1.5 segundos, volvemos todo a la normalidad
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.classList.replace('bg-emerald-800', 'bg-emerald-600');
+        }, 1500);
+    }
+
+    // Asignar eventos a botones de añadir (tanto productos como servicios)
+    document.querySelectorAll('.boton-anadir, .boton-solicitar').forEach(boton => {
         boton.addEventListener('click', function(e) {
-            e.preventDefault(); // Evita que la página salte si el botón recarga
-
-            // Opcional: Capturar el ID --> pero para el futuro
-            // const productoId = boton.getAttribute('data-id'); 
-            // console.log("Agregando producto:", productoId);
-
-            // 1. Leer el valor actual de la memoria y convertirlo a número
-            let cantidadActual = parseInt(localStorage.getItem('carritoVeterinaria')) || 0;
-            
-            // 2. Sumarle 1
-            let nuevaCantidad = cantidadActual + 1;
-            
-            // 3. Guardar el nuevo número en el localStorage
-            localStorage.setItem('carritoVeterinaria', nuevaCantidad);
-            
-            // 4. Actualizar visualmente los contadores del header al instante
-            carritoCountElements.forEach(el => {
-                el.textContent = nuevaCantidad;
-            });
-
-            // 5. Feedback visual en el botón
-            const textoOriginal = boton.innerHTML;
-            boton.innerHTML = "¡Agregado! :D";
-            boton.classList.replace('bg-emerald-600', 'bg-emerald-800'); // Lo oscurece
-            
-            // Después de 1.5 segundos, devuelve el botón a la normalidad
-            setTimeout(() => {
-                boton.innerHTML = textoOriginal;
-                boton.classList.replace('bg-emerald-800', 'bg-emerald-600');
-            }, 1500);
+            e.preventDefault(); // Evita que el botón recargue la página
+            handleAdd(this);
         });
     });
 
-    // -----------------------------------------------------------
-    // 4. LÓGICA PARA AGREGAR SOLICITUDES (Botones de Servicios)
-    // -----------------------------------------------------------
-    
-    // Busca todos los botones que tengan la clase 'boton-solicitar' en el HTML
-    const botonesSolicitar = document.querySelectorAll('.boton-solicitar');
+    // ============================================================
+    // 4. LÓGICA DE ELIMINAR (También genérica)
+    // ============================================================
 
-    botonesSolicitar.forEach(boton => {
-        boton.addEventListener('click', function(e) {
-            e.preventDefault(); // Evita recargas innecesarias
+    function handleRemove(button, itemSelector) {
+        const storageKey = button.dataset.storage;
+        if (!storageKey) return;
 
-            // 1. Leer el valor actual de la memoria (para solicitudes)
-            let cantidadActual = parseInt(localStorage.getItem('solicitudesVeterinaria')) || 0;
-            
-            // 2. Sumarle 1
-            let nuevaCantidad = cantidadActual + 1;
-            
-            // 3. Guardar el nuevo número en el localStorage
-            localStorage.setItem('solicitudesVeterinaria', nuevaCantidad);
-            
-            // 4. Actualizar visualmente los contadores de "Mi Solicitud" en el header
-            solicitudCountElements.forEach(el => {
-                el.textContent = nuevaCantidad;
-            });
+        // 1. Leer, restar y guardar (protegido contra negativos por setStoredCount)
+        const newCount = getStoredCount(storageKey) - 1;
+        setStoredCount(storageKey, newCount);
 
-            // 5. Feedback visual para el usuario
-            const textoOriginal = boton.innerHTML;
-            boton.innerHTML = "¡Agendado! :)";
-            boton.classList.replace('bg-emerald-600', 'bg-emerald-800'); // Oscurece el botón
-            
-            // Volver a la normalidad después de 1.5 segundos
-            setTimeout(() => {
-                boton.innerHTML = textoOriginal;
-                boton.classList.replace('bg-emerald-800', 'bg-emerald-600');
-            }, 1500);
-        });
-    });
+        // 2. Actualizar contadores visuales
+        updateCounterDisplay(storageKey);
 
-    // -----------------------------------------------------------
-    // 5. LÓGICA PARA ELIMINAR DEL CARRITO
-    // -----------------------------------------------------------
-    
-    // Buscamos todos los botones de "Eliminar" en la página del carrito
-    const botonesEliminarCarrito = document.querySelectorAll('.btn-eliminar-carrito');
+        // 3. Eliminar el elemento del DOM buscando al ancestro más cercano con itemSelector
+        const item = button.closest(itemSelector);
+        if (item) item.remove();
+    }
 
-    botonesEliminarCarrito.forEach(boton => {
+    // Eliminar del carrito
+    document.querySelectorAll('.btn-eliminar-carrito').forEach(boton => {
         boton.addEventListener('click', function(e) {
             e.preventDefault();
-
-            // 1. Leer el valor actual del carrito
-            let cantidadActual = parseInt(localStorage.getItem('carritoVeterinaria')) || 0;
-            
-            // 2. Restarle 1
-            let nuevaCantidad = cantidadActual - 1;
-            
-            // Seguridad: Asegurarnos de que el carrito nunca tenga números negativos (-1, -2)
-            if (nuevaCantidad < 0) {
-                nuevaCantidad = 0;
-            }
-            
-            // 3. Guardar el nuevo número en el localStorage
-            localStorage.setItem('carritoVeterinaria', nuevaCantidad);
-            
-            // 4. Actualizar visualmente los contadores del header al instante
-            carritoCountElements.forEach(el => {
-                el.textContent = nuevaCantidad;
-            });
-
-            // 5. Borrar el producto de la pantalla
-            // El método .closest() busca al "padre" más cercano que tenga esa clase
-            // y .remove() lo destruye del HTML visualmente sin tener que recargar la página
-            const filaProducto = boton.closest('.item-carrito');
-            if (filaProducto) {
-                filaProducto.remove();
-            }
+            handleRemove(this, '.item-carrito');
         });
     });
 
-    // -----------------------------------------------------------
-    // 6. LÓGICA PARA ELIMINAR SOLICITUDES (Cancelar horas)
-    // -----------------------------------------------------------
-    
-    // Buscamos todos los botones de "Cancelar hora" en la página de solicitudes
-    const botonesEliminarSolicitud = document.querySelectorAll('.boton-eliminar-solicitud');
-
-    botonesEliminarSolicitud.forEach(boton => {
+    // Eliminar solicitud
+    document.querySelectorAll('.boton-eliminar-solicitud').forEach(boton => {
         boton.addEventListener('click', function(e) {
             e.preventDefault();
-
-            // 1. Leer el valor actual de solicitudes
-            let cantidadActual = parseInt(localStorage.getItem('solicitudesVeterinaria')) || 0;
-            
-            // 2. Restarle 1
-            let nuevaCantidad = cantidadActual - 1;
-            
-            // Seguridad: Asegurarnos de que las solicitudes nunca bajen de 0
-            if (nuevaCantidad < 0) {
-                nuevaCantidad = 0;
-            }
-            
-            // 3. Guardar el nuevo número en el localStorage
-            localStorage.setItem('solicitudesVeterinaria', nuevaCantidad);
-            
-            // 4. Actualizar visualmente los contadores de "Mi Solicitud" en el header
-            solicitudCountElements.forEach(el => {
-                el.textContent = nuevaCantidad;
-            });
-
-            // 5. BONUS DE UX: Desaparecer la tarjeta de la solicitud de la pantalla suavemente
-            const filaSolicitud = boton.closest('.item-solicitud');
-            if (filaSolicitud) {
-                filaSolicitud.remove();
-            }
+            handleRemove(this, '.item-solicitud');
         });
     });
 
-
+    // ============================================================
+    // 5. INICIALIZACIÓN: Sincronizar contadores al cargar la página
+    // ============================================================
+    
+    // Cuando el usuario entra a CUALQUIER página, buscamos todos los contadores
+    // y les ponemos el valor real que está guardado en localStorage.
+    document.querySelectorAll('.contador-header').forEach(el => {
+        const key = el.dataset.storage;
+        if (key) el.textContent = getStoredCount(key);
+    });
 
 }); // Fin DOMContentLoaded

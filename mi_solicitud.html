@@ -86,10 +86,10 @@
                     <!-- Fila para Mi Solicitud y Carrito en Móvil -->
                     <div class="flex gap-2 mt-1">
                         <a href="mi_solicitud.html" class="w-1/2 flex justify-center items-center gap-1 px-2 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 rounded-lg text-sm font-semibold">
-                            📋 Solicitud (0)
+                            📋 Solicitud (<span class="contador-header" data-storage="solicitudesVeterinaria">0</span>)
                         </a>
                         <a href="carrito.html" class="w-1/2 flex justify-center items-center gap-1 px-2 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 rounded-lg text-sm font-semibold">
-                            🛒 Carrito (0)
+                            🛒 Carrito (<span class="contador-header" data-storage="carritoVeterinaria">0</span>)
                         </a>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                     <ul class="lista-carrito space-y-4" id="lista-solicitud">
                         
                         <!-- Item 1 -->
-                        <li class="item-carrito bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <li class="item-solicitud bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                             <div class="info-item space-y-1">
                                 <h2 class="text-lg font-bold text-slate-900">Consulta general</h2>
                                 <p class="text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-0.5 rounded-full inline-block">Mascota: Firulais</p>
@@ -127,7 +127,7 @@
                         </li>
 
                         <!-- Item 2 -->
-                        <li class="item-carrito bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <li class="item-solicitud bg-white p-4 sm:p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                             <div class="flex items-center gap-4">
                                 <img src="./assets/images/vacuna.png" alt="Vacuna antirrábica" class="w-16 h-16 object-cover rounded-lg bg-slate-50 border border-slate-100 shrink-0">
                                 <div class="info-item space-y-1">
