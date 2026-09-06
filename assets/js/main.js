@@ -192,6 +192,44 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // -----------------------------------------------------------
+    // 6. LÓGICA PARA ELIMINAR SOLICITUDES (Cancelar horas)
+    // -----------------------------------------------------------
+    
+    // Buscamos todos los botones de "Cancelar hora" en la página de solicitudes
+    const botonesEliminarSolicitud = document.querySelectorAll('.boton-eliminar-solicitud');
+
+    botonesEliminarSolicitud.forEach(boton => {
+        boton.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // 1. Leer el valor actual de solicitudes
+            let cantidadActual = parseInt(localStorage.getItem('solicitudesVeterinaria')) || 0;
+            
+            // 2. Restarle 1
+            let nuevaCantidad = cantidadActual - 1;
+            
+            // Seguridad: Asegurarnos de que las solicitudes nunca bajen de 0
+            if (nuevaCantidad < 0) {
+                nuevaCantidad = 0;
+            }
+            
+            // 3. Guardar el nuevo número en el localStorage
+            localStorage.setItem('solicitudesVeterinaria', nuevaCantidad);
+            
+            // 4. Actualizar visualmente los contadores de "Mi Solicitud" en el header
+            solicitudCountElements.forEach(el => {
+                el.textContent = nuevaCantidad;
+            });
+
+            // 5. BONUS DE UX: Desaparecer la tarjeta de la solicitud de la pantalla suavemente
+            const filaSolicitud = boton.closest('.item-solicitud');
+            if (filaSolicitud) {
+                filaSolicitud.remove();
+            }
+        });
+    });
+
 
 
 }); // Fin DOMContentLoaded
