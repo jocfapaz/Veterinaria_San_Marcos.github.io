@@ -47,10 +47,10 @@
                 </a>
 
                 <a href="mi_solicitud.html" class="bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 px-3 py-2 rounded-lg transition-colors flex items-center gap-1 shadow-sm">
-                    📋 Mi solicitud (<span id="solicitud-count">0</span>)
+                    📋 Mi solicitud (<span class="contador-header" data-storage="solicitudesVeterinaria">0</span>)
                 </a>
                 <a href="carrito.html" class="bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 px-3 py-2 rounded-lg transition-colors flex items-center gap-1 shadow-sm">
-                    🛒 Carrito (<span id="carrito-count">0</span>)
+                    🛒 Carrito (<span class="contador-header" data-storage="carritoVeterinaria">0</span>)
                 </a>
             </div>
 
@@ -86,10 +86,10 @@
                     <!-- Fila para Mi Solicitud y Carrito en Móvil -->
                     <div class="flex gap-2 mt-1">
                         <a href="mi_solicitud.html" class="w-1/2 flex justify-center items-center gap-1 px-2 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 rounded-lg text-sm font-semibold">
-                            📋 Solicitud (<span id="solicitud-count">0</span>)
+                            📋 Solicitud (<span class="contador-header" data-storage="solicitudesVeterinaria">0</span>)
                         </a>
                         <a href="carrito.html" class="w-1/2 flex justify-center items-center gap-1 px-2 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 rounded-lg text-sm font-semibold">
-                            🛒 Carrito (<span id="carrito-count">0</span>)
+                            🛒 Carrito (<span class="contador-header" data-storage="carritoVeterinaria">0</span>)
                         </a>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Consultas · Perro / Gato · 30 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$15.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV001">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV001" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -150,7 +150,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Fuera de horario + $10.000.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$25.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV002">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV002" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -166,7 +166,7 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Consultas · Perro / Gato · 20 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$10.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV003">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV003" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -182,7 +182,7 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Consultas · Ave / Conejo · 30 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$18.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV004">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV004" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -199,7 +199,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Se requiere ficha previa.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$20.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV005">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV005" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -216,7 +216,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Obligatoria por ley.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$12.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV006">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV006" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -233,7 +233,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Refuerzo anual.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$18.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV007">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV007" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -250,7 +250,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Refuerzo anual.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$15.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV008">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV008" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -267,7 +267,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Refuerzo anual.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$17.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV009">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV009" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -284,7 +284,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Tos de las perreras.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$14.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV010">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV010" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -300,7 +300,7 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Vacunación · Gato · 10 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$12.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV011">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV011" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -317,7 +317,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye anestesia y hospitalización 24h.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$80.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV012">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV012" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -334,7 +334,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye anestesia.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$60.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV013">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV013" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -351,7 +351,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye anestesia y hospitalización 24h.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$65.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV014">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV014" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -368,7 +368,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye anestesia.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$50.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV015">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV015" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -385,7 +385,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Precio referencial; varía según tamaño.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$120.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV016">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV016" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -401,7 +401,7 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Cirugía · Perra / Gata · 120 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$180.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV017">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV017" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -417,7 +417,7 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Desparasitación · Perro · 5 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$8.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV018">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV018" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -433,7 +433,7 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Desparasitación · Perro · 5 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$9.500</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV019">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV019" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -449,7 +449,7 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Desparasitación · Perro · 5 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$11.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV020">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV020" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -465,7 +465,7 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Desparasitación · Gato · 5 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$8.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV021">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV021" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -482,7 +482,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye aplicación.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$7.500</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV022">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV022" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -499,7 +499,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Resultado en 24 - 48 horas.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$22.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV023">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV023" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -516,7 +516,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Resultado en 24 - 48 horas.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$35.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV024">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV024" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -532,7 +532,7 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Exámenes · Perro / Gato · 20 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$28.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV025">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV025" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -548,7 +548,7 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Exámenes · Perro / Gato · 30 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$45.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV026">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV026" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -564,7 +564,7 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Exámenes · Perro · 20 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$18.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV027">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV027" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -580,7 +580,7 @@
                         <p class="categoria text-xs text-slate-500 mt-1">Otros · Perro / Gato · 15 min</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$5.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV028">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV028" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -597,7 +597,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Requere anestesia.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$55.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV029">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV029" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -614,7 +614,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye registro.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$15.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV030">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV030" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>
@@ -631,7 +631,7 @@
                         <p class="nota text-xs text-amber-600 font-medium mt-2 bg-amber-50 p-2 rounded-lg border border-amber-200">Nota: Incluye monitoreo y alimentación básica.</p>
                         <div class="mt-auto pt-4 flex items-center justify-between">
                             <p class="precio text-xl font-extrabold text-emerald-700">$30.000</p>
-                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV031">Solicitar</button>
+                            <button type="button" class="boton-solicitar bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold py-2 px-4 rounded-xl transition" data-id="SERV031" data-storage="solicitudesVeterinaria">Solicitar</button>
                         </div>
                     </div>
                 </li>

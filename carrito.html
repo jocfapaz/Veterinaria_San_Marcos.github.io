@@ -46,10 +46,10 @@
                 </a>
 
                 <a href="mi_solicitud.html" class="bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 px-3 py-2 rounded-lg transition-colors flex items-center gap-1 shadow-sm">
-                    📋 Mi solicitud (<span id="solicitud-count">0</span>)
+                    📋 Mi solicitud (<span class="contador-header" data-storage="solicitudesVeterinaria">0</span>)
                 </a>
                 <a href="carrito.html" class="bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 px-3 py-2 rounded-lg transition-colors flex items-center gap-1 shadow-sm">
-                    🛒 Carrito (<span id="carrito-count">0</span>)
+                    🛒 Carrito (<span class="contador-header" data-storage="carritoVeterinaria">0</span>)
                 </a>
             </div>
 
@@ -85,10 +85,10 @@
                     <!-- Fila para Mi Solicitud y Carrito en Móvil -->
                     <div class="flex gap-2 mt-1">
                         <a href="mi_solicitud.html" class="w-1/2 flex justify-center items-center gap-1 px-2 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 rounded-lg text-sm font-semibold">
-                            📋 Solicitud (<span id="solicitud-count">0</span>)
+                            📋 Solicitud (<span class="contador-header" data-storage="solicitudesVeterinaria">0</span>)
                         </a>
                         <a href="carrito.html" class="w-1/2 flex justify-center items-center gap-1 px-2 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 rounded-lg text-sm font-semibold">
-                            🛒 Carrito (<span id="carrito-count">0</span>)
+                            🛒 Carrito (<span class="contador-header" data-storage="carritoVeterinaria">0</span>)
                         </a>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                                     </td>
                                     <td class="py-4 px-4 text-right font-semibold text-slate-900 whitespace-nowrap">$4.200</td>
                                     <td class="py-4 px-6 text-center whitespace-nowrap">
-                                        <button type="button" class="btn-eliminar-carrito text-xs font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-colors">
+                                        <button type="button" class="btn-eliminar-carrito text-xs font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-colors" data-storage="carritoVeterinaria">
                                             Eliminar
                                         </button>
                                     </td>
