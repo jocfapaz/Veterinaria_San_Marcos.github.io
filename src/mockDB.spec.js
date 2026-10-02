@@ -9,6 +9,7 @@ import {
   getUserByEmail,
   login,
   getServices,
+  getServiceById,
   getProducts,
   getProductById,
   getProductsByCategory,
@@ -20,6 +21,11 @@ import {
   updateService,
   updateUser,
   cancelRequest,
+  removeFromCart,
+  deleteProduct,
+  deleteService,
+  addProduct,
+  addService,
 } from './mockDB.js'
 
 describe('mockDB', () => {
@@ -194,13 +200,28 @@ describe('mockDB', () => {
     })
 
     it('actualiza datos de un producto', () => {
-      const updated = updateProduct('ME001', { price: 5000 })
-      expect(updated.price).toBe(5000)
-      expect(getProductById('ME001').price).toBe(5000)
+      const newProduct = addProduct({
+        name: 'Producto de prueba',
+        category: 'Antibióticos',
+        presentation: 'Blíster test',
+        price: 1000,
+        image: '/images/test.png',
+      })
+      const updated = updateProduct(newProduct.id, { price: 2000 })
+      expect(updated.price).toBe(2000)
+      expect(getProductById(newProduct.id).price).toBe(2000)
     })
 
     it('actualiza datos de un servicio', () => {
-      const updated = updateService('SERV001', { price: 20000 })
+      const newService = addService({
+        name: 'Servicio de prueba',
+        category: 'Consultas',
+        species: 'Perro / Gato',
+        duration: '30 min',
+        price: 10000,
+        image: '/images/test.png',
+      })
+      const updated = updateService(newService.id, { price: 20000 })
       expect(updated.price).toBe(20000)
     })
 
@@ -221,6 +242,44 @@ describe('mockDB', () => {
       const cancelled = cancelRequest(req.id)
       expect(cancelled.status).toBe('cancelled')
       expect(getRequests()[0].status).toBe('cancelled')
+    })
+  })
+
+  describe('DELETE - Eliminaciones', () => {
+    it('elimina un producto del carrito', () => {
+      addToCart('ME001', 1)
+      addToCart('ME002', 1)
+      removeFromCart('ME001')
+
+      expect(getCart().length).toBe(1)
+      expect(getCart()[0].productId).toBe('ME002')
+    })
+
+    it('elimina un producto del catálogo', () => {
+      const newProduct = addProduct({
+        name: 'Producto a eliminar',
+        category: 'Antibióticos',
+        presentation: 'Blíster test',
+        price: 1000,
+        image: '/images/test.png',
+      })
+      const deleted = deleteProduct(newProduct.id)
+      expect(deleted).toBe(true)
+      expect(getProductById(newProduct.id)).toBeUndefined()
+    })
+
+    it('elimina un servicio del catálogo', () => {
+      const newService = addService({
+        name: 'Servicio a eliminar',
+        category: 'Consultas',
+        species: 'Perro / Gato',
+        duration: '30 min',
+        price: 10000,
+        image: '/images/test.png',
+      })
+      const deleted = deleteService(newService.id)
+      expect(deleted).toBe(true)
+      expect(getServiceById(newService.id)).toBeUndefined()
     })
   })
 })
