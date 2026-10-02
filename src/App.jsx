@@ -7,8 +7,8 @@ import NosotrosPage from './pages/NosotrosPage'
 import ContactoPage from './pages/ContactoPage'
 import LoginPage from './pages/LoginPage'
 import RegistroPage from './pages/RegistroPage'
-
-
+import BlogPage from './pages/BlogPage'
+import BlogDetallePage from './pages/BlogDetallePage'
 
 export default function App() {
   return (
@@ -19,6 +19,8 @@ export default function App() {
         <Route path="/servicios" element={<ServiciosPage />} />
         <Route path="/contacto" element={<ContactoPage />} />
         <Route path="/tienda" element={<TiendaPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:slug" element={<BlogDetallePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/registro" element={<RegistroPage />} />
         <Route
