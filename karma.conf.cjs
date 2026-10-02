@@ -1,70 +1,73 @@
-// Karma configuration
-// Generated on Fri Oct 02 2026 10:58:11 GMT-0300 (hora de verano de Chile)
+// karma.conf.cjs
+// Configuración de Karma: abre un navegador real, carga las pruebas de Jasmine y muestra resultados.
+// Es .cjs porque Karma lee su configuración con require() (CommonJS) y el proyecto es "type": "module".
+module.exports = function (config) {
+  const coverage = process.argv.includes('--coverage')
 
-module.exports = function(config) {
   config.set({
-
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
-
-
-    // frameworks to use
-    // available frameworks: https://www.npmjs.com/search?q=keywords:karma-adapter
-    frameworks: ['jasmine'],
-
-
-    // list of files / patterns to load in the browser
+    frameworks: ['jasmine', 'webpack'],
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-webpack'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-junit-reporter'),
+      ...(coverage ? [require('karma-coverage')] : []),
+    ],
     files: [
-      'src/**/*.spec.jsx',
-      'src/**/*.test.jsx'
+      'src/test/setup.js',
+      { pattern: 'src/**/*.spec.js', watched: false },
+      { pattern: 'src/**/*.spec.jsx', watched: false },
     ],
-
-
-    // list of files / patterns to exclude
-    exclude: [
-    ],
-
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
+      'src/test/setup.js': ['webpack'],
+      'src/**/*.spec.js': ['webpack'],
+      'src/**/*.spec.jsx': ['webpack'],
     },
-
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://www.npmjs.com/search?q=keywords:karma-reporter
-    reporters: ['progress'],
-
-
-    // web server port
-    port: 9876,
-
-
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
-
-
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
-
-
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
-
-
-    // start these browsers
-    // available browser launchers: https://www.npmjs.com/search?q=keywords:karma-launcher
-    browsers: ['Chrome'],
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
-
-    // Concurrency level
-    // how many browser instances should be started simultaneously
-    concurrency: Infinity
+    webpack: {
+      mode: 'development',
+      devtool: 'inline-source-map',
+      resolve: { extensions: ['.js', '.jsx'] },
+      module: {
+        rules: [
+          {
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            type: 'javascript/auto',
+            use: {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                configFile: false,
+                presets: [['@babel/preset-react', { runtime: 'automatic' }]],
+                plugins: coverage
+                  ? [['istanbul', { exclude: ['**/*.spec.{js,jsx}', 'src/test/**'] }]]
+                  : [],
+              },
+            },
+          },
+        ],
+      },
+    },
+    reporters: ['progress', 'kjhtml', 'junit', ...(coverage ? ['coverage'] : [])],
+    junitReporter: {
+      outputDir: 'test-results',
+      useBrowserName: false,
+      outputFile: 'junit.xml',
+    },
+    coverageReporter: {
+      dir: 'coverage',
+      subdir: '.',
+      reporters: [{ type: 'text' }, { type: 'html' }, { type: 'lcovonly' }],
+      check: {
+        global: { statements: 80, branches: 80, functions: 80, lines: 80 },
+      },
+    },
+    client: { jasmine: { random: true }, clearContext: false },
+    browsers: ['ChromeHeadless'],
+    customLaunchers: {
+      ChromeHeadlessCI: { base: 'ChromeHeadless', flags: ['--no-sandbox'] },
+    },
+    restartOnFileChange: true,
   })
 }
