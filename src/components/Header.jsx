@@ -1,8 +1,15 @@
 import { useState } from 'react'
-import { Link, NavLink } from 'react-router'
+import { Link, NavLink, useNavigate } from 'react-router'
+import { useAuth } from '../contexts/AuthContext.jsx'
+import { useCart } from '../contexts/CartContext.jsx'
+import { useRequests } from '../contexts/RequestContext.jsx'
 
-export default function Header({ cartCount = 0, requestCount = 0 }) {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { currentUser, logout } = useAuth()
+  const { cartCount } = useCart()
+  const { requestCount } = useRequests()
+  const navigate = useNavigate()
 
   const navLinks = [
     { label: 'Inicio', to: '/' },
@@ -12,6 +19,11 @@ export default function Header({ cartCount = 0, requestCount = 0 }) {
     { label: 'Contacto', to: '/contacto' },
     { label: 'Tienda', to: '/tienda' },
   ]
+
+  function handleLogout() {
+    logout()
+    navigate('/')
+  }
 
   const linkBase =
     'block px-3 py-2 rounded-md text-slate-700 hover:text-emerald-600 hover:bg-emerald-50'
@@ -29,7 +41,6 @@ export default function Header({ cartCount = 0, requestCount = 0 }) {
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               strokeLinecap="round"
@@ -61,21 +72,35 @@ export default function Header({ cartCount = 0, requestCount = 0 }) {
         </nav>
 
         <div className="hidden md:flex items-center gap-3 text-sm font-semibold">
-          <Link
-            to="/login"
-            title="Iniciar sesión / Registrarse"
-            className="flex items-center justify-center w-10 h-10 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg shadow-sm transition-all mr-1"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              fill="#ffffff"
-              viewBox="0 0 256 256"
+          {currentUser ? (
+            <div className="flex items-center gap-2">
+              <span className="text-slate-700">
+                Hola, {currentUser.firstName}
+              </span>
+              <button
+                onClick={handleLogout}
+                className="text-rose-600 hover:text-rose-700 px-2 py-1"
+              >
+                Salir
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              title="Iniciar sesión / Registrarse"
+              className="flex items-center justify-center w-10 h-10 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg shadow-sm transition-all mr-1"
             >
-              <path d="M239.71,125l-16.42-88a16,16,0,0,0-19.61-12.58l-.31.09L150.85,40h-45.7L52.63,24.56l-.31-.09A16,16,0,0,0,32.71,37.05L16.29,125a15.77,15.77,0,0,0,9.12,17.52A16.26,16.26,0,0,0,32.12,144,15.48,15.48,0,0,0,40,141.84V184a40,40,0,0,0,40,40h96a40,40,0,0,0,40-40V141.85a15.5,15.5,0,0,0,7.87,2.16,16.31,16.31,0,0,0,6.72-1.47A15.77,15.77,0,0,0,239.71,125ZM32,128h0L48.43,40,90.5,52.37Zm144,80H136V195.31l13.66-13.65a8,8,0,0,0-11.32-11.32L128,180.69l-10.34-10.35a8,8,0,0,0-11.32,11.32L120,195.31V208H80a24,24,0,0,1-24-24V123.11L107.92,56h40.15L200,123.11V184A24,24,0,0,1,176,208Zm48-80L165.5,52.37,207.57,40,224,128ZM104,140a12,12,0,1,1-12-12A12,12,0,0,1,104,140Zm72,0a12,12,0,1,1-12-12A12,12,0,0,1,176,140Z" />
-            </svg>
-          </Link>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 256 256"
+              >
+                <path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-55.2a68,68,0,1,0-73.66,0C63.78,166.79,40.31,185.67,25.08,212a8,8,0,1,0,13.85,8c16-27.81,44.49-50.06,81.07-64.37a68,68,0,0,0,73.66,0c36.58,14.31,65.06,36.56,81.07,64.37a8,8,0,1,0,13.85-8ZM68,96a52,52,0,1,1,52,52A52.06,52.06,0,0,1,68,96Z" />
+              </svg>
+            </Link>
+          )}
 
           <Link
             to="/mi-solicitud"
@@ -129,6 +154,49 @@ export default function Header({ cartCount = 0, requestCount = 0 }) {
                 {link.label}
               </NavLink>
             ))}
+
+            <hr className="border-slate-100 my-2" />
+
+            {currentUser ? (
+              <>
+                <span className="block px-3 py-2 text-slate-500 text-sm">
+                  {currentUser.firstName} {currentUser.lastName}
+                </span>
+                <button
+                  onClick={() => {
+                    handleLogout()
+                    setIsMenuOpen(false)
+                  }}
+                  className="block w-full text-left px-3 py-2 text-rose-600 hover:bg-rose-50 rounded-md"
+                >
+                  Cerrar sesión
+                </button>
+              </>
+            ) : (
+              <NavLink
+                to="/login"
+                className={linkBase}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Iniciar sesión / Registrarse
+              </NavLink>
+            )}
+
+            <NavLink
+              to="/mi-solicitud"
+              className={linkBase}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              📋 Mi solicitud ({requestCount})
+            </NavLink>
+
+            <NavLink
+              to="/carrito"
+              className={linkBase}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              🛒 Carrito ({cartCount})
+            </NavLink>
           </div>
         </div>
       )}

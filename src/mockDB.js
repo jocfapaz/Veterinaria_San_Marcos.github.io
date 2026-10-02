@@ -26,7 +26,7 @@ export const PRODUCT_CATEGORIES = [
 
 // ─── DATOS INICIALES ──────────────────────────────────────────────────────────
 
-const services = [
+const initialServices = [
   { id: 'SERV001', name: 'Consulta general', category: 'Consultas', species: 'Perro / Gato', duration: '30 min', price: 15000, image: '/images/veterinario_gato.png', note: '' },
   { id: 'SERV002', name: 'Consulta urgencia', category: 'Consultas', species: 'Perro / Gato', duration: '30 min', price: 25000, image: '/images/consulta_emergencia.png', note: 'Fuera de horario +$10.000' },
   { id: 'SERV003', name: 'Control postoperatorio', category: 'Consultas', species: 'Perro / Gato', duration: '20 min', price: 10000, image: '/images/post_operatorio.png', note: '' },
@@ -60,7 +60,9 @@ const services = [
   { id: 'SERV031', name: 'Hospitalización (por día)', category: 'Otros', species: 'Perro / Gato', duration: '24 hrs', price: 30000, image: '/images/hospitalizacion.png', note: 'Incluye monitoreo y alimentación básica' },
 ]
 
-const products = [
+let services = [...initialServices]
+
+const initialProducts = [
   { id: 'ME001', name: 'Amoxibay 250mg', category: 'Antibióticos', presentation: 'Blíster 10 comp.', price: 4200, image: '/images/amoxilina.png', discount: 0 },
   { id: 'ME002', name: 'Enrox 50mg', category: 'Antibióticos', presentation: 'Blíster 10 comp.', price: 6800, image: '/images/enrox.png', discount: 0 },
   { id: 'ME003', name: 'Metrobay 250mg', category: 'Antibióticos', presentation: 'Blíster 10 comp.', price: 3900, image: '/images/metrocare.png', discount: 0 },
@@ -85,7 +87,9 @@ const products = [
   { id: 'ME022', name: 'Condrovet forte', category: 'Suplementos', presentation: 'Blíster 30 comp.', price: 14500, image: '/images/condro.png', discount: 0 },
 ]
 
-const users = [
+let products = [...initialProducts]
+
+const initialUsers = [
   {
     id: 'U001',
     email: 'admin@veterinariasanmarcos.cl',
@@ -113,6 +117,8 @@ const users = [
     pets: [{ name: 'Rex', species: 'Perro', breed: 'Labrador' }],
   },
 ]
+
+let users = [...initialUsers]
 
 // ─── ESTADO DINÁMICO ──────────────────────────────────────────────────────────
 
@@ -358,6 +364,9 @@ export function getUserHistory(userId) {
 // ─── RESET (útil para pruebas) ────────────────────────────────────────────────
 
 export function resetDB() {
+  services = [...initialServices]
+  products = [...initialProducts]
+  users = [...initialUsers]
   cart = []
   requests = []
   orders = []
