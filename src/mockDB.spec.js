@@ -15,6 +15,11 @@ import {
   getProductsOnSale,
   createOrder,
   getUserHistory,
+  updateCartItem,
+  updateProduct,
+  updateService,
+  updateUser,
+  cancelRequest,
 } from './mockDB.js'
 
 describe('mockDB', () => {
@@ -169,6 +174,53 @@ describe('mockDB', () => {
 
     it('rechaza credenciales inválidas', () => {
       expect(login('admin@veterinariasanmarcos.cl', 'wrong')).toBeNull()
+    })
+  })
+
+  describe('UPDATE - Actualizaciones', () => {
+    it('actualiza la cantidad de un item en el carrito', () => {
+      addToCart('ME001', 1)
+      updateCartItem('ME001', 5)
+      const cart = getCart()
+
+      expect(cart[0].quantity).toBe(5)
+    })
+
+    it('elimina el item del carrito si la cantidad es 0', () => {
+      addToCart('ME001', 1)
+      updateCartItem('ME001', 0)
+
+      expect(getCart().length).toBe(0)
+    })
+
+    it('actualiza datos de un producto', () => {
+      const updated = updateProduct('ME001', { price: 5000 })
+      expect(updated.price).toBe(5000)
+      expect(getProductById('ME001').price).toBe(5000)
+    })
+
+    it('actualiza datos de un servicio', () => {
+      const updated = updateService('SERV001', { price: 20000 })
+      expect(updated.price).toBe(20000)
+    })
+
+    it('actualiza datos de un usuario', () => {
+      const updated = updateUser('U002', { phone: '+56 9 9999 9999' })
+      expect(updated.phone).toBe('+56 9 9999 9999')
+    })
+
+    it('cancela una solicitud médica', () => {
+      const req = createRequest({
+        userId: 'U002',
+        serviceId: 'SERV001',
+        petName: 'Rex',
+        species: 'Perro',
+        requestedDate: '2026-10-15',
+      })
+
+      const cancelled = cancelRequest(req.id)
+      expect(cancelled.status).toBe('cancelled')
+      expect(getRequests()[0].status).toBe('cancelled')
     })
   })
 })
