@@ -5,6 +5,9 @@ import ServiciosPage from './pages/ServiciosPage'
 import TiendaPage from './pages/TiendaPage'
 import NosotrosPage from './pages/NosotrosPage'
 import ContactoPage from './pages/ContactoPage'
+import LoginPage from './pages/LoginPage'
+import RegistroPage from './pages/RegistroPage'
+
 
 
 export default function App() {
@@ -16,6 +19,8 @@ export default function App() {
         <Route path="/servicios" element={<ServiciosPage />} />
         <Route path="/contacto" element={<ContactoPage />} />
         <Route path="/tienda" element={<TiendaPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/registro" element={<RegistroPage />} />
         <Route
           path="*"
           element={
