@@ -1,36 +1,34 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 import {
   getServices,
   getServicesByCategory,
   SERVICE_CATEGORIES,
-  createRequest,
 } from '../mockDB.js'
 import ServiceCard from '../components/ServiceCard'
 import Button from '../components/Button'
+import PageHeader from '../components/PageHeader'
 
 export default function ServiciosPage() {
   const [selectedCategory, setSelectedCategory] = useState('Todas')
+  const navigate = useNavigate()
   const services =
     selectedCategory === 'Todas'
       ? getServices()
       : getServicesByCategory(selectedCategory)
 
   function handleAddToRequests(serviceId) {
-    createRequest({
-      userId: 'U002',
-      serviceId,
-      petName: 'Mascota',
-      species: 'Perro',
-      requestedDate: new Date().toISOString().split('T')[0],
-    })
-    alert('Servicio agregado a tus solicitudes')
+    navigate(`/servicios/${serviceId}`)
   }
 
   const categories = ['Todas', ...SERVICE_CATEGORIES]
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Nuestros servicios</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
+      <PageHeader
+        title="Nuestros servicios"
+        subtitle="Atención médica veterinaria profesional para todas las especies."
+      />
 
       <div className="flex flex-wrap gap-2">
         {categories.map((category) => (

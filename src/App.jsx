@@ -9,6 +9,11 @@ import LoginPage from './pages/LoginPage'
 import RegistroPage from './pages/RegistroPage'
 import BlogPage from './pages/BlogPage'
 import BlogDetallePage from './pages/BlogDetallePage'
+import ServicioDetallePage from './pages/ServicioDetallePage'
+import ProductoDetallePage from './pages/ProductoDetallePage'
+import CarritoPage from './pages/CarritoPage'
+import MiSolicitudPage from './pages/MiSolicitudPage'
+import ProtectedRoute from './contexts/ProtectedRoute'
 
 export default function App() {
   return (
@@ -17,12 +22,30 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="/nosotros" element={<NosotrosPage />} />
         <Route path="/servicios" element={<ServiciosPage />} />
+        <Route path="/servicios/:id" element={<ServicioDetallePage />} />
         <Route path="/contacto" element={<ContactoPage />} />
         <Route path="/tienda" element={<TiendaPage />} />
+        <Route path="/tienda/:id" element={<ProductoDetallePage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogDetallePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/registro" element={<RegistroPage />} />
+        <Route
+          path="/carrito"
+          element={
+            <ProtectedRoute>
+              <CarritoPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mi-solicitud"
+          element={
+            <ProtectedRoute>
+              <MiSolicitudPage />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="*"
           element={
