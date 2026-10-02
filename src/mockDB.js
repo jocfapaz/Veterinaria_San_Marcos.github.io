@@ -348,6 +348,13 @@ export function createOrder({ userId, items, shippingAddress, instructions = '' 
   return order
 }
 
+export function getUserHistory(userId) {
+  return {
+    orders: getUserOrders(userId),
+    requests: getUserRequests(userId),
+  }
+}
+
 // ─── RESET (útil para pruebas) ────────────────────────────────────────────────
 
 export function resetDB() {

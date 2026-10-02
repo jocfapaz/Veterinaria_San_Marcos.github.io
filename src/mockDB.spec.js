@@ -8,11 +8,85 @@ import {
   registerUser,
   getUserByEmail,
   login,
+  getServices,
+  getProducts,
+  getProductById,
+  getProductsByCategory,
+  getProductsOnSale,
+  createOrder,
+  getUserHistory,
 } from './mockDB.js'
 
 describe('mockDB', () => {
   beforeEach(() => {
     resetDB()
+  })
+
+  describe('READ - Lectura de datos', () => {
+    it('obtiene el catálogo completo de servicios', () => {
+      const services = getServices()
+      expect(services.length).toBe(31)
+      expect(services[0].id).toBe('SERV001')
+    })
+
+    it('obtiene el catálogo completo de productos', () => {
+      const products = getProducts()
+      expect(products.length).toBe(22)
+    })
+
+    it('encuentra un producto por su ID', () => {
+      const product = getProductById('ME004')
+      expect(product.name).toBe('Nexgard')
+      expect(product.discount).toBe(20)
+    })
+
+    it('devuelve undefined si el producto no existe', () => {
+      expect(getProductById('NO_EXISTE')).toBeUndefined()
+    })
+
+    it('filtra productos por categoría', () => {
+      const antibiotics = getProductsByCategory('Antibióticos')
+      expect(antibiotics.length).toBe(3)
+    })
+
+    it('devuelve productos en oferta', () => {
+      const onSale = getProductsOnSale()
+      expect(onSale.length).toBeGreaterThan(0)
+      expect(onSale.every(p => p.discount > 0)).toBe(true)
+    })
+
+    it('lee el contenido del carrito', () => {
+      addToCart('ME001', 2)
+      addToCart('ME004', 1)
+
+      const cart = getCart()
+      expect(cart.length).toBe(2)
+      expect(cart[0].quantity).toBe(2)
+    })
+
+    it('lee el historial de un usuario (órdenes y solicitudes)', () => {
+      // Crear una solicitud
+      createRequest({
+        userId: 'U002',
+        serviceId: 'SERV001',
+        petName: 'Rex',
+        species: 'Perro',
+        requestedDate: '2026-10-15',
+      })
+
+      // Crear una orden
+      createOrder({
+        userId: 'U002',
+        items: [{ productId: 'ME001', quantity: 1 }],
+        shippingAddress: 'Av. Siempre Viva 123',
+      })
+
+      const history = getUserHistory('U002')
+
+      expect(history.requests.length).toBe(1)
+      expect(history.orders.length).toBe(1)
+      expect(history.orders[0].total).toBe(4200)
+    })
   })
 
   describe('CREATE - Carrito', () => {
