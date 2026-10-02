@@ -4,6 +4,8 @@ import Home from './pages/Home'
 import ServiciosPage from './pages/ServiciosPage'
 import TiendaPage from './pages/TiendaPage'
 import NosotrosPage from './pages/NosotrosPage'
+import ContactoPage from './pages/ContactoPage'
+
 
 export default function App() {
   return (
@@ -12,6 +14,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="/nosotros" element={<NosotrosPage />} />
         <Route path="/servicios" element={<ServiciosPage />} />
+        <Route path="/contacto" element={<ContactoPage />} />
         <Route path="/tienda" element={<TiendaPage />} />
         <Route
           path="*"
