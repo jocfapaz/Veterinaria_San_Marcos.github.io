@@ -120,6 +120,53 @@ const initialUsers = [
 
 let users = [...initialUsers]
 
+// ─── BLOG ─────────────────────────────────────────────────────────────────────
+
+const initialPosts = [
+  {
+    id: 'POST001',
+    slug: 'calendario-vacunacion-cachorros',
+    title: 'Calendario de vacunación para cachorros',
+    category: 'Salud & Prevención',
+    excerpt: 'Qué vacunas necesita tu cachorro y en qué momento aplicarlas para garantizar su inmunidad.',
+    image: '/images/calendario_vacunas.png',
+    alt: 'Calendario de vacunación',
+    date: '2026-09-15',
+    content: [
+      {
+        type: 'paragraph',
+        text: 'Las vacunas son clave para proteger a tu cachorro de enfermedades graves. En Veterinaria San Marcos recomendamos iniciar el plan de vacunación entre las 6 y 8 semanas de vida, con refuerzos periódicos según la vacuna (séxtuple, antirrábica, Bordetella) hasta completar el esquema anual.',
+      },
+      {
+        type: 'callout',
+        text: 'Puedes solicitar una hora de vacunación directamente desde la sección de Servicios de nuestro sitio.',
+      },
+    ],
+  },
+  {
+    id: 'POST002',
+    slug: 'signos-dolor-mascota',
+    title: 'Cómo identificar signos de dolor en tu mascota',
+    category: 'Bienestar Animal',
+    excerpt: 'Señales comportamentales y físicas sutiles que pueden indicar que tu mascota necesita una consulta urgente.',
+    image: '/images/signos_dolor.png',
+    alt: 'Veterinario examinando a un gato',
+    date: '2026-09-22',
+    content: [
+      {
+        type: 'paragraph',
+        text: 'Perros y gatos suelen ocultar el dolor de forma instintiva. Cambios en el apetito, menor actividad, posturas inusuales o irritabilidad al ser tocados pueden ser señales de alerta.',
+      },
+      {
+        type: 'callout',
+        text: 'Si notas alguno de estos signos, te recomendamos agendar una consulta general lo antes posible desde la sección de Servicios.',
+      },
+    ],
+  },
+]
+
+let posts = [...initialPosts]
+
 // ─── ESTADO DINÁMICO ──────────────────────────────────────────────────────────
 
 let cart = []
@@ -206,6 +253,12 @@ export function deleteProduct(id) {
   products.splice(index, 1)
   return true
 }
+
+// ─── READ: BLOG ─────────────────────────────────────────────────────────────────
+
+export const getPosts = () => [...posts]
+export const getPostById = (id) => posts.find(p => p.id === id)
+export const getPostBySlug = (slug) => posts.find(p => p.slug === slug)
 
 // ─── READ: USUARIOS ───────────────────────────────────────────────────────────
 
@@ -367,6 +420,7 @@ export function resetDB() {
   services = [...initialServices]
   products = [...initialProducts]
   users = [...initialUsers]
+  posts = [...initialPosts]
   cart = []
   requests = []
   orders = []

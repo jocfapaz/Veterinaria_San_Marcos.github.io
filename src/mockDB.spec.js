@@ -26,6 +26,8 @@ import {
   deleteService,
   addProduct,
   addService,
+  getPosts,
+  getPostBySlug,
 } from './mockDB.js'
 
 describe('mockDB', () => {
@@ -280,6 +282,24 @@ describe('mockDB', () => {
       const deleted = deleteService(newService.id)
       expect(deleted).toBe(true)
       expect(getServiceById(newService.id)).toBeUndefined()
+    })
+  })
+
+  describe('READ - Blog', () => {
+    it('obtiene el listado completo de artículos', () => {
+      const posts = getPosts()
+      expect(posts.length).toBe(2)
+      expect(posts[0].slug).toBe('calendario-vacunacion-cachorros')
+    })
+
+    it('encuentra un artículo por su slug', () => {
+      const post = getPostBySlug('signos-dolor-mascota')
+      expect(post).toBeTruthy()
+      expect(post.title).toBe('Cómo identificar signos de dolor en tu mascota')
+    })
+
+    it('devuelve undefined si el slug no existe', () => {
+      expect(getPostBySlug('no-existe')).toBeUndefined()
     })
   })
 })
