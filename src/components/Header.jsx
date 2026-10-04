@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import { Link, NavLink, useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../contexts/AuthContext.jsx'
 import { useCart } from '../contexts/CartContext.jsx'
 import { useRequests } from '../contexts/RequestContext.jsx'
+import Navbar from './Navbar'
+import MobileMenu from './MobileMenu'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -11,23 +13,10 @@ export default function Header() {
   const { requestCount } = useRequests()
   const navigate = useNavigate()
 
-  const navLinks = [
-    { label: 'Inicio', to: '/' },
-    { label: 'Servicios', to: '/servicios' },
-    { label: 'Nosotros', to: '/nosotros' },
-    { label: 'Blog', to: '/blog' },
-    { label: 'Contacto', to: '/contacto' },
-    { label: 'Tienda', to: '/tienda' },
-  ]
-
   function handleLogout() {
     logout()
     navigate('/')
   }
-
-  const linkBase =
-    'block px-3 py-2 rounded-md text-slate-700 hover:text-emerald-600 hover:bg-emerald-50'
-  const linkActive = 'text-emerald-600 bg-emerald-50 border-l-4 border-emerald-600'
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-100">
@@ -52,24 +41,7 @@ export default function Header() {
           <span className="truncate">Veterinaria San Marcos</span>
         </Link>
 
-        <nav className="hidden md:flex">
-          <ul className="flex space-x-6 text-sm font-medium text-slate-600">
-            {navLinks.map((link) => (
-              <li key={link.to}>
-                <NavLink
-                  to={link.to}
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'text-emerald-600 font-semibold border-b-2 border-emerald-600 pb-1'
-                      : 'hover:text-emerald-600 transition-colors'
-                  }
-                >
-                  {link.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <Navbar />
 
         <div className="hidden md:flex items-center gap-3 text-sm font-semibold">
           {currentUser ? (
@@ -78,6 +50,7 @@ export default function Header() {
                 Hola, {currentUser.firstName}
               </span>
               <button
+                type="button"
                 onClick={handleLogout}
                 className="text-rose-600 hover:text-rose-700 px-2 py-1"
               >
@@ -140,65 +113,7 @@ export default function Header() {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white border-t border-slate-100 shadow-lg pb-4 z-50">
-          <div className="px-4 py-3 space-y-2 font-medium">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                className={({ isActive }) =>
-                  isActive ? `${linkBase} ${linkActive}` : linkBase
-                }
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </NavLink>
-            ))}
-
-            <hr className="border-slate-100 my-2" />
-
-            {currentUser ? (
-              <>
-                <span className="block px-3 py-2 text-slate-500 text-sm">
-                  {currentUser.firstName} {currentUser.lastName}
-                </span>
-                <button
-                  onClick={() => {
-                    handleLogout()
-                    setIsMenuOpen(false)
-                  }}
-                  className="block w-full text-left px-3 py-2 text-rose-600 hover:bg-rose-50 rounded-md"
-                >
-                  Cerrar sesión
-                </button>
-              </>
-            ) : (
-              <NavLink
-                to="/login"
-                className={linkBase}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Iniciar sesión / Registrarse
-              </NavLink>
-            )}
-
-            <NavLink
-              to="/mi-solicitud"
-              className={linkBase}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              📋 Mi solicitud ({requestCount})
-            </NavLink>
-
-            <NavLink
-              to="/carrito"
-              className={linkBase}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              🛒 Carrito ({cartCount})
-            </NavLink>
-          </div>
-        </div>
+        <MobileMenu onClose={() => setIsMenuOpen(false)} />
       )}
     </header>
   )

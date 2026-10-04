@@ -25,7 +25,7 @@ export function Carrito (){
     return(
         <div className="flex flex-col min-h-screen font-sans bg-slate-50 text-slate-800 antialiased">
       {/* Componente Header */}
-      <Header />
+      <Header activo="" />
 
       {/* Contenido principal del Carrito */}
       <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
