@@ -1,20 +1,14 @@
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
+import { Link } from 'react-router'
+import veterinariaImg from '../assets/images/veterinaria.png'
+import cortePeloImg from '../assets/images/corte_pelo.png'
+import vacunaImg from '../assets/images/vacuna.png'
+import desparasitacionImg from '../assets/images/desparacitacion_perro_cachorro.png'
+import limpiezaDentalImg from '../assets/images/limpieza_dental.png'
 
-// Importación de imágenes desde la carpeta assets
-import veterinariaImg from '../assets/images/veterinaria.png';
-import cortePeloImg from '../assets/images/corte_pelo.png';
-import vacunaImg from '../assets/images/vacuna.png';
-import desparasitacionImg from '../assets/images/desparacitacion_perro_cachorro.png';
-import limpiezaDentalImg from '../assets/images/limpieza_dental.png';
-
-export function HomePage() {
+export default function Home() {
   return (
     <div className="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
-      {/* Componente Header */}
-      <Header />
-
-      {/* Contenido principal de la página de inicio */}
+      {/* Contenido principal de la pǭgina de inicio */}
       <main className="max-w-7xl mx-auto px-4 py-8 space-y-12 flex-grow">
 
         {/* BANNER/Hero*/}
@@ -28,18 +22,18 @@ export function HomePage() {
               de experiencia atendiendo perros, gatos, aves y conejos.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:space-x-4 pt-2">
-              <a 
-                href="/servicios" 
+              <Link
+                to="/servicios"
                 className="text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-3 md:py-2 rounded-lg shadow-sm transition-all text-center"
               >
                 Ver servicios
-              </a>
-              <a 
-                href="/registro" 
+              </Link>
+              <Link
+                to="/registro"
                 className="text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-3 md:py-2 rounded-lg shadow-sm transition-all text-center"
               >
                 Solicitar hora
-              </a>
+              </Link>
             </div>
           </div>
           <div className="overflow-hidden rounded-lg shadow mt-4 md:mt-0">
@@ -123,8 +117,6 @@ export function HomePage() {
 
       </main>
 
-      {/* Componente Footer */}
-      <Footer />
     </div>
-  );
+  )
 }

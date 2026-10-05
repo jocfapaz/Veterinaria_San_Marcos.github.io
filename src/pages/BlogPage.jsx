@@ -1,12 +1,9 @@
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
-import calendarioVacunasImg from '../assets/images/calendario_vacunas.png';
-import signosDolorImg from '../assets/images/signos_dolor.png';
-export function Blogs (){
-    return(
-        <div className="flex flex-col min-h-screen font-sans bg-slate-50 text-slate-800 antialiased">
-      {/* Componente Header */}
-      <Header activo="blog" />
+import { Link } from 'react-router'
+import calendarioVacunasImg from '../assets/images/calendario_vacunas.png'
+import signosDolorImg from '../assets/images/signos_dolor.png'
+export default function BlogPage() {
+  return (
+    <div className="flex flex-col min-h-screen font-sans bg-slate-50 text-slate-800 antialiased">
 
       {/* Contenido principal del Blog */}
       <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
@@ -42,12 +39,12 @@ export function Blogs (){
                     Qué vacunas necesita tu cachorro y en qué momento aplicarlas para garantizar su inmunidad.
                   </p>
                 </div>
-                <a 
-                  href="/blog/calendario-vacunacion" 
+                <Link
+                  to="/blog/calendario-vacunacion"
                   className="boton inline-flex items-center justify-center py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded-lg shadow-sm transition-colors self-start"
                 >
-                  Leer más
-                </a>
+                  Leer mǭs
+                </Link>
               </div>
             </article>
 
@@ -72,20 +69,18 @@ export function Blogs (){
                     Señales comportamentales y físicas sutiles que pueden indicar que tu mascota necesita una consulta urgente.
                   </p>
                 </div>
-                <a 
-                  href="/blog/signos-de-dolor" 
+                <Link
+                  to="/blog/signos-de-dolor"
                   className="boton inline-flex items-center justify-center py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded-lg shadow-sm transition-colors self-start"
                 >
-                  Leer más
-                </a>
+                  Leer mǭs
+                </Link>
               </div>
             </article>
           </div>
         </section>
       </main>
 
-      {/* Componente Footer */}
-      <Footer />
     </div>
-    );
+  )
 }

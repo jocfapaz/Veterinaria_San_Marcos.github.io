@@ -35,9 +35,6 @@ export default function TiendaPage() {
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 font-sans text-slate-800 antialiased">
 
-      {/* Componente Header */}
-      <Header activo="tienda" />
-
       {/* Contenido Principal */}
       <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         <section className="space-y-8">
@@ -888,8 +885,6 @@ export default function TiendaPage() {
         </section>
       </main>
 
-      {/* Componente Footer */}
-      <Footer />
     </div>
   )
 }
