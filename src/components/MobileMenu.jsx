@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router'
 import { useAuth } from '../contexts/AuthContext.jsx'
 import { useCart } from '../contexts/CartContext.jsx'
 import { useRequests } from '../contexts/RequestContext.jsx'
-import { NAV_LINKS } from './Navbar'
+import { NAV_LINKS } from '../constants/navLinks'
 
 const linkBase =
   'block px-3 py-2 rounded-md text-slate-700 hover:text-emerald-600 hover:bg-emerald-50'

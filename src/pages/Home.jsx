@@ -1,9 +1,4 @@
 import { Link } from 'react-router'
-import veterinariaImg from '../assets/images/veterinaria.png'
-import cortePeloImg from '../assets/images/corte_pelo.png'
-import vacunaImg from '../assets/images/vacuna.png'
-import desparasitacionImg from '../assets/images/desparacitacion_perro_cachorro.png'
-import limpiezaDentalImg from '../assets/images/limpieza_dental.png'
 
 export default function Home() {
   return (
@@ -38,7 +33,7 @@ export default function Home() {
           </div>
           <div className="overflow-hidden rounded-lg shadow mt-4 md:mt-0">
             <img 
-              src={veterinariaImg} 
+              src={"/images/veterinaria.png"} 
               alt="Imagen veterinaria San Marcos" 
               className="w-full h-auto object-cover"
             />
@@ -55,7 +50,7 @@ export default function Home() {
             {/* Tarjeta 1 */}
             <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
               <img 
-                src={cortePeloImg} 
+                src={"/images/corte_pelo.png"} 
                 alt="Consulta general" 
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
@@ -67,7 +62,7 @@ export default function Home() {
             {/* Tarjeta 2 */}
             <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
               <img 
-                src={vacunaImg} 
+                src={"/images/vacuna.png"} 
                 alt="Vacuna antirrábica" 
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
@@ -79,7 +74,7 @@ export default function Home() {
             {/* Tarjeta 3 */}
             <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
               <img 
-                src={desparasitacionImg} 
+                src={"/images/desparacitacion_perro_cachorro.png"} 
                 alt="Desparasitación interna" 
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
@@ -91,7 +86,7 @@ export default function Home() {
             {/* Tarjeta 4 */}
             <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
               <img 
-                src={limpiezaDentalImg} 
+                src={"/images/limpieza_dental.png"} 
                 alt="Limpieza dental" 
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
