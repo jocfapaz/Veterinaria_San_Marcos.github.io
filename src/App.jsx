@@ -19,6 +19,8 @@ import AdminLayout from './components/admin/AdminLayout'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminServiciosPage from './pages/admin/AdminServiciosPage'
 import AdminServicioForm from './pages/admin/AdminServicioForm'
+import AdminProductosPage from './pages/admin/AdminProductosPage'
+import AdminProductoForm from './pages/admin/AdminProductoForm'
 
 export default function App() {
   return (
@@ -63,6 +65,9 @@ export default function App() {
           <Route path="servicios" element={<AdminServiciosPage />} />
           <Route path="servicios/nuevo" element={<AdminServicioForm />} />
           <Route path="servicios/:id/editar" element={<AdminServicioForm />} />
+          <Route path="productos" element={<AdminProductosPage />} />
+          <Route path="productos/nuevo" element={<AdminProductoForm />} />
+          <Route path="productos/:id/editar" element={<AdminProductoForm />} />
         </Route>
         <Route
           path="*"
