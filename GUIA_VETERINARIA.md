@@ -4,7 +4,7 @@ Este documento resume la estructura, los componentes y el flujo de datos de la a
 
 ---
 
-## 1. Estado inicial (entrega de la compañera)
+## 1. Estado inicial 
 
 El punto de partida fue un sitio **estático HTML + Bootstrap** compuesto por varias páginas sueltas en la raíz:
 
