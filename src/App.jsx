@@ -14,6 +14,11 @@ import ProductoDetallePage from './pages/ProductoDetallePage'
 import CarritoPage from './pages/CarritoPage'
 import MiSolicitudPage from './pages/MiSolicitudPage'
 import ProtectedRoute from './contexts/ProtectedRoute'
+import AdminRoute from './contexts/AdminRoute'
+import AdminLayout from './components/admin/AdminLayout'
+import AdminDashboard from './pages/admin/AdminDashboard'
+import AdminServiciosPage from './pages/admin/AdminServiciosPage'
+import AdminServicioForm from './pages/admin/AdminServicioForm'
 
 export default function App() {
   return (
@@ -46,6 +51,19 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminLayout />
+            </AdminRoute>
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="servicios" element={<AdminServiciosPage />} />
+          <Route path="servicios/nuevo" element={<AdminServicioForm />} />
+          <Route path="servicios/:id/editar" element={<AdminServicioForm />} />
+        </Route>
         <Route
           path="*"
           element={
