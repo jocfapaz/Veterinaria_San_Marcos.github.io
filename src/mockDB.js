@@ -289,6 +289,13 @@ export function updateUser(id, updates) {
   return users[index]
 }
 
+export function deleteUser(id) {
+  const index = users.findIndex(u => u.id === id)
+  if (index === -1) return false
+  users.splice(index, 1)
+  return true
+}
+
 // ─── AUTENTICACIÓN SIMULADA ───────────────────────────────────────────────────
 
 export function login(email, password) {
@@ -374,6 +381,13 @@ export const getOrders = () => [...orders]
 export const getOrderById = (id) => orders.find(o => o.id === id)
 export const getUserOrders = (userId) => orders.filter(o => o.userId === userId)
 
+export function updateRequestStatus(id, status) {
+  const request = requests.find(r => r.id === id)
+  if (!request) return null
+  request.status = status
+  return request
+}
+
 export function createOrder({ userId, items, shippingAddress, instructions = '' }) {
   const orderItems = items.map(item => {
     const product = getProductById(item.productId)
@@ -404,6 +418,13 @@ export function createOrder({ userId, items, shippingAddress, instructions = '' 
   }
 
   orders.push(order)
+  return order
+}
+
+export function updateOrderStatus(id, status) {
+  const order = orders.find(o => o.id === id)
+  if (!order) return null
+  order.status = status
   return order
 }
 

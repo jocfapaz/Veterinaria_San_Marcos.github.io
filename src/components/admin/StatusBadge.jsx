@@ -8,6 +8,10 @@ export default function StatusBadge({ status }) {
       label: 'Confirmada',
       class: 'bg-emerald-100 text-emerald-700 border-emerald-200',
     },
+    completed: {
+      label: 'Completada',
+      class: 'bg-blue-100 text-blue-700 border-blue-200',
+    },
     cancelled: {
       label: 'Cancelada',
       class: 'bg-slate-100 text-slate-500 border-slate-200',
@@ -15,6 +19,18 @@ export default function StatusBadge({ status }) {
     paid: {
       label: 'Pagada',
       class: 'bg-emerald-100 text-emerald-700 border-emerald-200',
+    },
+    processing: {
+      label: 'En preparación',
+      class: 'bg-amber-100 text-amber-700 border-amber-200',
+    },
+    shipped: {
+      label: 'Enviada',
+      class: 'bg-indigo-100 text-indigo-700 border-indigo-200',
+    },
+    delivered: {
+      label: 'Entregada',
+      class: 'bg-blue-100 text-blue-700 border-blue-200',
     },
   }
   const config = map[status] || map.pending

@@ -21,6 +21,9 @@ import AdminServiciosPage from './pages/admin/AdminServiciosPage'
 import AdminServicioForm from './pages/admin/AdminServicioForm'
 import AdminProductosPage from './pages/admin/AdminProductosPage'
 import AdminProductoForm from './pages/admin/AdminProductoForm'
+import AdminUsuariosPage from './pages/admin/AdminUsuariosPage'
+import AdminUsuarioForm from './pages/admin/AdminUsuarioForm'
+import AdminOrdenesPage from './pages/admin/AdminOrdenesPage'
 
 export default function App() {
   return (
@@ -68,6 +71,10 @@ export default function App() {
           <Route path="productos" element={<AdminProductosPage />} />
           <Route path="productos/nuevo" element={<AdminProductoForm />} />
           <Route path="productos/:id/editar" element={<AdminProductoForm />} />
+          <Route path="usuarios" element={<AdminUsuariosPage />} />
+          <Route path="usuarios/nuevo" element={<AdminUsuarioForm />} />
+          <Route path="usuarios/:id/editar" element={<AdminUsuarioForm />} />
+          <Route path="ordenes" element={<AdminOrdenesPage />} />
         </Route>
         <Route
           path="*"
