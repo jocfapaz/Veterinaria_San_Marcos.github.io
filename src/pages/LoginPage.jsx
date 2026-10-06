@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Link } from 'react-router'
-import { login } from '../mockDB.js'
+import { Link, useLocation, useNavigate } from 'react-router'
+import { useAuth } from '../contexts/AuthContext.jsx'
 import Button from '../components/Button'
 
 export default function LoginPage() {
@@ -8,6 +8,9 @@ export default function LoginPage() {
   const [errors, setErrors] = useState({})
   const [success, setSuccess] = useState(false)
   const [loginError, setLoginError] = useState('')
+  const { login: authLogin } = useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -29,7 +32,8 @@ export default function LoginPage() {
       if (
         domain !== 'duoc.cl' &&
         domain !== 'profesor.duoc.cl' &&
-        domain !== 'gmail.com'
+        domain !== 'gmail.com' &&
+        domain !== 'veterinariasanmarcos.cl'
       ) {
         newErrors.email =
           'Solo se permiten correos @duoc.cl, @profesor.duoc.cl y @gmail.com.'
@@ -50,11 +54,15 @@ export default function LoginPage() {
   function handleSubmit(e) {
     e.preventDefault()
     if (validate()) {
-      const user = login(formData.email, formData.password)
+      const user = authLogin(formData.email, formData.password)
       if (user) {
         setSuccess(true)
         setFormData({ email: '', password: '' })
-        setTimeout(() => setSuccess(false), 5000)
+        const redirectTo =
+          user.role === 'admin'
+            ? '/admin'
+            : location.state?.from?.pathname || '/'
+        navigate(redirectTo)
       } else {
         setLoginError('Correo o contraseña incorrectos')
       }
