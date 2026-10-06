@@ -30,13 +30,13 @@ export default function LoginPage() {
     } else {
       const domain = email.split('@')[1]
       if (
-        domain !== 'duoc.cl' &&
+        domain !== 'duocuc.cl' &&
         domain !== 'profesor.duoc.cl' &&
         domain !== 'gmail.com' &&
         domain !== 'veterinariasanmarcos.cl'
       ) {
         newErrors.email =
-          'Solo se permiten correos @duoc.cl, @profesor.duoc.cl y @gmail.com.'
+          'Solo se permiten correos @duocuc.cl, @profesor.duoc.cl y @gmail.com.'
       }
     }
 

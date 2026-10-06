@@ -116,6 +116,19 @@ const initialUsers = [
     commune: 'Rancagua',
     pets: [{ name: 'Rex', species: 'Perro', breed: 'Labrador' }],
   },
+  {
+    id: 'U003',
+    email: 'ni.catalanv@duocuc.cl',
+    password: '123456',
+    firstName: 'Nicolás',
+    lastName: 'Catalán V.',
+    role: 'client',
+    phone: '+56 9 8166 1878',
+    address: 'Av. Siempre Viva 123',
+    region: 'O\'Higgins',
+    commune: 'Rancagua',
+    pets: [{ name: 'Apolo', species: 'Perro', breed: 'Labrador' }],
+  }
 ]
 
 let users = [...initialUsers]
