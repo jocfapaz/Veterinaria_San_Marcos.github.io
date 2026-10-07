@@ -1,11 +1,9 @@
-import { useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import {
   getProductById,
   formatPrice,
   calculateDiscountedPrice,
 } from '../mockDB.js'
-import { useAuth } from '../contexts/AuthContext.jsx'
 import { useCart } from '../contexts/CartContext.jsx'
 import PageHeader from '../components/PageHeader'
 import EmptyState from '../components/EmptyState'
@@ -13,18 +11,11 @@ import QuantitySelector from '../components/QuantitySelector'
 import Button from '../components/Button'
 
 export default function CarritoPage() {
-  const { currentUser } = useAuth()
-  const { items, cartTotal, updateQuantity, removeFromCart, checkout } =
-    useCart()
-  const [order, setOrder] = useState(null)
+  const navigate = useNavigate()
+  const { items, cartTotal, updateQuantity, removeFromCart } = useCart()
 
   function handleCheckout() {
-    const created = checkout({
-      userId: currentUser.id,
-      shippingAddress: currentUser.address,
-      instructions: '',
-    })
-    setOrder(created)
+    navigate('/checkout')
   }
 
   if (items.length === 0) {
@@ -34,11 +25,6 @@ export default function CarritoPage() {
           title="Tu Carrito de Compras"
           subtitle="Revisa los artículos seleccionados antes de finalizar tu orden."
         />
-        {order && (
-          <div className="mb-6 p-4 text-sm text-emerald-800 rounded-lg bg-emerald-50 border border-emerald-200">
-            ✅ Tu orden <strong>#{order.orderNumber}</strong> fue creada con éxito.
-          </div>
-        )}
         <EmptyState
           title="Tu carrito está vacío"
           message="Agrega productos desde la tienda para comenzar tu compra."

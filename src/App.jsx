@@ -12,6 +12,11 @@ import BlogDetallePage from './pages/BlogDetallePage'
 import ServicioDetallePage from './pages/ServicioDetallePage'
 import ProductoDetallePage from './pages/ProductoDetallePage'
 import CarritoPage from './pages/CarritoPage'
+import CategoriasPage from './pages/CategoriasPage'
+import OfertasPage from './pages/OfertasPage'
+import CheckoutPage from './pages/CheckoutPage'
+import PagoExitoPage from './pages/PagoExitoPage'
+import PagoErrorPage from './pages/PagoErrorPage'
 import MiSolicitudPage from './pages/MiSolicitudPage'
 import ProtectedRoute from './contexts/ProtectedRoute'
 import AdminRoute from './contexts/AdminRoute'
@@ -36,6 +41,18 @@ export default function App() {
         <Route path="/contacto" element={<ContactoPage />} />
         <Route path="/tienda" element={<TiendaPage />} />
         <Route path="/tienda/:id" element={<ProductoDetallePage />} />
+        <Route path="/categorias" element={<CategoriasPage />} />
+        <Route path="/ofertas" element={<OfertasPage />} />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <CheckoutPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/pago/exito" element={<PagoExitoPage />} />
+        <Route path="/pago/error" element={<PagoErrorPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogDetallePage />} />
         <Route path="/login" element={<LoginPage />} />

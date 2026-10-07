@@ -20,11 +20,11 @@ Fase 3: Migración a React (Refactorización UI Base)
 [x] Componentizar las Tarjetas de Servicio y Tarjetas de Producto, asegurando que reciban su información (título, precio, imagen) a través de props.
 
 Fase 4: Desarrollo de Nuevas Vistas (Lado del Cliente)
-[ ] Crear vista Categorías: Pantalla que separe los productos según su tipo.
-[ ] Crear vista Ofertas: Pantalla para destacar productos en descuento.
-[ ] Crear vista Flujo de Compra (Checkout): Formulario interactivo donde el cliente introduce datos personales, dirección de envío e indicaciones de entrega.
-[ ] Crear vista Pago Correcto: Resumen de la compra exitosa con número de orden.
-[ ] Crear vista Pago con Error: Pantalla para notificar fallos en la transacción con opción a reintentar.
+[x] Crear vista Categorías: Pantalla que separe los productos según su tipo.
+[x] Crear vista Ofertas: Pantalla para destacar productos en descuento.
+[x] Crear vista Flujo de Compra (Checkout): Formulario interactivo donde el cliente introduce datos personales, dirección de envío e indicaciones de entrega.
+[x] Crear vista Pago Correcto: Resumen de la compra exitosa con número de orden.
+[x] Crear vista Pago con Error: Pantalla para notificar fallos en la transacción con opción a reintentar.
 
 Fase 5: Desarrollo de Vistas (Panel Administrativo)
 [x] Crear componente Layout Admin con la barra lateral (Sidebar) dinámica.
