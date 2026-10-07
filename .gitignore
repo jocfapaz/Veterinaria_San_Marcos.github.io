@@ -24,3 +24,7 @@ test-results
 *.njsproj
 *.sln
 *.sw?
+
+# Documentos de gestión del proyecto
+*.docx
+*.pdf
