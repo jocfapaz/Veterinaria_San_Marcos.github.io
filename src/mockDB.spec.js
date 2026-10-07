@@ -10,6 +10,7 @@ import {
   login,
   getServices,
   getServiceById,
+  getServicesByCategory,
   getProducts,
   getProductById,
   getProductsByCategory,
@@ -21,12 +22,15 @@ import {
   updateService,
   updateUser,
   cancelRequest,
+  updateRequestStatus,
+  updateOrderStatus,
   removeFromCart,
   deleteProduct,
   deleteService,
   deleteUser,
   addProduct,
   addService,
+  clearCart,
   getPosts,
   getPostBySlug,
   validateRun,
@@ -64,6 +68,11 @@ describe('mockDB', () => {
     it('filtra productos por categoría', () => {
       const antibiotics = getProductsByCategory('Antibióticos')
       expect(antibiotics.length).toBe(3)
+    })
+
+    it('devuelve todos los servicios cuando la categoría es Todas', () => {
+      const all = getServicesByCategory('Todas')
+      expect(all.length).toBe(31)
     })
 
     it('devuelve productos en oferta', () => {
@@ -130,6 +139,22 @@ describe('mockDB', () => {
       addToCart('ME004', 1)
 
       expect(getCartTotal()).toBe(7600)
+    })
+
+    it('ignora productos eliminados al calcular el total', () => {
+      addToCart('ME001', 1)
+      deleteProduct('ME001')
+
+      expect(getCartTotal()).toBe(0)
+    })
+
+    it('vacía completamente el carrito', () => {
+      addToCart('ME001', 1)
+      addToCart('ME002', 2)
+      clearCart()
+
+      expect(getCart().length).toBe(0)
+      expect(getCartTotal()).toBe(0)
     })
   })
 
@@ -198,6 +223,14 @@ describe('mockDB', () => {
       expect(cart[0].quantity).toBe(5)
     })
 
+    it('no hace nada si se actualiza un item que no está en el carrito', () => {
+      addToCart('ME001', 1)
+      updateCartItem('NO_EXISTE', 5)
+
+      expect(getCart().length).toBe(1)
+      expect(getCart()[0].quantity).toBe(1)
+    })
+
     it('elimina el item del carrito si la cantidad es 0', () => {
       addToCart('ME001', 1)
       updateCartItem('ME001', 0)
@@ -261,6 +294,43 @@ describe('mockDB', () => {
       const cancelled = cancelRequest(req.id)
       expect(cancelled.status).toBe('cancelled')
       expect(getRequests()[0].status).toBe('cancelled')
+    })
+
+    it('retorna null al cancelar una solicitud inexistente', () => {
+      expect(cancelRequest('REQ-9999')).toBeNull()
+    })
+
+    it('actualiza el estado de una solicitud médica', () => {
+      const req = createRequest({
+        userId: 'U002',
+        serviceId: 'SERV001',
+        petName: 'Rex',
+        species: 'Perro',
+        requestedDate: '2026-10-15',
+      })
+
+      const updated = updateRequestStatus(req.id, 'confirmed')
+      expect(updated.status).toBe('confirmed')
+      expect(getRequests()[0].status).toBe('confirmed')
+    })
+
+    it('retorna null al actualizar una solicitud inexistente', () => {
+      expect(updateRequestStatus('REQ-9999', 'confirmed')).toBeNull()
+    })
+
+    it('actualiza el estado de una orden', () => {
+      const order = createOrder({
+        userId: 'U002',
+        items: [{ productId: 'ME001', quantity: 1 }],
+        shippingAddress: 'Av. Siempre Viva 123',
+      })
+
+      const updated = updateOrderStatus(order.id, 'shipped')
+      expect(updated.status).toBe('shipped')
+    })
+
+    it('retorna null al actualizar una orden inexistente', () => {
+      expect(updateOrderStatus('ORD-9999', 'cancelled')).toBeNull()
     })
   })
 
@@ -374,6 +444,10 @@ describe('mockDB', () => {
       const deleted = deleteUser('U004')
       expect(deleted).toBe(true)
       expect(getUsers().length).toBe(5)
+    })
+
+    it('retorna false al eliminar un usuario inexistente', () => {
+      expect(deleteUser('U999')).toBe(false)
     })
   })
 

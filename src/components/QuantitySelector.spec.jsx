@@ -43,11 +43,27 @@ describe('QuantitySelector', () => {
     expect(onChange).toHaveBeenCalledWith(5)
   })
 
-  it('ajusta al mínimo si el valor ingresado es menor al mínimo', () => {
-    const onChange = jasmine.createSpy('onChange')
-    render(<QuantitySelector value={5} onChange={onChange} min={2} />)
+    it('ajusta al mínimo si el valor ingresado es menor al mínimo', () => {
+      const onChange = jasmine.createSpy('onChange')
+      render(<QuantitySelector value={5} onChange={onChange} min={2} />)
 
-    fireEvent.change(screen.getByDisplayValue('5'), { target: { value: '0' } })
-    expect(onChange).toHaveBeenCalledWith(2)
+      fireEvent.change(screen.getByDisplayValue('5'), { target: { value: '0' } })
+      expect(onChange).toHaveBeenCalledWith(2)
+    })
+
+    it('ajusta al máximo si el valor ingresado es mayor al máximo', () => {
+      const onChange = jasmine.createSpy('onChange')
+      render(<QuantitySelector value={5} onChange={onChange} min={1} max={10} />)
+
+      fireEvent.change(screen.getByDisplayValue('5'), { target: { value: '15' } })
+      expect(onChange).toHaveBeenCalledWith(10)
+    })
+
+    it('ajusta al mínimo si el input se deja vacío', () => {
+      const onChange = jasmine.createSpy('onChange')
+      render(<QuantitySelector value={5} onChange={onChange} min={2} />)
+
+      fireEvent.change(screen.getByDisplayValue('5'), { target: { value: '' } })
+      expect(onChange).toHaveBeenCalledWith(2)
+    })
   })
-})
