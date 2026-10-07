@@ -8,7 +8,7 @@ import MobileMenu from './MobileMenu'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { currentUser, logout } = useAuth()
+  const { currentUser, logout, isStaff } = useAuth()
   const { cartCount } = useCart()
   const { requestCount } = useRequests()
   const navigate = useNavigate()
@@ -49,6 +49,14 @@ export default function Header() {
               <span className="text-slate-700">
                 Hola, {currentUser.firstName}
               </span>
+              {isStaff && (
+                <Link
+                  to="/admin"
+                  className="text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-200 transition-colors"
+                >
+                  Panel Admin
+                </Link>
+              )}
               <button
                 type="button"
                 onClick={handleLogout}

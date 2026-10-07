@@ -37,13 +37,16 @@ export default function ContactoPage() {
       newErrors.email = 'Ingresa un formato de correo electrónico válido.'
     } else {
       const domain = email.split('@')[1]
-      if (
-        domain !== 'duoc.cl' &&
-        domain !== 'profesor.duoc.cl' &&
-        domain !== 'gmail.com'
-      ) {
+      const allowedDomains = [
+        'duoc.cl',
+        'profesor.duoc.cl',
+        'gmail.com',
+        'duocuc.cl',
+        'veterinariasanmarcos.cl',
+      ]
+      if (!allowedDomains.includes(domain)) {
         newErrors.email =
-          'Solo se permiten correos @duoc.cl, @profesor.duoc.cl y @gmail.com.'
+          'Solo se permiten correos institucionales o Gmail.'
       }
     }
 

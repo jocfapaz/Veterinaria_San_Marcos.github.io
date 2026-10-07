@@ -1,26 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
-import { registerUser } from '../mockDB.js'
+import {
+  registerUser,
+  validateRun,
+  formatRun,
+  REGIONS,
+  COMMUNES_BY_REGION,
+} from '../mockDB.js'
 import Button from '../components/Button'
-
-function isValidRun(run) {
-  run = run.replace(/\./g, '').replace('-', '').toUpperCase()
-  if (!/^[0-9]{7,8}[0-9K]$/.test(run)) return false
-  const body = run.slice(0, -1)
-  const dv = run.slice(-1)
-  let sum = 0
-  let mult = 2
-  for (let i = body.length - 1; i >= 0; i--) {
-    sum += parseInt(body.charAt(i), 10) * mult
-    mult = mult === 7 ? 2 : mult + 1
-  }
-  const res = 11 - (sum % 11)
-  let calcDv
-  if (res === 11) calcDv = '0'
-  else if (res === 10) calcDv = 'K'
-  else calcDv = String(res)
-  return calcDv === dv
-}
 
 function isValidPhone(phone) {
   const cleaned = phone.replace(/\s+/g, '')
@@ -35,6 +22,14 @@ function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
 
+const ALLOWED_DOMAINS = [
+  'duoc.cl',
+  'profesor.duoc.cl',
+  'gmail.com',
+  'duocuc.cl',
+  'veterinariasanmarcos.cl',
+]
+
 export default function RegistroPage() {
   const [formData, setFormData] = useState({
     run: '',
@@ -43,10 +38,11 @@ export default function RegistroPage() {
     email: '',
     password: '',
     confirmPassword: '',
+    birthDate: '',
     phone: '',
     address: '',
-    region: 'ohiggins',
-    commune: '',
+    region: REGIONS[0],
+    commune: COMMUNES_BY_REGION[REGIONS[0]][0],
     petName: '',
     petSpecies: '',
     petBreed: '',
@@ -54,9 +50,17 @@ export default function RegistroPage() {
   const [errors, setErrors] = useState({})
   const [success, setSuccess] = useState(false)
 
+  const communeOptions = COMMUNES_BY_REGION[formData.region] || []
+
   function handleChange(e) {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    setFormData((prev) => {
+      const next = { ...prev, [name]: value }
+      if (name === 'region') {
+        next.commune = (COMMUNES_BY_REGION[value] || [])[0] || ''
+      }
+      return next
+    })
     setErrors((prev) => ({ ...prev, [name]: '' }))
   }
 
@@ -76,34 +80,35 @@ export default function RegistroPage() {
     } = formData
 
     if (!run) newErrors.run = 'El RUN es obligatorio.'
-    else if (!isValidRun(run)) newErrors.run = 'Ingresa un RUN válido (ej: 19011022K).'
+    else if (!validateRun(run))
+      newErrors.run = 'Ingresa un RUN válido (ej: 12.345.678-5).'
 
     if (!firstName) newErrors.firstName = 'El nombre es obligatorio.'
-    else if (!isValidName(firstName)) newErrors.firstName = 'El nombre solo puede contener letras y espacios.'
+    else if (!isValidName(firstName))
+      newErrors.firstName = 'El nombre solo puede contener letras y espacios.'
 
     if (!lastName) newErrors.lastName = 'Los apellidos son obligatorios.'
-    else if (!isValidName(lastName)) newErrors.lastName = 'Los apellidos solo pueden contener letras y espacios.'
+    else if (!isValidName(lastName))
+      newErrors.lastName = 'Los apellidos solo pueden contener letras y espacios.'
 
     const emailLower = email.trim().toLowerCase()
     if (!emailLower) newErrors.email = 'El correo electrónico es obligatorio.'
-    else if (!isValidEmail(emailLower)) newErrors.email = 'Ingresa un formato de correo válido.'
+    else if (!isValidEmail(emailLower))
+      newErrors.email = 'Ingresa un formato de correo válido.'
     else {
       const domain = emailLower.split('@')[1]
-      if (
-        domain !== 'duoc.cl' &&
-        domain !== 'profesor.duoc.cl' &&
-        domain !== 'gmail.com'
-      ) {
+      if (!ALLOWED_DOMAINS.includes(domain)) {
         newErrors.email =
-          'Solo se permiten correos @duoc.cl, @profesor.duoc.cl y @gmail.com.'
+          'Solo se permiten correos institucionales o Gmail.'
       }
     }
 
     if (!password) newErrors.password = 'La contraseña es obligatoria.'
-    else if (password.length < 6 || password.length > 50)
-      newErrors.password = 'La contraseña debe tener entre 6 y 50 caracteres.'
+    else if (password.length < 4 || password.length > 10)
+      newErrors.password = 'La contraseña debe tener entre 4 y 10 caracteres.'
 
-    if (!confirmPassword) newErrors.confirmPassword = 'Debes confirmar tu contraseña.'
+    if (!confirmPassword)
+      newErrors.confirmPassword = 'Debes confirmar tu contraseña.'
     else if (confirmPassword !== password)
       newErrors.confirmPassword = 'Las contraseñas no coinciden.'
 
@@ -123,19 +128,16 @@ export default function RegistroPage() {
     if (validate()) {
       try {
         const userData = {
+          run: formatRun(formData.run),
           email: formData.email.trim().toLowerCase(),
           password: formData.password,
           firstName: formData.firstName.trim(),
           lastName: formData.lastName.trim(),
+          birthDate: formData.birthDate,
           phone: formData.phone.trim(),
           address: formData.address.trim(),
-          region:
-            formData.region === 'ohiggins'
-              ? "O'Higgins"
-              : 'Metropolitana',
-          commune:
-            formData.commune.charAt(0).toUpperCase() +
-            formData.commune.slice(1),
+          region: formData.region,
+          commune: formData.commune,
         }
 
         if (formData.petName) {
@@ -157,10 +159,11 @@ export default function RegistroPage() {
           email: '',
           password: '',
           confirmPassword: '',
+          birthDate: '',
           phone: '',
           address: '',
-          region: 'ohiggins',
-          commune: '',
+          region: REGIONS[0],
+          commune: COMMUNES_BY_REGION[REGIONS[0]][0],
           petName: '',
           petSpecies: '',
           petBreed: '',
@@ -217,10 +220,10 @@ export default function RegistroPage() {
               name="run"
               value={formData.run}
               onChange={handleChange}
-              placeholder="Ej: 19011022K"
+              placeholder="Ej: 12.345.678-5"
               required
               minLength={7}
-              maxLength={9}
+              maxLength={12}
               className={inputClass(!!errors.run)}
             />
             {errors.run && (
@@ -311,8 +314,8 @@ export default function RegistroPage() {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                minLength={6}
-                maxLength={50}
+                minLength={4}
+                maxLength={10}
                 placeholder="········"
                 className={inputClass(!!errors.password)}
               />
@@ -334,8 +337,8 @@ export default function RegistroPage() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 required
-                minLength={6}
-                maxLength={50}
+                minLength={4}
+                maxLength={10}
                 placeholder="········"
                 className={inputClass(!!errors.confirmPassword)}
               />
@@ -348,6 +351,22 @@ export default function RegistroPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label
+                htmlFor="birthDate"
+                className="block text-xs font-semibold text-slate-700 mb-1"
+              >
+                Fecha de nacimiento
+              </label>
+              <input
+                type="date"
+                id="birthDate"
+                name="birthDate"
+                value={formData.birthDate}
+                onChange={handleChange}
+                className={inputClass(false)}
+              />
+            </div>
             <div>
               <label
                 htmlFor="phone"
@@ -368,27 +387,28 @@ export default function RegistroPage() {
                 <span className="text-xs text-rose-500">{errors.phone}</span>
               )}
             </div>
-            <div>
-              <label
-                htmlFor="address"
-                className="block text-xs font-semibold text-slate-700 mb-1"
-              >
-                Dirección*
-              </label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                required
-                maxLength={300}
-                className={inputClass(!!errors.address)}
-              />
-              {errors.address && (
-                <span className="text-xs text-rose-500">{errors.address}</span>
-              )}
-            </div>
+          </div>
+
+          <div>
+            <label
+              htmlFor="address"
+              className="block text-xs font-semibold text-slate-700 mb-1"
+            >
+              Dirección*
+            </label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              required
+              maxLength={300}
+              className={inputClass(!!errors.address)}
+            />
+            {errors.address && (
+              <span className="text-xs text-rose-500">{errors.address}</span>
+            )}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -407,9 +427,11 @@ export default function RegistroPage() {
                 required
                 className={inputClass(!!errors.region)}
               >
-                <option value="">-- Seleccionar --</option>
-                <option value="ohiggins">O'Higgins</option>
-                <option value="rm">Metropolitana</option>
+                {REGIONS.map((r) => (
+                  <option key={r} value={r}>
+                    {r}
+                  </option>
+                ))}
               </select>
               {errors.region && (
                 <span className="text-xs text-rose-500">{errors.region}</span>
@@ -430,10 +452,11 @@ export default function RegistroPage() {
                 required
                 className={inputClass(!!errors.commune)}
               >
-                <option value="">-- Seleccionar --</option>
-                <option value="rancagua">Rancagua</option>
-                <option value="machali">Machalí</option>
-                <option value="graneros">Graneros</option>
+                {communeOptions.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
               </select>
               {errors.commune && (
                 <span className="text-xs text-rose-500">{errors.commune}</span>

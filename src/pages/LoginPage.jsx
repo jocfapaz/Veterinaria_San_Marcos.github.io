@@ -8,7 +8,7 @@ export default function LoginPage() {
   const [errors, setErrors] = useState({})
   const [success, setSuccess] = useState(false)
   const [loginError, setLoginError] = useState('')
-  const { login: authLogin } = useAuth()
+  const { login: authLogin, isStaff } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -43,8 +43,8 @@ export default function LoginPage() {
     const pass = formData.password
     if (!pass) {
       newErrors.password = 'La contraseña es obligatoria.'
-    } else if (pass.length < 6 || pass.length > 50) {
-      newErrors.password = 'La contraseña debe tener entre 6 y 50 caracteres.'
+    } else if (pass.length < 4 || pass.length > 10) {
+      newErrors.password = 'La contraseña debe tener entre 4 y 10 caracteres.'
     }
 
     setErrors(newErrors)
@@ -58,10 +58,9 @@ export default function LoginPage() {
       if (user) {
         setSuccess(true)
         setFormData({ email: '', password: '' })
-        const redirectTo =
-          user.role === 'admin'
-            ? '/admin'
-            : location.state?.from?.pathname || '/'
+        const redirectTo = isStaff
+          ? '/admin'
+          : location.state?.from?.pathname || '/'
         navigate(redirectTo)
       } else {
         setLoginError('Correo o contraseña incorrectos')

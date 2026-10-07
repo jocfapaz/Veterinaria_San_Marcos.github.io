@@ -4,15 +4,25 @@ import {
   getUserById,
   registerUser,
   updateUser,
+  validateRun,
+  formatRun,
+  REGIONS,
+  COMMUNES_BY_REGION,
+  USER_ROLES,
 } from '../../mockDB.js'
 import AdminPageHeader from '../../components/admin/AdminPageHeader'
 import FormInput from '../../components/admin/FormInput'
 import FormSelect from '../../components/admin/FormSelect'
 
-const ROLE_OPTIONS = [
-  { value: 'client', label: 'Cliente' },
-  { value: 'admin', label: 'Administrador' },
-]
+const ROLE_OPTIONS = USER_ROLES.map((role) => {
+  const labels = {
+    admin: 'Administrador',
+    vendedor: 'Vendedor',
+    veterinario: 'Veterinario',
+    client: 'Cliente',
+  }
+  return { value: role, label: labels[role] }
+})
 
 export default function AdminUsuarioForm() {
   const { id } = useParams()
@@ -21,28 +31,46 @@ export default function AdminUsuarioForm() {
   const user = isEdit ? getUserById(id) : null
 
   const [formData, setFormData] = useState({
+    run: user?.run || '',
     email: user?.email || '',
     password: '',
     firstName: user?.firstName || '',
     lastName: user?.lastName || '',
     role: user?.role || 'client',
+    birthDate: user?.birthDate || '',
     phone: user?.phone || '',
     address: user?.address || '',
-    region: user?.region || '',
+    region: user?.region || REGIONS[0],
     commune: user?.commune || '',
   })
   const [errors, setErrors] = useState({})
   const [submitError, setSubmitError] = useState('')
 
+  const communeOptions = (COMMUNES_BY_REGION[formData.region] || []).map((c) => ({
+    value: c,
+    label: c,
+  }))
+
   function handleChange(e) {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    setFormData((prev) => {
+      const next = { ...prev, [name]: value }
+      if (name === 'region') {
+        next.commune = (COMMUNES_BY_REGION[value] || [])[0] || ''
+      }
+      return next
+    })
     setErrors((prev) => ({ ...prev, [name]: '' }))
     setSubmitError('')
   }
 
   function validate() {
     const newErrors = {}
+    if (!formData.run.trim()) {
+      newErrors.run = 'El RUN es obligatorio.'
+    } else if (!validateRun(formData.run)) {
+      newErrors.run = 'Ingresa un RUN válido.'
+    }
     if (!formData.email.trim()) newErrors.email = 'El correo es obligatorio.'
     if (!isEdit && !formData.password.trim())
       newErrors.password = 'La contraseña es obligatoria.'
@@ -52,6 +80,8 @@ export default function AdminUsuarioForm() {
       newErrors.lastName = 'El apellido es obligatorio.'
     if (!formData.phone.trim())
       newErrors.phone = 'El teléfono es obligatorio.'
+    if (!formData.address.trim())
+      newErrors.address = 'La dirección es obligatoria.'
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -61,9 +91,11 @@ export default function AdminUsuarioForm() {
     if (!validate()) return
 
     const data = {
+      run: formatRun(formData.run),
       firstName: formData.firstName,
       lastName: formData.lastName,
       role: formData.role,
+      birthDate: formData.birthDate,
       phone: formData.phone,
       address: formData.address,
       region: formData.region,
@@ -114,6 +146,17 @@ export default function AdminUsuarioForm() {
           />
         )}
 
+        <FormInput
+          id="run"
+          name="run"
+          label="RUN"
+          value={formData.run}
+          onChange={handleChange}
+          error={errors.run}
+          placeholder="12.345.678-5"
+          required
+        />
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <FormInput
             id="firstName"
@@ -157,14 +200,24 @@ export default function AdminUsuarioForm() {
           required={!isEdit}
         />
 
-        <FormSelect
-          id="role"
-          name="role"
-          label="Rol"
-          value={formData.role}
-          onChange={handleChange}
-          options={ROLE_OPTIONS}
-        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <FormSelect
+            id="role"
+            name="role"
+            label="Rol"
+            value={formData.role}
+            onChange={handleChange}
+            options={ROLE_OPTIONS}
+          />
+          <FormInput
+            id="birthDate"
+            name="birthDate"
+            type="date"
+            label="Fecha de nacimiento"
+            value={formData.birthDate}
+            onChange={handleChange}
+          />
+        </div>
 
         <FormInput
           id="phone"
@@ -182,22 +235,26 @@ export default function AdminUsuarioForm() {
           label="Dirección"
           value={formData.address}
           onChange={handleChange}
+          error={errors.address}
+          required
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <FormInput
+          <FormSelect
             id="region"
             name="region"
             label="Región"
             value={formData.region}
             onChange={handleChange}
+            options={REGIONS.map((r) => ({ value: r, label: r }))}
           />
-          <FormInput
+          <FormSelect
             id="commune"
             name="commune"
             label="Comuna"
             value={formData.commune}
             onChange={handleChange}
+            options={communeOptions}
           />
         </div>
 

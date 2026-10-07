@@ -27,7 +27,9 @@ export default function AdminServicioForm() {
   const service = isEdit ? getServiceById(id) : null
 
   const [formData, setFormData] = useState({
+    code: service?.code || '',
     name: service?.name || '',
+    description: service?.description || '',
     category: service?.category || SERVICE_CATEGORIES[0],
     species: service?.species || 'Perro',
     duration: service?.duration || '',
@@ -45,6 +47,8 @@ export default function AdminServicioForm() {
 
   function validate() {
     const newErrors = {}
+    if (!formData.code.trim() || formData.code.length < 3)
+      newErrors.code = 'El código es obligatorio y debe tener al menos 3 caracteres.'
     if (!formData.name.trim()) newErrors.name = 'El nombre es obligatorio.'
     if (!formData.duration.trim())
       newErrors.duration = 'La duración es obligatoria.'
@@ -96,6 +100,16 @@ export default function AdminServicioForm() {
         )}
 
         <FormInput
+          id="code"
+          name="code"
+          label="Código"
+          value={formData.code}
+          onChange={handleChange}
+          error={errors.code}
+          required
+        />
+
+        <FormInput
           id="name"
           name="name"
           label="Nombre del servicio"
@@ -103,6 +117,15 @@ export default function AdminServicioForm() {
           onChange={handleChange}
           error={errors.name}
           required
+        />
+
+        <FormTextarea
+          id="description"
+          name="description"
+          label="Descripción"
+          value={formData.description}
+          onChange={handleChange}
+          rows={3}
         />
 
         <FormSelect
