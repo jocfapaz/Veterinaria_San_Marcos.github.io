@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router'
 import {
   getUsers,
   deleteUser,
+  formatRun,
 } from '../../mockDB.js'
 import AdminPageHeader from '../../components/admin/AdminPageHeader'
 import AdminTable from '../../components/admin/AdminTable'
@@ -27,11 +28,12 @@ export default function AdminUsuariosPage() {
       />
 
       <AdminTable
-        headers={['ID', 'Email', 'Nombre', 'Rol', 'Teléfono', 'Acciones']}
+        headers={['ID', 'RUN', 'Email', 'Nombre', 'Rol', 'Teléfono', 'Acciones']}
       >
         {users.map((user) => (
           <tr key={user.id}>
             <td className="py-3 px-4 font-medium">{user.id}</td>
+            <td className="py-3 px-4">{formatRun(user.run)}</td>
             <td className="py-3 px-4">{user.email}</td>
             <td className="py-3 px-4">
               {user.firstName} {user.lastName}

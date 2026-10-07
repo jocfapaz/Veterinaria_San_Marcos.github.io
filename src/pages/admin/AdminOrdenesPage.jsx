@@ -7,6 +7,7 @@ import {
   updateRequestStatus,
   updateOrderStatus,
 } from '../../mockDB.js'
+import { useAuth } from '../../contexts/AuthContext.jsx'
 import AdminPageHeader from '../../components/admin/AdminPageHeader'
 import AdminTable from '../../components/admin/AdminTable'
 import StatusBadge from '../../components/admin/StatusBadge'
@@ -39,6 +40,7 @@ function formatDate(isoString) {
 export default function AdminOrdenesPage() {
   const [requests, setRequests] = useState(getRequests())
   const [orders, setOrders] = useState(getOrders())
+  const { isAdmin } = useAuth()
 
   function refreshRequests() {
     setRequests(getRequests())
@@ -100,19 +102,21 @@ export default function AdminOrdenesPage() {
                   <td className="py-3 px-4">
                     <div className="flex items-center gap-2">
                       <StatusBadge status={request.status} />
-                      <select
-                        value={request.status}
-                        onChange={(e) =>
-                          handleRequestStatusChange(request.id, e.target.value)
-                        }
-                        className="text-xs border border-slate-200 rounded-lg px-2 py-1 bg-white focus:outline-none focus:border-emerald-500"
-                      >
-                        {REQUEST_STATUSES.map((s) => (
-                          <option key={s.value} value={s.value}>
-                            {s.label}
-                          </option>
-                        ))}
-                      </select>
+                      {isAdmin && (
+                        <select
+                          value={request.status}
+                          onChange={(e) =>
+                            handleRequestStatusChange(request.id, e.target.value)
+                          }
+                          className="text-xs border border-slate-200 rounded-lg px-2 py-1 bg-white focus:outline-none focus:border-emerald-500"
+                        >
+                          {REQUEST_STATUSES.map((s) => (
+                            <option key={s.value} value={s.value}>
+                              {s.label}
+                            </option>
+                          ))}
+                        </select>
+                      )}
                     </div>
                   </td>
                 </tr>
@@ -154,19 +158,21 @@ export default function AdminOrdenesPage() {
                   <td className="py-3 px-4">
                     <div className="flex items-center gap-2">
                       <StatusBadge status={order.status} />
-                      <select
-                        value={order.status}
-                        onChange={(e) =>
-                          handleOrderStatusChange(order.id, e.target.value)
-                        }
-                        className="text-xs border border-slate-200 rounded-lg px-2 py-1 bg-white focus:outline-none focus:border-emerald-500"
-                      >
-                        {ORDER_STATUSES.map((s) => (
-                          <option key={s.value} value={s.value}>
-                            {s.label}
-                          </option>
-                        ))}
-                      </select>
+                      {isAdmin && (
+                        <select
+                          value={order.status}
+                          onChange={(e) =>
+                            handleOrderStatusChange(order.id, e.target.value)
+                          }
+                          className="text-xs border border-slate-200 rounded-lg px-2 py-1 bg-white focus:outline-none focus:border-emerald-500"
+                        >
+                          {ORDER_STATUSES.map((s) => (
+                            <option key={s.value} value={s.value}>
+                              {s.label}
+                            </option>
+                          ))}
+                        </select>
+                      )}
                     </div>
                   </td>
                 </tr>

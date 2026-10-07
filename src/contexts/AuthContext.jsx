@@ -33,9 +33,19 @@ export function AuthProvider({ children }) {
     setCurrentUser(null)
   }
 
+  const role = currentUser?.role
+
   const value = {
     currentUser,
-    isAdmin: currentUser?.role === 'admin',
+    role,
+    isAdmin: role === 'admin',
+    isVendedor: role === 'vendedor',
+    isVeterinario: role === 'veterinario',
+    isStaff: role === 'admin' || role === 'vendedor' || role === 'veterinario',
+    canManageServices: role === 'admin' || role === 'vendedor' || role === 'veterinario',
+    canManageProducts: role === 'admin' || role === 'vendedor',
+    canManageUsers: role === 'admin',
+    canManageOrders: role === 'admin' || role === 'vendedor',
     login,
     logout,
     isReady: true,

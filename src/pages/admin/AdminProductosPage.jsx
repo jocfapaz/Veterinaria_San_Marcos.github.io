@@ -3,12 +3,18 @@ import {
   getProducts,
   deleteProduct,
 } from '../../mockDB.js'
+import { useAuth } from '../../contexts/AuthContext.jsx'
 import AdminPageHeader from '../../components/admin/AdminPageHeader'
 import AdminTable from '../../components/admin/AdminTable'
+
+function isLowStock(product) {
+  return product.stockCritical > 0 && product.stock <= product.stockCritical
+}
 
 export default function AdminProductosPage() {
   const products = getProducts()
   const navigate = useNavigate()
+  const { isAdmin } = useAuth()
 
   function handleDelete(id) {
     if (window.confirm('¿Estás seguro de eliminar este producto?')) {
@@ -21,27 +27,38 @@ export default function AdminProductosPage() {
     <div className="space-y-6">
       <AdminPageHeader
         title="Gestión de Productos"
-        actionLabel="+ Nuevo producto"
-        actionTo="/admin/productos/nuevo"
+        actionLabel={isAdmin ? '+ Nuevo producto' : undefined}
+        actionTo={isAdmin ? '/admin/productos/nuevo' : undefined}
       />
 
       <AdminTable
         headers={[
           'ID',
+          'Código',
           'Categoría',
           'Nombre',
-          'Presentación',
+          'Stock',
           'Precio',
           'Descuento',
-          'Acciones',
-        ]}
+          isAdmin ? 'Acciones' : undefined,
+        ].filter(Boolean)}
       >
         {products.map((product) => (
           <tr key={product.id}>
             <td className="py-3 px-4 font-medium">{product.id}</td>
+            <td className="py-3 px-4">{product.code}</td>
             <td className="py-3 px-4">{product.category}</td>
             <td className="py-3 px-4">{product.name}</td>
-            <td className="py-3 px-4">{product.presentation}</td>
+            <td className="py-3 px-4">
+              <div className="flex items-center gap-2">
+                <span>{product.stock}</span>
+                {isLowStock(product) && (
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-rose-100 text-rose-700">
+                    Stock crítico
+                  </span>
+                )}
+              </div>
+            </td>
             <td className="py-3 px-4">
               ${product.price.toLocaleString('es-CL')}
             </td>
@@ -54,23 +71,25 @@ export default function AdminProductosPage() {
                 <span className="text-slate-400">—</span>
               )}
             </td>
-            <td className="py-3 px-4">
-              <div className="flex items-center gap-2">
-                <Link
-                  to={`/admin/productos/${product.id}/editar`}
-                  className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-200 transition-colors"
-                >
-                  Editar
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => handleDelete(product.id)}
-                  className="text-xs font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-colors"
-                >
-                  Eliminar
-                </button>
-              </div>
-            </td>
+            {isAdmin && (
+              <td className="py-3 px-4">
+                <div className="flex items-center gap-2">
+                  <Link
+                    to={`/admin/productos/${product.id}/editar`}
+                    className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-200 transition-colors"
+                  >
+                    Editar
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(product.id)}
+                    className="text-xs font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-lg border border-rose-200 transition-colors"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </td>
+            )}
           </tr>
         ))}
       </AdminTable>

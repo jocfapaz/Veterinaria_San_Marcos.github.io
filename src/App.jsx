@@ -59,22 +59,92 @@ export default function App() {
         <Route
           path="/admin"
           element={
-            <AdminRoute>
+            <AdminRoute allowedRoles={['admin', 'vendedor', 'veterinario']}>
               <AdminLayout />
             </AdminRoute>
           }
         >
           <Route index element={<AdminDashboard />} />
-          <Route path="servicios" element={<AdminServiciosPage />} />
-          <Route path="servicios/nuevo" element={<AdminServicioForm />} />
-          <Route path="servicios/:id/editar" element={<AdminServicioForm />} />
-          <Route path="productos" element={<AdminProductosPage />} />
-          <Route path="productos/nuevo" element={<AdminProductoForm />} />
-          <Route path="productos/:id/editar" element={<AdminProductoForm />} />
-          <Route path="usuarios" element={<AdminUsuariosPage />} />
-          <Route path="usuarios/nuevo" element={<AdminUsuarioForm />} />
-          <Route path="usuarios/:id/editar" element={<AdminUsuarioForm />} />
-          <Route path="ordenes" element={<AdminOrdenesPage />} />
+          <Route
+            path="servicios"
+            element={
+              <AdminRoute allowedRoles={['admin', 'vendedor', 'veterinario']}>
+                <AdminServiciosPage />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="servicios/nuevo"
+            element={
+              <AdminRoute allowedRoles={['admin']}>
+                <AdminServicioForm />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="servicios/:id/editar"
+            element={
+              <AdminRoute allowedRoles={['admin']}>
+                <AdminServicioForm />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="productos"
+            element={
+              <AdminRoute allowedRoles={['admin', 'vendedor']}>
+                <AdminProductosPage />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="productos/nuevo"
+            element={
+              <AdminRoute allowedRoles={['admin']}>
+                <AdminProductoForm />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="productos/:id/editar"
+            element={
+              <AdminRoute allowedRoles={['admin']}>
+                <AdminProductoForm />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="usuarios"
+            element={
+              <AdminRoute allowedRoles={['admin']}>
+                <AdminUsuariosPage />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="usuarios/nuevo"
+            element={
+              <AdminRoute allowedRoles={['admin']}>
+                <AdminUsuarioForm />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="usuarios/:id/editar"
+            element={
+              <AdminRoute allowedRoles={['admin']}>
+                <AdminUsuarioForm />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="ordenes"
+            element={
+              <AdminRoute allowedRoles={['admin', 'vendedor']}>
+                <AdminOrdenesPage />
+              </AdminRoute>
+            }
+          />
         </Route>
         <Route
           path="*"

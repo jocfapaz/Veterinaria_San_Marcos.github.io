@@ -1,18 +1,45 @@
 import { NavLink, Link } from 'react-router'
-
-const links = [
-  { label: 'Dashboard', to: '/admin' },
-  { label: 'Servicios', to: '/admin/servicios' },
-  { label: 'Productos', to: '/admin/productos' },
-  { label: 'Usuarios', to: '/admin/usuarios' },
-  { label: 'Órdenes', to: '/admin/ordenes' },
-]
+import { useAuth } from '../../contexts/AuthContext.jsx'
 
 export default function AdminSidebar() {
+  const {
+    canManageServices,
+    canManageProducts,
+    canManageUsers,
+    canManageOrders,
+  } = useAuth()
+
+  const links = [
+    { label: 'Dashboard', to: '/admin', visible: true },
+    {
+      label: 'Servicios',
+      to: '/admin/servicios',
+      visible: canManageServices,
+    },
+    {
+      label: 'Productos',
+      to: '/admin/productos',
+      visible: canManageProducts,
+    },
+    {
+      label: 'Usuarios',
+      to: '/admin/usuarios',
+      visible: canManageUsers,
+    },
+    {
+      label: 'Órdenes',
+      to: '/admin/ordenes',
+      visible: canManageOrders,
+    },
+  ].filter((link) => link.visible)
+
   return (
     <aside className="bg-slate-900 text-slate-300 w-full md:w-64 md:min-h-screen flex-shrink-0">
       <div className="p-6">
-        <Link to="/" className="text-xl font-bold text-white hover:text-emerald-400">
+        <Link
+          to="/"
+          className="text-xl font-bold text-white hover:text-emerald-400"
+        >
           Veterinaria San Marcos
         </Link>
         <p className="text-xs text-slate-500 mt-1">Panel administrativo</p>
