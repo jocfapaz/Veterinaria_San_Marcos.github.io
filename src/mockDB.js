@@ -287,7 +287,7 @@ let products = [...initialProducts]
 const initialUsers = [
   {
     id: 'U001',
-    run: '12.345.678-5',
+    run: '11.111.111-1',
     email: 'admin@veterinariasanmarcos.cl',
     password: 'Admin1234',
     firstName: 'Administrador',
@@ -302,7 +302,7 @@ const initialUsers = [
   },
   {
     id: 'U002',
-    run: '8.765.432-0',
+    run: '22.222.222-2',
     email: 'carlos.mendoza@correo.cl',
     password: 'Cliente12',
     firstName: 'Carlos',
@@ -317,7 +317,7 @@ const initialUsers = [
   },
   {
     id: 'U003',
-    run: '13.579.246-3',
+    run: '33.333.333-3',
     email: 'ni.catalanv@duocuc.cl',
     password: '123456',
     firstName: 'Nicolás',
@@ -332,7 +332,7 @@ const initialUsers = [
   },
   {
     id: 'U004',
-    run: '19.283.746-1',
+    run: '44.444.444-6',
     email: 'jose.roca@duocuc.cl',
     password: '123456',
     firstName: 'Josefa',
@@ -347,7 +347,7 @@ const initialUsers = [
   },
   {
     id: 'U005',
-    run: '14.258.369-7',
+    run: '55.555.555-2',
     email: 'vendedor@duoc.cl',
     password: 'Vendedor1',
     firstName: 'Josefa',
@@ -362,7 +362,7 @@ const initialUsers = [
   },
   {
     id: 'U006',
-    run: '16.493.827-4',
+    run: '66.666.666-9',
     email: 'veterinario@duoc.cl',
     password: 'Veter1234',
     firstName: 'Patricio',

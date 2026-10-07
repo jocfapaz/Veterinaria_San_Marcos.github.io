@@ -24,10 +24,14 @@ import {
   removeFromCart,
   deleteProduct,
   deleteService,
+  deleteUser,
   addProduct,
   addService,
   getPosts,
   getPostBySlug,
+  validateRun,
+  formatRun,
+  getUsers,
 } from './mockDB.js'
 
 describe('mockDB', () => {
@@ -201,6 +205,18 @@ describe('mockDB', () => {
       expect(getCart().length).toBe(0)
     })
 
+    it('crea un producto con stock y stock crítico por defecto en 0', () => {
+      const newProduct = addProduct({
+        name: 'Producto de prueba',
+        category: 'Antibióticos',
+        presentation: 'Blíster test',
+        price: 1000,
+        image: '/images/test.png',
+      })
+      expect(newProduct.stock).toBe(0)
+      expect(newProduct.stockCritical).toBe(0)
+    })
+
     it('actualiza datos de un producto', () => {
       const newProduct = addProduct({
         name: 'Producto de prueba',
@@ -209,8 +225,9 @@ describe('mockDB', () => {
         price: 1000,
         image: '/images/test.png',
       })
-      const updated = updateProduct(newProduct.id, { price: 2000 })
+      const updated = updateProduct(newProduct.id, { price: 2000, stock: 15 })
       expect(updated.price).toBe(2000)
+      expect(updated.stock).toBe(15)
       expect(getProductById(newProduct.id).price).toBe(2000)
     })
 
@@ -300,6 +317,77 @@ describe('mockDB', () => {
 
     it('devuelve undefined si el slug no existe', () => {
       expect(getPostBySlug('no-existe')).toBeUndefined()
+    })
+  })
+
+  describe('VALIDACIÓN - RUN chileno', () => {
+    it('valida RUNs correctos con y sin puntos', () => {
+      expect(validateRun('11.111.111-1')).toBe(true)
+      expect(validateRun('11111111-1')).toBe(true)
+      expect(validateRun('22.222.222-2')).toBe(true)
+      expect(validateRun('22222222-2')).toBe(true)
+    })
+
+    it('rechaza RUNs inválidos', () => {
+      expect(validateRun('12345678-K')).toBe(false)
+      expect(validateRun('1234567')).toBe(false)
+      expect(validateRun('')).toBe(false)
+      expect(validateRun('abcdefgh-5')).toBe(false)
+    })
+
+    it('formatea un RUN limpio al formato con puntos', () => {
+      expect(formatRun('11111111-1')).toBe('11.111.111-1')
+      expect(formatRun('22222222-2')).toBe('22.222.222-2')
+    })
+  })
+
+  describe('CAMPOS DEL ERS - Productos, servicios y usuarios', () => {
+    it('los productos incluyen código, descripción, stock y stock crítico', () => {
+      const product = getProductById('ME001')
+      expect(product.code).toBe('ME001')
+      expect(product.description).toBeTruthy()
+      expect(typeof product.stock).toBe('number')
+      expect(typeof product.stockCritical).toBe('number')
+    })
+
+    it('los servicios incluyen código y descripción', () => {
+      const service = getServiceById('SERV001')
+      expect(service.code).toBe('SERV001')
+      expect(service.description).toBeTruthy()
+    })
+
+    it('los usuarios incluyen RUN y fecha de nacimiento', () => {
+      const user = getUserByEmail('admin@veterinariasanmarcos.cl')
+      expect(user.run).toBeTruthy()
+      expect(user.birthDate).toBeTruthy()
+    })
+
+    it('existen usuarios semilla de vendedor y veterinario', () => {
+      const users = getUsers()
+      expect(users.some((u) => u.role === 'vendedor')).toBe(true)
+      expect(users.some((u) => u.role === 'veterinario')).toBe(true)
+    })
+  })
+
+  describe('DELETE - Usuarios', () => {
+    it('elimina un usuario del sistema', () => {
+      const deleted = deleteUser('U004')
+      expect(deleted).toBe(true)
+      expect(getUsers().length).toBe(5)
+    })
+  })
+
+  describe('LOGIN - Perfiles adicionales', () => {
+    it('permite iniciar sesión como vendedor', () => {
+      const user = login('vendedor@duoc.cl', 'Vendedor1')
+      expect(user).toBeTruthy()
+      expect(user.role).toBe('vendedor')
+    })
+
+    it('permite iniciar sesión como veterinario', () => {
+      const user = login('veterinario@duoc.cl', 'Veter1234')
+      expect(user).toBeTruthy()
+      expect(user.role).toBe('veterinario')
     })
   })
 })
