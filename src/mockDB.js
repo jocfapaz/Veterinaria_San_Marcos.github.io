@@ -348,8 +348,8 @@ const initialUsers = [
   {
     id: 'U005',
     run: '55.555.555-2',
-    email: 'vendedor@duocuc.cl',
-    password: '123456',
+    email: 'vendedor@duoc.cl',
+    password: 'Vendedor1',
     firstName: 'Josefa',
     lastName: 'Roca',
     role: 'vendedor',
@@ -363,8 +363,8 @@ const initialUsers = [
   {
     id: 'U006',
     run: '66.666.666-9',
-    email: 'veterinario@duocuc.cl',
-    password: '123456',
+    email: 'veterinario@duoc.cl',
+    password: 'Veter1234',
     firstName: 'Patricio',
     lastName: 'Soto',
     role: 'veterinario',
