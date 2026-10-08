@@ -28,7 +28,7 @@ export default function NosotrosPage() {
           <li className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow flex flex-col items-center text-center">
             <div className="w-full h-56 mb-4 overflow-hidden rounded-xl bg-slate-50 flex justify-center items-center">
               <img
-                src="/images/foto_veterinarios.png"
+                src="images/foto_veterinarios.png"
                 alt="Foto del veterinario"
                 className="w-full h-full object-cover"
               />
@@ -42,7 +42,7 @@ export default function NosotrosPage() {
           <li className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow flex flex-col items-center text-center">
             <div className="w-full h-56 mb-4 overflow-hidden rounded-xl bg-slate-50 flex justify-center items-center">
               <img
-                src="/images/tecnico_veterinario.png"
+                src="images/tecnico_veterinario.png"
                 alt="Foto del técnico veterinario"
                 className="w-full h-full object-cover"
               />
@@ -56,7 +56,7 @@ export default function NosotrosPage() {
           <li className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow flex flex-col items-center text-center">
             <div className="w-full h-56 mb-4 overflow-hidden rounded-xl bg-slate-50 flex justify-center items-center">
               <img
-                src="/images/recepsionista.png"
+                src="images/recepsionista.png"
                 alt="Foto de la recepcionista"
                 className="w-full h-full object-cover"
               />

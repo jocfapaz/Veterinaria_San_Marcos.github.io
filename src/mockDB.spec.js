@@ -244,7 +244,7 @@ describe('mockDB', () => {
         category: 'Antibióticos',
         presentation: 'Blíster test',
         price: 1000,
-        image: '/images/test.png',
+        image: 'images/test.png',
       })
       expect(newProduct.stock).toBe(0)
       expect(newProduct.stockCritical).toBe(0)
@@ -256,7 +256,7 @@ describe('mockDB', () => {
         category: 'Antibióticos',
         presentation: 'Blíster test',
         price: 1000,
-        image: '/images/test.png',
+        image: 'images/test.png',
       })
       const updated = updateProduct(newProduct.id, { price: 2000, stock: 15 })
       expect(updated.price).toBe(2000)
@@ -271,7 +271,7 @@ describe('mockDB', () => {
         species: 'Perro / Gato',
         duration: '30 min',
         price: 10000,
-        image: '/images/test.png',
+        image: 'images/test.png',
       })
       const updated = updateService(newService.id, { price: 20000 })
       expect(updated.price).toBe(20000)
@@ -350,7 +350,7 @@ describe('mockDB', () => {
         category: 'Antibióticos',
         presentation: 'Blíster test',
         price: 1000,
-        image: '/images/test.png',
+        image: 'images/test.png',
       })
       const deleted = deleteProduct(newProduct.id)
       expect(deleted).toBe(true)
@@ -364,7 +364,7 @@ describe('mockDB', () => {
         species: 'Perro / Gato',
         duration: '30 min',
         price: 10000,
-        image: '/images/test.png',
+        image: 'images/test.png',
       })
       const deleted = deleteService(newService.id)
       expect(deleted).toBe(true)
