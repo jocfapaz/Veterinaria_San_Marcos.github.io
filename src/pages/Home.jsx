@@ -33,7 +33,7 @@ export default function Home() {
           </div>
           <div className="overflow-hidden rounded-lg shadow mt-4 md:mt-0">
             <img 
-              src={"/images/veterinaria.png"} 
+              src={"images/veterinaria.png"} 
               alt="Imagen veterinaria San Marcos" 
               className="w-full h-auto object-cover"
             />
@@ -50,7 +50,7 @@ export default function Home() {
             {/* Tarjeta 1 */}
             <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
               <img 
-                src={"/images/corte_pelo.png"} 
+                src={"images/corte_pelo.png"} 
                 alt="Consulta general" 
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
@@ -62,7 +62,7 @@ export default function Home() {
             {/* Tarjeta 2 */}
             <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
               <img 
-                src={"/images/vacuna.png"} 
+                src={"images/vacuna.png"} 
                 alt="Vacuna antirrábica" 
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
@@ -74,7 +74,7 @@ export default function Home() {
             {/* Tarjeta 3 */}
             <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
               <img 
-                src={"/images/desparacitacion_perro_cachorro.png"} 
+                src={"images/desparacitacion_perro_cachorro.png"} 
                 alt="Desparasitación interna" 
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
@@ -86,7 +86,7 @@ export default function Home() {
             {/* Tarjeta 4 */}
             <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center flex flex-col items-center">
               <img 
-                src={"/images/limpieza_dental.png"} 
+                src={"images/limpieza_dental.png"} 
                 alt="Limpieza dental" 
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />

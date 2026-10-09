@@ -176,7 +176,7 @@ export default function AdminServicioForm() {
           value={formData.image}
           onChange={handleChange}
           error={errors.image}
-          placeholder="/images/ejemplo.png"
+          placeholder="images/ejemplo.png"
           required
         />
 
