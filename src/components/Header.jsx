@@ -3,15 +3,17 @@ import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../contexts/AuthContext.jsx'
 import { useCart } from '../contexts/CartContext.jsx'
 import { useRequests } from '../contexts/RequestContext.jsx'
+import { useLogout } from '../hooks/useLogout.js'
 import Navbar from './Navbar'
 import MobileMenu from './MobileMenu'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { currentUser, logout, isStaff } = useAuth()
+  const { currentUser, isStaff } = useAuth()
   const { cartCount } = useCart()
   const { requestCount } = useRequests()
   const navigate = useNavigate()
+  const logout = useLogout()
 
   function handleLogout() {
     logout()

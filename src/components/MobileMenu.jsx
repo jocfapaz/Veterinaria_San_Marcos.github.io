@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from 'react-router'
 import { useAuth } from '../contexts/AuthContext.jsx'
 import { useCart } from '../contexts/CartContext.jsx'
 import { useRequests } from '../contexts/RequestContext.jsx'
+import { useLogout } from '../hooks/useLogout.js'
 import { NAV_LINKS } from '../constants/navLinks'
 
 const linkBase =
@@ -9,10 +10,11 @@ const linkBase =
 const linkActive = 'text-emerald-600 bg-emerald-50 border-l-4 border-emerald-600'
 
 export default function MobileMenu({ onClose }) {
-  const { currentUser, logout } = useAuth()
+  const { currentUser } = useAuth()
   const { cartCount } = useCart()
   const { requestCount } = useRequests()
   const navigate = useNavigate()
+  const logout = useLogout()
 
   function handleLogout() {
     logout()
