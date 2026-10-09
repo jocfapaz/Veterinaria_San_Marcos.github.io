@@ -1,38 +1,15 @@
-import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import {
-  getProducts,
-  getProductsByCategory,
-  PRODUCT_CATEGORIES,
-} from '../mockDB.js'
+import { getProducts } from '../mockDB.js'
 import { useAuth } from '../contexts/AuthContext.jsx'
 import { useCart } from '../contexts/CartContext.jsx'
 import ProductCard from '../components/ProductCard'
 
-const CATEGORY_MAP = {
-  todas: 'Todas',
-  antibioticos: 'Antibióticos',
-  antiparasitarios: 'Antiparasitarios',
-  antiinflamatorios: 'Antiinflamatorios',
-  dermatologia: 'Dermatología',
-  digestivo: 'Digestivo',
-  cardiaco: 'Cardíaco',
-  analgesicos: 'Analgésicos',
-  vacunas: 'Vacunas',
-  suplementos: 'Suplementos',
-}
-
 export default function TiendaPage() {
-  const [selectedCategory, setSelectedCategory] = useState('todas')
   const navigate = useNavigate()
   const { currentUser } = useAuth()
   const { addToCart } = useCart()
 
-  const categoryLabel = CATEGORY_MAP[selectedCategory] || 'Todas'
-  const products =
-    categoryLabel === 'Todas'
-      ? getProducts()
-      : getProductsByCategory(categoryLabel)
+  const products = getProducts()
 
   function handleAddToCart(productId) {
     if (!currentUser) {
@@ -73,35 +50,13 @@ export default function TiendaPage() {
             </div>
           </div>
 
-          <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-slate-200 max-w-xs">
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-2">
-              <label
-                htmlFor="filtro-categoria-producto"
-                className="block text-sm font-semibold text-slate-700"
-              >
-                Filtrar por Categoría
-              </label>
-              <select
-                id="filtro-categoria-producto"
-                name="categoria"
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="block w-full rounded-lg border-slate-300 bg-slate-50 p-2.5 text-sm text-slate-800 focus:border-emerald-500 focus:ring-emerald-500 border"
-              >
-                <option value="todas">Todas las categorías</option>
-                {PRODUCT_CATEGORIES.map((category) => {
-                  const value = category
-                    .toLowerCase()
-                    .normalize('NFD')
-                    .replace(/[\u0300-\u036f]/g, '')
-                  return (
-                    <option key={category} value={value}>
-                      {category}
-                    </option>
-                  )
-                })}
-              </select>
-            </form>
+          <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+            <h2 className="text-xl font-bold text-slate-900">
+              Todos los productos
+            </h2>
+            <span className="text-sm text-slate-500">
+              {products.length} {products.length === 1 ? 'resultado' : 'resultados'}
+            </span>
           </div>
 
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

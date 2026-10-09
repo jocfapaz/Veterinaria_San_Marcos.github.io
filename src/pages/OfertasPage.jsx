@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import {
   getProductsOnSale,
   formatPrice,
@@ -54,6 +54,21 @@ export default function OfertasPage() {
         title="Ofertas de la Semana"
         subtitle="Ahorra en medicamentos, vacunas y suplementos seleccionados."
       />
+
+      <div className="flex flex-wrap gap-3">
+        <Link
+          to="/tienda"
+          className="px-4 py-2 text-sm font-semibold rounded-lg bg-slate-50 text-slate-700 border border-slate-200 hover:bg-slate-100 transition-colors"
+        >
+          ← Volver a la tienda
+        </Link>
+        <Link
+          to="/categorias"
+          className="px-4 py-2 text-sm font-semibold rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition-colors"
+        >
+          Ver por categoría
+        </Link>
+      </div>
 
       <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-emerald-600 rounded-2xl p-5 text-white shadow-sm">

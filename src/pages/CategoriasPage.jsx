@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import {
   getProductsByCategory,
   PRODUCT_CATEGORIES,
@@ -45,6 +45,21 @@ export default function CategoriasPage() {
         title="Categorías de Productos"
         subtitle="Encuentra rápidamente los medicamentos y vacunas según el tipo de producto que necesitas."
       />
+
+      <div className="flex flex-wrap gap-3">
+        <Link
+          to="/tienda"
+          className="px-4 py-2 text-sm font-semibold rounded-lg bg-slate-50 text-slate-700 border border-slate-200 hover:bg-slate-100 transition-colors"
+        >
+          ← Volver a la tienda
+        </Link>
+        <Link
+          to="/ofertas"
+          className="px-4 py-2 text-sm font-semibold rounded-lg bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 transition-colors"
+        >
+          Ver ofertas →
+        </Link>
+      </div>
 
       <section aria-label="Listado de categorías">
         <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
