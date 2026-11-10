@@ -1,26 +1,30 @@
 import { useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import {
-  registerUser,
   validateRun,
   formatRun,
   REGIONS,
   COMMUNES_BY_REGION,
 } from '../mockDB.js'
+import { useAuth } from '../contexts/AuthContext.jsx'
 import Button from '../components/Button'
+
 
 function isValidPhone(phone) {
   const cleaned = phone.replace(/\s+/g, '')
   return /^(\+?56)?[1-9]\d{8}$/.test(cleaned)
 }
 
+
 function isValidName(name) {
   return /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s\-']+$/.test(name.trim())
 }
 
+
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
+
 
 const ALLOWED_DOMAINS = [
   'duoc.cl',
@@ -29,6 +33,7 @@ const ALLOWED_DOMAINS = [
   'duocuc.cl',
   'veterinariasanmarcos.cl',
 ]
+
 
 export default function RegistroPage() {
   const [formData, setFormData] = useState({
@@ -49,8 +54,14 @@ export default function RegistroPage() {
   })
   const [errors, setErrors] = useState({})
   const [success, setSuccess] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [registerError, setRegisterError] = useState('')
+  const { register: authRegister } = useAuth()
+  const navigate = useNavigate()
+
 
   const communeOptions = COMMUNES_BY_REGION[formData.region] || []
+
 
   function handleChange(e) {
     const { name, value } = e.target
@@ -62,7 +73,9 @@ export default function RegistroPage() {
       return next
     })
     setErrors((prev) => ({ ...prev, [name]: '' }))
+    setRegisterError('')
   }
+
 
   function validate() {
     const newErrors = {}
@@ -79,17 +92,21 @@ export default function RegistroPage() {
       commune,
     } = formData
 
+
     if (!run) newErrors.run = 'El RUN es obligatorio.'
     else if (!validateRun(run))
       newErrors.run = 'Ingresa un RUN válido (ej: 12.345.678-5).'
+
 
     if (!firstName) newErrors.firstName = 'El nombre es obligatorio.'
     else if (!isValidName(firstName))
       newErrors.firstName = 'El nombre solo puede contener letras y espacios.'
 
+
     if (!lastName) newErrors.lastName = 'Los apellidos son obligatorios.'
     else if (!isValidName(lastName))
       newErrors.lastName = 'Los apellidos solo pueden contener letras y espacios.'
+
 
     const emailLower = email.trim().toLowerCase()
     if (!emailLower) newErrors.email = 'El correo electrónico es obligatorio.'
@@ -98,87 +115,76 @@ export default function RegistroPage() {
     else {
       const domain = emailLower.split('@')[1]
       if (!ALLOWED_DOMAINS.includes(domain)) {
-        newErrors.email =
-          'Solo se permiten correos institucionales o Gmail.'
+        newErrors.email = 'Solo se permiten correos institucionales o Gmail.'
       }
     }
+
 
     if (!password) newErrors.password = 'La contraseña es obligatoria.'
     else if (password.length < 4 || password.length > 10)
       newErrors.password = 'La contraseña debe tener entre 4 y 10 caracteres.'
+
 
     if (!confirmPassword)
       newErrors.confirmPassword = 'Debes confirmar tu contraseña.'
     else if (confirmPassword !== password)
       newErrors.confirmPassword = 'Las contraseñas no coinciden.'
 
+
     if (phone && !isValidPhone(phone))
       newErrors.phone = 'Ingresa un teléfono chileno válido (ej: +56 9 1234 5678).'
+
 
     if (!address) newErrors.address = 'La dirección es obligatoria.'
     if (!region) newErrors.region = 'Debes seleccionar una región.'
     if (!commune) newErrors.commune = 'Debes seleccionar una comuna.'
 
+
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
 
-  function handleSubmit(e) {
+
+  async function handleSubmit(e) {
     e.preventDefault()
-    if (validate()) {
-      try {
-        const userData = {
-          run: formatRun(formData.run),
-          email: formData.email.trim().toLowerCase(),
-          password: formData.password,
-          firstName: formData.firstName.trim(),
-          lastName: formData.lastName.trim(),
-          birthDate: formData.birthDate,
-          phone: formData.phone.trim(),
-          address: formData.address.trim(),
-          region: formData.region,
-          commune: formData.commune,
-        }
+    if (!validate()) return
 
-        if (formData.petName) {
-          userData.pets = [
-            {
-              name: formData.petName,
-              species: formData.petSpecies || 'Perro',
-              breed: formData.petBreed,
-            },
-          ]
-        }
 
-        registerUser(userData)
-        setSuccess(true)
-        setFormData({
-          run: '',
-          firstName: '',
-          lastName: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
-          birthDate: '',
-          phone: '',
-          address: '',
-          region: REGIONS[0],
-          commune: COMMUNES_BY_REGION[REGIONS[0]][0],
-          petName: '',
-          petSpecies: '',
-          petBreed: '',
-        })
-        setTimeout(() => setSuccess(false), 5000)
-      } catch (err) {
-        setErrors({ email: err.message })
+    setLoading(true)
+    setRegisterError('')
+
+
+    try {
+      const userData = {
+        run: formatRun(formData.run),
+        email: formData.email.trim().toLowerCase(),
+        password: formData.password,
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        birthDate: formData.birthDate || null,
+        phone: formData.phone.trim() || null,
+        address: formData.address.trim(),
+        region: formData.region,
+        commune: formData.commune,
       }
+
+
+      await authRegister(userData)
+      setSuccess(true)
+      setTimeout(() => navigate('/'), 1500)
+    } catch (err) {
+      setRegisterError(err.message || 'No se pudo completar el registro. Intenta nuevamente.')
+    } finally {
+      setLoading(false)
     }
   }
+
 
   const inputClass = (hasError) =>
     `w-full px-3 py-2 bg-slate-50 border rounded-lg text-sm text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all ${
       hasError ? 'border-rose-500' : 'border-slate-200'
     }`
+
 
   return (
     <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -192,26 +198,36 @@ export default function RegistroPage() {
           </p>
         </div>
 
+
+        {registerError && (
+          <div
+            className="mb-4 p-4 text-sm text-rose-800 rounded-lg bg-rose-50 border border-rose-200"
+            role="alert"
+          >
+            {registerError}
+          </div>
+        )}
+
+
         {success && (
           <div
             className="mb-4 p-4 text-sm text-emerald-800 rounded-lg bg-emerald-50 border border-emerald-200"
             role="alert"
           >
-            <span className="font-bold">¡Registro exitoso!</span> Todos los datos
-            son válidos y tu cuenta ha sido creada.
+            <span className="font-bold">¡Registro exitoso!</span> Redirigiendo al inicio...
           </div>
         )}
 
+
         <form onSubmit={handleSubmit} noValidate className="space-y-4">
+          {/* ...todo el formulario actual se mantiene igual... */}
           <h4 className="text-sm font-bold uppercase tracking-wider text-emerald-600 border-b border-slate-100 pb-1">
             Datos del Dueño
           </h4>
 
+
           <div>
-            <label
-              htmlFor="run"
-              className="block text-xs font-semibold text-slate-700 mb-1"
-            >
+            <label htmlFor="run" className="block text-xs font-semibold text-slate-700 mb-1">
               RUN*
             </label>
             <input
@@ -231,12 +247,10 @@ export default function RegistroPage() {
             )}
           </div>
 
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label
-                htmlFor="firstName"
-                className="block text-xs font-semibold text-slate-700 mb-1"
-              >
+              <label htmlFor="firstName" className="block text-xs font-semibold text-slate-700 mb-1">
                 Nombre*
               </label>
               <input
@@ -254,10 +268,7 @@ export default function RegistroPage() {
               )}
             </div>
             <div>
-              <label
-                htmlFor="lastName"
-                className="block text-xs font-semibold text-slate-700 mb-1"
-              >
+              <label htmlFor="lastName" className="block text-xs font-semibold text-slate-700 mb-1">
                 Apellidos*
               </label>
               <input
@@ -276,11 +287,9 @@ export default function RegistroPage() {
             </div>
           </div>
 
+
           <div>
-            <label
-              htmlFor="email"
-              className="block text-xs font-semibold text-slate-700 mb-1"
-            >
+            <label htmlFor="email" className="block text-xs font-semibold text-slate-700 mb-1">
               Correo Electrónico*
             </label>
             <input
@@ -299,12 +308,10 @@ export default function RegistroPage() {
             )}
           </div>
 
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label
-                htmlFor="password"
-                className="block text-xs font-semibold text-slate-700 mb-1"
-              >
+              <label htmlFor="password" className="block text-xs font-semibold text-slate-700 mb-1">
                 Contraseña*
               </label>
               <input
@@ -324,10 +331,7 @@ export default function RegistroPage() {
               )}
             </div>
             <div>
-              <label
-                htmlFor="confirmPassword"
-                className="block text-xs font-semibold text-slate-700 mb-1"
-              >
+              <label htmlFor="confirmPassword" className="block text-xs font-semibold text-slate-700 mb-1">
                 Confirmar contraseña*
               </label>
               <input
@@ -350,12 +354,10 @@ export default function RegistroPage() {
             </div>
           </div>
 
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label
-                htmlFor="birthDate"
-                className="block text-xs font-semibold text-slate-700 mb-1"
-              >
+              <label htmlFor="birthDate" className="block text-xs font-semibold text-slate-700 mb-1">
                 Fecha de nacimiento
               </label>
               <input
@@ -368,10 +370,7 @@ export default function RegistroPage() {
               />
             </div>
             <div>
-              <label
-                htmlFor="phone"
-                className="block text-xs font-semibold text-slate-700 mb-1"
-              >
+              <label htmlFor="phone" className="block text-xs font-semibold text-slate-700 mb-1">
                 Teléfono
               </label>
               <input
@@ -389,11 +388,9 @@ export default function RegistroPage() {
             </div>
           </div>
 
+
           <div>
-            <label
-              htmlFor="address"
-              className="block text-xs font-semibold text-slate-700 mb-1"
-            >
+            <label htmlFor="address" className="block text-xs font-semibold text-slate-700 mb-1">
               Dirección*
             </label>
             <input
@@ -411,12 +408,10 @@ export default function RegistroPage() {
             )}
           </div>
 
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label
-                htmlFor="region"
-                className="block text-xs font-semibold text-slate-700 mb-1"
-              >
+              <label htmlFor="region" className="block text-xs font-semibold text-slate-700 mb-1">
                 Región*
               </label>
               <select
@@ -438,10 +433,7 @@ export default function RegistroPage() {
               )}
             </div>
             <div>
-              <label
-                htmlFor="commune"
-                className="block text-xs font-semibold text-slate-700 mb-1"
-              >
+              <label htmlFor="commune" className="block text-xs font-semibold text-slate-700 mb-1">
                 Comuna*
               </label>
               <select
@@ -464,17 +456,16 @@ export default function RegistroPage() {
             </div>
           </div>
 
+
           <h4 className="text-sm font-bold uppercase tracking-wider text-emerald-600 border-b border-slate-100 pb-1 pt-2">
             Datos de la Mascota{' '}
             <span className="text-slate-400 font-normal lowercase">(opcional)</span>
           </h4>
 
+
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label
-                htmlFor="petName"
-                className="block text-xs font-semibold text-slate-700 mb-1"
-              >
+              <label htmlFor="petName" className="block text-xs font-semibold text-slate-700 mb-1">
                 Nombre
               </label>
               <input
@@ -488,10 +479,7 @@ export default function RegistroPage() {
               />
             </div>
             <div>
-              <label
-                htmlFor="petSpecies"
-                className="block text-xs font-semibold text-slate-700 mb-1"
-              >
+              <label htmlFor="petSpecies" className="block text-xs font-semibold text-slate-700 mb-1">
                 Especie
               </label>
               <select
@@ -509,10 +497,7 @@ export default function RegistroPage() {
               </select>
             </div>
             <div>
-              <label
-                htmlFor="petBreed"
-                className="block text-xs font-semibold text-slate-700 mb-1"
-              >
+              <label htmlFor="petBreed" className="block text-xs font-semibold text-slate-700 mb-1">
                 Raza
               </label>
               <input
@@ -527,10 +512,12 @@ export default function RegistroPage() {
             </div>
           </div>
 
-          <Button type="submit" className="w-full mt-4">
-            Crear Cuenta
+
+          <Button type="submit" disabled={loading} className="w-full mt-4">
+            {loading ? 'Registrando...' : 'Crear Cuenta'}
           </Button>
         </form>
+
 
         <p className="text-slate-600 text-sm text-center">
           ¿Ya tienes una cuenta?{' '}
