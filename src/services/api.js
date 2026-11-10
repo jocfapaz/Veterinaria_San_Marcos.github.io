@@ -1,70 +1,91 @@
-// 1. Leer la URL base desde las variables de entorno
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
-const STORAGE_KEY = 'vsm_user';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api/v1'
+const STORAGE_KEY = 'vsm_user'
 
-export const apiClient = async (endpoint, options = {}) => {
-  // Obtener la sesión guardada en localStorage
-  const storedUser = localStorage.getItem(STORAGE_KEY);
-  let token = null;
 
-  if (storedUser) {
-    try {
-      const parsedUser = JSON.parse(storedUser);
-      token = parsedUser?.token || null;
-    } catch (error) {
-      console.error('Error al parsear el usuario almacenado:', error);
-    }
+function getStoredToken() {
+  const stored = localStorage.getItem(STORAGE_KEY)
+  if (!stored) return null
+  try {
+    const parsed = JSON.parse(stored)
+    return parsed?.token || null
+  } catch {
+    return null
   }
+}
 
-  // Configurar los encabezados por defecto
+
+export async function apiClient(endpoint, options = {}) {
+  const url = ${BASE_URL}${endpoint}
+  const token = getStoredToken()
+
+
   const headers = {
     'Content-Type': 'application/json',
     ...options.headers,
-  };
-
-  // Asignar Header Authorization: Bearer <token>
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
   }
+
+
+  if (token) {
+    headers['Authorization'] = Bearer ${token}
+  }
+
 
   const config = {
     ...options,
     headers,
-  };
+  }
+
 
   try {
-    const response = await fetch(`${BASE_URL}${endpoint}`, config);
+    const response = await fetch(url, config)
 
-    // MANEJO GLOBAL DE 401 (UNAUTHORIZED)
+
     if (response.status === 401) {
-      localStorage.removeItem(STORAGE_KEY); // Limpia la sesión expirada
-      // Redirige al login de forma limpia si la sesión expiró
+      localStorage.removeItem(STORAGE_KEY)
       if (window.location.pathname !== '/login') {
-        window.location.href = '/login';
+        window.location.href = '/login'
       }
-      throw new Error('Sesión expirada o no autorizada. Por favor, inicia sesión nuevamente.');
+      throw new Error('Sesión expirada o no autorizada. Por favor, inicia sesión nuevamente.')
     }
 
-    // PARSEO DE ERRORES DEL BACKEND (4xx, 5xx)
+
     if (!response.ok) {
-      let errorMessage = `Error HTTP ${response.status}: ${response.statusText}`;
-      
+      let message = Error ${response.status}: ${response.statusText}
       try {
-        const errorData = await response.json();
-        // Extrae el mensaje de error estructurado devuelto por Spring Boot (ProblemDetail o DTO custom)
-        errorMessage = errorData.message || errorData.detail || errorData.error || errorMessage;
+        const data = await response.json()
+        message =
+          data.detail ||
+          data.message ||
+          data.error ||
+          (data.errors && data.errors.map((e) => e.message).join('. ')) ||
+          message
       } catch {
-        // Si el cuerpo de la respuesta no es JSON válido
+        // respuesta no es JSON
       }
-
-      throw new Error(errorMessage);
+      throw new Error(message)
     }
 
-    // Retorna el JSON si la respuesta fue exitosa (200 OK, 201 Created, etc.)
-    return await response.json();
 
+    if (response.status === 204 || response.headers.get('content-length') === '0') {
+      return null
+    }
+
+
+    return await response.json()
   } catch (error) {
-    console.error(`[API Client Error]: ${error.message}`);
-    throw error;
+    if (error.name === 'TypeError') {
+      throw new Error('No se pudo conectar con el servidor. Verifica que el backend esté activo.')
+    }
+    throw error
   }
-};
+}
+
+
+export const get = (endpoint, options = {}) => apiClient(endpoint, { ...options, method: 'GET' })
+export const post = (endpoint, body, options = {}) =>
+  apiClient(endpoint, { ...options, method: 'POST', body: JSON.stringify(body) })
+export const put = (endpoint, body, options = {}) =>
+  apiClient(endpoint, { ...options, method: 'PUT', body: JSON.stringify(body) })
+export const patch = (endpoint, body, options = {}) =>
+  apiClient(endpoint, { ...options, method: 'PATCH', body: JSON.stringify(body) })
+export const del = (endpoint, options = {}) => apiClient(endpoint, { ...options, method: 'DELETE' })
