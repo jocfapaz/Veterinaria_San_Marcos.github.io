@@ -35,6 +35,21 @@ cd Veterinaria_San_Marcos.github.io
 npm install
 ```
 
+## Configuración del entorno
+
+1. Copia el archivo de ejemplo:
+
+```bash
+cp .env.example .env
+
+2. Ajusta VITE_API_URL en .env según tu entorno:
+  # Desarrollo local
+  VITE_API_URL=http://localhost:8080/api/v1
+
+  # Producción (GitHub Pages -> AWS EC2)
+  VITE_API_URL=https://tu-dominio-ec2.com/api/v1
+
+
 ## Scripts disponibles
 
 ```bash

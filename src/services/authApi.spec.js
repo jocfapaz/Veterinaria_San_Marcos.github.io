@@ -1,6 +1,7 @@
 import * as authApi from './authApi.js'
 import * as api from './api.js'
 
+//Este prueba que la conversión de datos entre front y backend sea correcta
 
 describe('authApi', () => {
   beforeEach(() => {

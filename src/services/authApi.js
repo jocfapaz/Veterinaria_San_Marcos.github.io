@@ -1,6 +1,5 @@
 import { post, get } from './api.js'
 
-
 function mapUser(backendUser, token) {
   return {
     id: backendUser.id,

@@ -1,5 +1,8 @@
 import { apiClient } from './api.js'
 
+//Prueba el cliente génerico apiClient
+//Envia el bearer token cuando existe en el localStorage
+
 
 describe('apiClient', () => {
   const STORAGE_KEY = 'vsm_user'
