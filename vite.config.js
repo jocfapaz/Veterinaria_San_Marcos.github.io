@@ -3,10 +3,10 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: '/Veterinaria_San_Marcos.github.io/',
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/Veterinaria_San_Marcos.github.io/' : '/',
   plugins: [
     react(),
     tailwindcss(),
   ],
-})
+}))

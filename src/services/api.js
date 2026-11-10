@@ -15,7 +15,7 @@ function getStoredToken() {
 
 
 export async function apiClient(endpoint, options = {}) {
-  const url = ${BASE_URL}${endpoint}
+  const url = `${BASE_URL}${endpoint}`
   const token = getStoredToken()
 
 
@@ -26,7 +26,7 @@ export async function apiClient(endpoint, options = {}) {
 
 
   if (token) {
-    headers['Authorization'] = Bearer ${token}
+    headers['Authorization'] = `Bearer ${token}`
   }
 
 
@@ -50,7 +50,7 @@ export async function apiClient(endpoint, options = {}) {
 
 
     if (!response.ok) {
-      let message = Error ${response.status}: ${response.statusText}
+      let message = `Error ${response.status}: ${response.statusText}`
       try {
         const data = await response.json()
         message =
@@ -74,7 +74,7 @@ export async function apiClient(endpoint, options = {}) {
     return await response.json()
   } catch (error) {
     if (error.name === 'TypeError') {
-      throw new Error('No se pudo conectar con el servidor. Verifica que el backend esté activo.')
+      throw new Error('No se pudo conectar con el servidor. Verifica que el backend esté activo.', { cause: error })
     }
     throw error
   }
