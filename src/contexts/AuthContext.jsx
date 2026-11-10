@@ -1,39 +1,99 @@
+
+
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useEffect, useState } from 'react'
-import { login as mockLogin } from '../mockDB.js'
+import { createContext, useContext, useEffect, useState, useCallback } from 'react'
+import * as authApi from '../services/authApi.js'
+
 
 const AuthContext = createContext(null)
 const STORAGE_KEY = 'vsm_user'
 
+
+function hasRole(role, ...roles) {
+  return roles.includes(role)
+}
+
+
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY)
-      return saved ? JSON.parse(saved) : null
-    } catch {
-      return null
+  const [currentUser, setCurrentUser] = useState(null)
+  const [isReady, setIsReady] = useState(false)
+
+
+  const saveUser = useCallback((user) => {
+    if (user) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(user))
+      setCurrentUser(user)
+    } else {
+      localStorage.removeItem(STORAGE_KEY)
+      setCurrentUser(null)
     }
-  })
+  }, [])
+
 
   useEffect(() => {
-    if (currentUser) localStorage.setItem(STORAGE_KEY, JSON.stringify(currentUser))
-    else localStorage.removeItem(STORAGE_KEY)
-  }, [currentUser])
+    let cancelled = false
 
-  function login(email, password) {
-    const user = mockLogin(email, password)
-    if (user) {
-      setCurrentUser(user)
-      return user
+
+    async function restoreSession() {
+      const stored = localStorage.getItem(STORAGE_KEY)
+      if (!stored) {
+        setIsReady(true)
+        return
+      }
+
+
+      try {
+        const parsed = JSON.parse(stored)
+        if (!parsed?.token) {
+          localStorage.removeItem(STORAGE_KEY)
+          setIsReady(true)
+          return
+        }
+
+
+        const user = await authApi.me()
+        if (!cancelled) {
+          saveUser({ ...user, token: parsed.token })
+        }
+      } catch {
+        if (!cancelled) {
+          localStorage.removeItem(STORAGE_KEY)
+          setCurrentUser(null)
+        }
+      } finally {
+        if (!cancelled) setIsReady(true)
+      }
     }
-    return null
+
+
+    restoreSession()
+    return () => {
+      cancelled = true
+    }
+  }, [saveUser])
+
+
+  async function login(email, password) {
+    const user = await authApi.login({ email, password })
+    saveUser(user)
+    return user
   }
+
+
+  async function register(userData) {
+    const user = await authApi.register(userData)
+    saveUser(user)
+    return user
+  }
+
 
   function logout() {
-    setCurrentUser(null)
+    saveUser(null)
   }
 
+
   const role = currentUser?.role
+
 
   const value = {
     currentUser,
@@ -41,18 +101,22 @@ export function AuthProvider({ children }) {
     isAdmin: role === 'admin',
     isVendedor: role === 'vendedor',
     isVeterinario: role === 'veterinario',
-    isStaff: role === 'admin' || role === 'vendedor' || role === 'veterinario',
-    canManageServices: role === 'admin' || role === 'vendedor' || role === 'veterinario',
-    canManageProducts: role === 'admin' || role === 'vendedor',
+    isClient: role === 'client',
+    isStaff: hasRole(role, 'admin', 'vendedor', 'veterinario'),
+    canManageServices: hasRole(role, 'admin', 'veterinario'),
+    canManageProducts: hasRole(role, 'admin', 'vendedor'),
     canManageUsers: role === 'admin',
-    canManageOrders: role === 'admin' || role === 'vendedor',
+    canManageOrders: hasRole(role, 'admin', 'vendedor'),
     login,
+    register,
     logout,
-    isReady: true,
+    isReady,
   }
+
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
+
 
 export function useAuth() {
   const ctx = useContext(AuthContext)
