@@ -14,6 +14,11 @@ function hasRole(role, ...roles) {
 }
 
 
+export function isStaffRole(role) {
+  return hasRole(role, 'admin', 'vendedor', 'veterinario')
+}
+
+
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null)
   const [isReady, setIsReady] = useState(false)
@@ -102,7 +107,7 @@ export function AuthProvider({ children }) {
     isVendedor: role === 'vendedor',
     isVeterinario: role === 'veterinario',
     isClient: role === 'client',
-    isStaff: hasRole(role, 'admin', 'vendedor', 'veterinario'),
+    isStaff: isStaffRole(role),
     canManageServices: hasRole(role, 'admin', 'veterinario'),
     canManageProducts: hasRole(role, 'admin', 'vendedor'),
     canManageUsers: role === 'admin',

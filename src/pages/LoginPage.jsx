@@ -1,6 +1,10 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
-import { useAuth } from '../contexts/AuthContext.jsx'
+import { useAuth, isStaffRole } from '../contexts/AuthContext.jsx'
+import {
+  isAllowedEmailDomain,
+  ALLOWED_EMAIL_DOMAINS_MESSAGE,
+} from '../constants/emailDomains.js'
 import Button from '../components/Button'
 
 
@@ -9,7 +13,7 @@ export default function LoginPage() {
   const [errors, setErrors] = useState({})
   const [loginError, setLoginError] = useState('')
   const [loading, setLoading] = useState(false)
-  const { login: authLogin, isStaff } = useAuth()
+  const { login: authLogin } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -31,25 +35,16 @@ export default function LoginPage() {
       newErrors.email = 'El correo electrónico es obligatorio.'
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = 'Ingresa un formato de correo válido.'
-    } else {
-      const domain = email.split('@')[1]
-      if (
-        domain !== 'duocuc.cl' &&
-        domain !== 'profesor.duoc.cl' &&
-        domain !== 'gmail.com' &&
-        domain !== 'veterinariasanmarcos.cl'
-      ) {
-        newErrors.email =
-          'Solo se permiten correos @duocuc.cl, @profesor.duoc.cl y @gmail.com.'
-      }
+    } else if (!isAllowedEmailDomain(email)) {
+      newErrors.email = ALLOWED_EMAIL_DOMAINS_MESSAGE
     }
 
 
     const pass = formData.password
     if (!pass) {
       newErrors.password = 'La contraseña es obligatoria.'
-    } else if (pass.length < 4 || pass.length > 10) {
-      newErrors.password = 'La contraseña debe tener entre 4 y 10 caracteres.'
+    } else if (pass.length < 8 || pass.length > 72) {
+      newErrors.password = 'La contraseña debe tener entre 8 y 72 caracteres.'
     }
 
 
@@ -68,8 +63,8 @@ export default function LoginPage() {
 
 
     try {
-      await authLogin(formData.email, formData.password)
-      const redirectTo = isStaff
+      const user = await authLogin(formData.email, formData.password)
+      const redirectTo = isStaffRole(user.role)
         ? '/admin'
         : location.state?.from?.pathname || '/'
       navigate(redirectTo)
