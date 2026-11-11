@@ -95,7 +95,7 @@ export default function RegistroPage() {
 
     if (!run) newErrors.run = 'El RUN es obligatorio.'
     else if (!validateRun(run))
-      newErrors.run = 'Ingresa un RUN válido (ej: 12.345.678-5).'
+      newErrors.run = 'Ingresa un RUN válido (ej: 12.345.678-9).'
 
 
     if (!firstName) newErrors.firstName = 'El nombre es obligatorio.'
@@ -236,7 +236,7 @@ export default function RegistroPage() {
               name="run"
               value={formData.run}
               onChange={handleChange}
-              placeholder="Ej: 12.345.678-5"
+              placeholder="Ej: 12.345.678-9"
               required
               minLength={7}
               maxLength={12}
