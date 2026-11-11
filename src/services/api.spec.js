@@ -12,6 +12,7 @@ describe('apiClient', () => {
     localStorage.clear()
     spyOn(window, 'fetch').and.returnValue(
       Promise.resolve({
+        ok: true,
         status: 200,
         headers: new Map([['content-length', '10']]),
         json: () => Promise.resolve({ ok: true }),
@@ -50,6 +51,7 @@ describe('apiClient', () => {
   it('should handle 204 No Content', async () => {
     window.fetch.and.returnValue(
       Promise.resolve({
+        ok: true,
         status: 204,
         headers: new Map([['content-length', '0']]),
       })
