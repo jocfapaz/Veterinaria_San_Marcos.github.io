@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
+import { validateRun, formatRun } from '../utils/run.js'
+import { REGIONS, COMMUNES_BY_REGION } from '../constants/regions.js'
 import {
-  validateRun,
-  formatRun,
-  REGIONS,
-  COMMUNES_BY_REGION,
-} from '../mockDB.js'
+  isAllowedEmailDomain,
+  ALLOWED_EMAIL_DOMAINS_MESSAGE,
+} from '../constants/emailDomains.js'
 import { useAuth } from '../contexts/AuthContext.jsx'
 import Button from '../components/Button'
 
@@ -24,15 +24,6 @@ function isValidName(name) {
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
-
-
-const ALLOWED_DOMAINS = [
-  'duoc.cl',
-  'profesor.duoc.cl',
-  'gmail.com',
-  'duocuc.cl',
-  'veterinariasanmarcos.cl',
-]
 
 
 export default function RegistroPage() {
@@ -112,17 +103,13 @@ export default function RegistroPage() {
     if (!emailLower) newErrors.email = 'El correo electrónico es obligatorio.'
     else if (!isValidEmail(emailLower))
       newErrors.email = 'Ingresa un formato de correo válido.'
-    else {
-      const domain = emailLower.split('@')[1]
-      if (!ALLOWED_DOMAINS.includes(domain)) {
-        newErrors.email = 'Solo se permiten correos institucionales o Gmail.'
-      }
-    }
+    else if (!isAllowedEmailDomain(emailLower))
+      newErrors.email = ALLOWED_EMAIL_DOMAINS_MESSAGE
 
 
     if (!password) newErrors.password = 'La contraseña es obligatoria.'
-    else if (password.length < 4 || password.length > 10)
-      newErrors.password = 'La contraseña debe tener entre 4 y 10 caracteres.'
+    else if (password.length < 8 || password.length > 72)
+      newErrors.password = 'La contraseña debe tener entre 8 y 72 caracteres.'
 
 
     if (!confirmPassword)
@@ -138,6 +125,18 @@ export default function RegistroPage() {
     if (!address) newErrors.address = 'La dirección es obligatoria.'
     if (!region) newErrors.region = 'Debes seleccionar una región.'
     if (!commune) newErrors.commune = 'Debes seleccionar una comuna.'
+
+
+    // Mascota opcional: si se llenó algún campo, nombre y especie son obligatorios
+    const hasPetData =
+      formData.petName.trim() || formData.petSpecies || formData.petBreed.trim()
+    if (hasPetData) {
+      if (!formData.petName.trim())
+        newErrors.petName =
+          'Ingresa el nombre de tu mascota o deja la sección vacía.'
+      if (!formData.petSpecies)
+        newErrors.petSpecies = 'Selecciona la especie de tu mascota.'
+    }
 
 
     setErrors(newErrors)
@@ -166,6 +165,14 @@ export default function RegistroPage() {
         address: formData.address.trim(),
         region: formData.region,
         commune: formData.commune,
+        pet:
+          formData.petName.trim() && formData.petSpecies
+            ? {
+                name: formData.petName.trim(),
+                species: formData.petSpecies,
+                breed: formData.petBreed.trim() || null,
+              }
+            : null,
       }
 
 
@@ -321,8 +328,8 @@ export default function RegistroPage() {
                 value={formData.password}
                 onChange={handleChange}
                 required
-                minLength={4}
-                maxLength={10}
+                minLength={8}
+                maxLength={72}
                 placeholder="········"
                 className={inputClass(!!errors.password)}
               />
@@ -341,8 +348,8 @@ export default function RegistroPage() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 required
-                minLength={4}
-                maxLength={10}
+                minLength={8}
+                maxLength={72}
                 placeholder="········"
                 className={inputClass(!!errors.confirmPassword)}
               />
@@ -475,8 +482,11 @@ export default function RegistroPage() {
                 value={formData.petName}
                 onChange={handleChange}
                 maxLength={50}
-                className={inputClass(false)}
+                className={inputClass(!!errors.petName)}
               />
+              {errors.petName && (
+                <span className="text-xs text-rose-500">{errors.petName}</span>
+              )}
             </div>
             <div>
               <label htmlFor="petSpecies" className="block text-xs font-semibold text-slate-700 mb-1">
@@ -487,7 +497,7 @@ export default function RegistroPage() {
                 name="petSpecies"
                 value={formData.petSpecies}
                 onChange={handleChange}
-                className={inputClass(false)}
+                className={inputClass(!!errors.petSpecies)}
               >
                 <option value="">-- Seleccionar --</option>
                 <option value="Perro">Perro</option>
@@ -495,6 +505,9 @@ export default function RegistroPage() {
                 <option value="Conejo">Conejo</option>
                 <option value="Ave">Ave</option>
               </select>
+              {errors.petSpecies && (
+                <span className="text-xs text-rose-500">{errors.petSpecies}</span>
+              )}
             </div>
             <div>
               <label htmlFor="petBreed" className="block text-xs font-semibold text-slate-700 mb-1">
