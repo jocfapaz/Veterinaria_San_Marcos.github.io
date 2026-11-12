@@ -1,10 +1,20 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useEffect, useState, useCallback } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
+import { useLocation, useNavigate } from 'react-router'
 import * as authApi from '../services/authApi.js'
 import {
   clearSession,
   readSession,
   saveSession,
+  SESSION_EXPIRED_EVENT,
+  STORAGE_KEY,
 } from '../services/session.js'
 
 
@@ -24,6 +34,14 @@ export function isStaffRole(role) {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null)
   const [isReady, setIsReady] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const locationRef = useRef(location)
+
+
+  useEffect(() => {
+    locationRef.current = location
+  }, [location])
 
 
   const saveUser = useCallback((user) => {
@@ -66,6 +84,39 @@ export function AuthProvider({ children }) {
       cancelled = true
     }
   }, [saveUser])
+
+
+  useEffect(() => {
+    function handleSessionExpired() {
+      clearSession()
+      setCurrentUser(null)
+
+      if (locationRef.current.pathname !== '/login') {
+        navigate('/login', {
+          replace: true,
+          state: { from: locationRef.current, reason: 'session-expired' },
+        })
+      }
+    }
+
+
+    window.addEventListener(SESSION_EXPIRED_EVENT, handleSessionExpired)
+    return () =>
+      window.removeEventListener(SESSION_EXPIRED_EVENT, handleSessionExpired)
+  }, [navigate])
+
+
+  useEffect(() => {
+    function handleStorage(event) {
+      if (event.key === STORAGE_KEY && !event.newValue) {
+        setCurrentUser(null)
+      }
+    }
+
+
+    window.addEventListener('storage', handleStorage)
+    return () => window.removeEventListener('storage', handleStorage)
+  }, [])
 
 
   async function login(email, password) {
