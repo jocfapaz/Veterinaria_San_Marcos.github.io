@@ -1,12 +1,14 @@
-
-
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState, useCallback } from 'react'
 import * as authApi from '../services/authApi.js'
+import {
+  clearSession,
+  readSession,
+  saveSession,
+} from '../services/session.js'
 
 
 const AuthContext = createContext(null)
-const STORAGE_KEY = 'vsm_user'
 
 
 function hasRole(role, ...roles) {
@@ -25,13 +27,8 @@ export function AuthProvider({ children }) {
 
 
   const saveUser = useCallback((user) => {
-    if (user) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(user))
-      setCurrentUser(user)
-    } else {
-      localStorage.removeItem(STORAGE_KEY)
-      setCurrentUser(null)
-    }
+    saveSession(user)
+    setCurrentUser(user)
   }, [])
 
 
@@ -40,29 +37,22 @@ export function AuthProvider({ children }) {
 
 
     async function restoreSession() {
-      const stored = localStorage.getItem(STORAGE_KEY)
-      if (!stored) {
+      const stored = readSession()
+      if (!stored?.token) {
+        clearSession()
         setIsReady(true)
         return
       }
 
 
       try {
-        const parsed = JSON.parse(stored)
-        if (!parsed?.token) {
-          localStorage.removeItem(STORAGE_KEY)
-          setIsReady(true)
-          return
-        }
-
-
         const user = await authApi.me()
         if (!cancelled) {
-          saveUser({ ...user, token: parsed.token })
+          saveUser({ ...user, token: stored.token })
         }
       } catch {
         if (!cancelled) {
-          localStorage.removeItem(STORAGE_KEY)
+          clearSession()
           setCurrentUser(null)
         }
       } finally {
