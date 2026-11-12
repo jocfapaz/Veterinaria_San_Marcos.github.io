@@ -26,10 +26,10 @@ Sitio web de la Veterinaria San Marcos, migrado de HTML estático a una SPA con 
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/usuario/Veterinaria_San_Marcos.github.io.git
+git clone https://github.com/jocfapaz/Veterinaria_San_Marcos_Frontend.git
 
 # Entrar al proyecto
-cd Veterinaria_San_Marcos.github.io
+cd Veterinaria_San_Marcos_Frontend
 
 # Instalar dependencias
 npm install

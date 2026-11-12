@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/Veterinaria_San_Marcos.github.io/' : '/',
+  base: command === 'build' ? '/Veterinaria_San_Marcos_Frontend/' : '/',
   plugins: [
     react(),
     tailwindcss(),
