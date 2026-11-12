@@ -34,6 +34,7 @@ export function isStaffRole(role) {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null)
   const [isReady, setIsReady] = useState(false)
+  const restoreStarted = useRef(false)
   const navigate = useNavigate()
   const location = useLocation()
   const locationRef = useRef(location)
@@ -51,7 +52,8 @@ export function AuthProvider({ children }) {
 
 
   useEffect(() => {
-    let cancelled = false
+    if (restoreStarted.current) return
+    restoreStarted.current = true
 
 
     async function restoreSession() {
@@ -65,24 +67,17 @@ export function AuthProvider({ children }) {
 
       try {
         const user = await authApi.me()
-        if (!cancelled) {
-          saveUser({ ...user, token: stored.token })
-        }
+        saveUser({ ...user, token: stored.token })
       } catch {
-        if (!cancelled) {
-          clearSession()
-          setCurrentUser(null)
-        }
+        clearSession()
+        setCurrentUser(null)
       } finally {
-        if (!cancelled) setIsReady(true)
+        setIsReady(true)
       }
     }
 
 
     restoreSession()
-    return () => {
-      cancelled = true
-    }
   }, [saveUser])
 
 

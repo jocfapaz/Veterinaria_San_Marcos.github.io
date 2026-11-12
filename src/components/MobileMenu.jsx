@@ -10,7 +10,7 @@ const linkBase =
 const linkActive = 'text-emerald-600 bg-emerald-50 border-l-4 border-emerald-600'
 
 export default function MobileMenu({ onClose }) {
-  const { currentUser } = useAuth()
+  const { currentUser, isReady } = useAuth()
   const { cartCount } = useCart()
   const { requestCount } = useRequests()
   const navigate = useNavigate()
@@ -40,7 +40,11 @@ export default function MobileMenu({ onClose }) {
 
         <hr className="border-slate-100 my-2" />
 
-        {currentUser ? (
+        {!isReady ? (
+          <span className="block px-3 py-2 text-slate-400 text-sm">
+            Restaurando sesión...
+          </span>
+        ) : currentUser ? (
           <>
             <span className="block px-3 py-2 text-slate-500 text-sm">
               {currentUser.firstName} {currentUser.lastName}

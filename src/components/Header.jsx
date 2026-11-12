@@ -9,7 +9,7 @@ import MobileMenu from './MobileMenu'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { currentUser, isStaff } = useAuth()
+  const { currentUser, isStaff, isReady } = useAuth()
   const { cartCount } = useCart()
   const { requestCount } = useRequests()
   const navigate = useNavigate()
@@ -46,7 +46,12 @@ export default function Header() {
         <Navbar />
 
         <div className="hidden md:flex items-center gap-3 text-sm font-semibold">
-          {currentUser ? (
+          {!isReady ? (
+            <div
+              className="h-9 w-28 rounded-lg bg-slate-100 animate-pulse"
+              aria-hidden="true"
+            />
+          ) : currentUser ? (
             <div className="flex items-center gap-2">
               <span className="text-slate-700">
                 Hola, {currentUser.firstName}
