@@ -30,6 +30,11 @@ import AdminUsuariosPage from './pages/admin/AdminUsuariosPage'
 import AdminUsuarioForm from './pages/admin/AdminUsuarioForm'
 import AdminOrdenesPage from './pages/admin/AdminOrdenesPage'
 
+const ADMIN_ONLY = ['admin']
+const SELLER_ACCESS = ['admin', 'vendedor']
+const SERVICE_ACCESS = ['admin', 'vendedor', 'veterinario']
+const STAFF_ACCESS = ['admin', 'vendedor', 'veterinario']
+
 export default function App() {
   return (
     <Routes>
@@ -76,7 +81,7 @@ export default function App() {
         <Route
           path="/admin"
           element={
-            <AdminRoute allowedRoles={['admin', 'vendedor', 'veterinario']}>
+            <AdminRoute allowedRoles={STAFF_ACCESS}>
               <AdminLayout />
             </AdminRoute>
           }
@@ -85,7 +90,7 @@ export default function App() {
           <Route
             path="servicios"
             element={
-              <AdminRoute allowedRoles={['admin', 'vendedor', 'veterinario']}>
+              <AdminRoute allowedRoles={SERVICE_ACCESS}>
                 <AdminServiciosPage />
               </AdminRoute>
             }
@@ -93,7 +98,7 @@ export default function App() {
           <Route
             path="servicios/nuevo"
             element={
-              <AdminRoute allowedRoles={['admin']}>
+              <AdminRoute allowedRoles={ADMIN_ONLY}>
                 <AdminServicioForm />
               </AdminRoute>
             }
@@ -101,7 +106,7 @@ export default function App() {
           <Route
             path="servicios/:id/editar"
             element={
-              <AdminRoute allowedRoles={['admin']}>
+              <AdminRoute allowedRoles={ADMIN_ONLY}>
                 <AdminServicioForm />
               </AdminRoute>
             }
@@ -109,7 +114,7 @@ export default function App() {
           <Route
             path="productos"
             element={
-              <AdminRoute allowedRoles={['admin', 'vendedor']}>
+              <AdminRoute allowedRoles={SELLER_ACCESS}>
                 <AdminProductosPage />
               </AdminRoute>
             }
@@ -117,7 +122,7 @@ export default function App() {
           <Route
             path="productos/nuevo"
             element={
-              <AdminRoute allowedRoles={['admin']}>
+              <AdminRoute allowedRoles={ADMIN_ONLY}>
                 <AdminProductoForm />
               </AdminRoute>
             }
@@ -125,7 +130,7 @@ export default function App() {
           <Route
             path="productos/:id/editar"
             element={
-              <AdminRoute allowedRoles={['admin']}>
+              <AdminRoute allowedRoles={ADMIN_ONLY}>
                 <AdminProductoForm />
               </AdminRoute>
             }
@@ -133,7 +138,7 @@ export default function App() {
           <Route
             path="usuarios"
             element={
-              <AdminRoute allowedRoles={['admin']}>
+              <AdminRoute allowedRoles={ADMIN_ONLY}>
                 <AdminUsuariosPage />
               </AdminRoute>
             }
@@ -141,7 +146,7 @@ export default function App() {
           <Route
             path="usuarios/nuevo"
             element={
-              <AdminRoute allowedRoles={['admin']}>
+              <AdminRoute allowedRoles={ADMIN_ONLY}>
                 <AdminUsuarioForm />
               </AdminRoute>
             }
@@ -149,7 +154,7 @@ export default function App() {
           <Route
             path="usuarios/:id/editar"
             element={
-              <AdminRoute allowedRoles={['admin']}>
+              <AdminRoute allowedRoles={ADMIN_ONLY}>
                 <AdminUsuarioForm />
               </AdminRoute>
             }
@@ -157,7 +162,7 @@ export default function App() {
           <Route
             path="ordenes"
             element={
-              <AdminRoute allowedRoles={['admin', 'vendedor']}>
+              <AdminRoute allowedRoles={SELLER_ACCESS}>
                 <AdminOrdenesPage />
               </AdminRoute>
             }
